@@ -1,0 +1,640 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title> LIY: Practice </title>
+</head>
+<body>
+<script>
+
+let qst_bank = [
+	{ q: "What is sin &theta;?",
+          c: ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"],
+          a: 0 }, 
+
+	{ q: "What is cos &theta;?",
+          c: ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"],
+          a: 2 }, 
+
+        /* tan(x) = sin(x)/cos(x) = Opposite/Adjacent. */
+	{ q: "What is tan &theta;?",
+          c: ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"],
+          a: 1 }, 
+
+        /* sec(x) = 1/cos(x) = hyp/adj */
+	{ q: "What is sec &theta;?",
+          c: ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Hypotenuse</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Hypotenuse</sup>&frasl;<sub>Opposite</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"],
+          a: 2 }, 
+
+        /* cosec(x) = 1/sin(x) = hyp/opp */
+	{ q: "What is cosec &theta;?",
+          c: ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Hypotenuse</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Hypotenuse</sup>&frasl;<sub>Opposite</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"],
+          a: 3 }, 
+
+        /* cot(x) = 1/tan(x) = cos(x)/sin(x) = adj/opp */
+	{ q: "What is cot &theta;?",
+          c: ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Hypotenuse</sup>&frasl;<sub>Adjacent</sub>",
+              "<sup>Hypotenuse</sup>&frasl;<sub>Opposite</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
+              "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"],
+          a: 5 }, 
+
+	{ q: "What is sin 0&deg;?",
+          c: ["0",
+              "2",
+              "&frac12;",
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>",
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>",
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>",
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>",
+              "&radic;<span style=\"text-decoration:overline;\">3</span>",
+              "&radic;<span style=\"text-decoration:overline;\">2</span>",
+              "&infin;",
+              "1"],
+          a: 0 }, 
+
+	{ q: "What is sin 30&deg;?",
+          c: ["0",
+              "2",
+              "&frac12;",
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>",
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>",
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>",
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>",
+              "&radic;<span style=\"text-decoration:overline;\">3</span>",
+              "&radic;<span style=\"text-decoration:overline;\">2</span>",
+              "&infin;",
+              "1"],
+          a: 2 }, 
+
+	{ q: "What is sin 45&deg;?",
+          c: ["0",
+              "2",
+              "&frac12;",
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>",
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>",
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>",
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>",
+              "&radic;<span style=\"text-decoration:overline;\">3</span>",
+              "&radic;<span style=\"text-decoration:overline;\">2</span>",
+              "&infin;",
+              "1"],
+          a: 3 }, 
+
+	{ q: "What is sin 60&deg;?",
+          c: ["0",
+              "2",
+              "&frac12;",
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>",
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>",
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>",
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>",
+              "&radic;<span style=\"text-decoration:overline;\">3</span>",
+              "&radic;<span style=\"text-decoration:overline;\">2</span>",
+              "&infin;",
+              "1"],
+          a: 6 }, 
+
+	{ q: "What is sin 90&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 10 }, 
+
+	{ q: "What is cos 0&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 10 }, 
+
+	{ q: "What is cos 30&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 6 }, 
+
+	{ q: "What is cos 45&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 3 }, 
+
+	{ q: "What is cos 60&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 2 }, 
+
+	{ q: "What is cos 90&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 0 }, 
+
+	{ q: "What is tan 0&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 0 }, 
+
+	{ q: "What is tan 30&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              /* 1 / sqrt(3) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 4 }, 
+
+	{ q: "What is tan 45&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 10 }, 
+
+	{ q: "What is tan 60&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 7 }, 
+
+	{ q: "What is tan 90&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 9 }, 
+
+	{ q: "What is cosec 0&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 9 }, 
+
+	{ q: "What is cosec 30&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              /* 1 / sqrt(3) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 1 }, 
+
+	{ q: "What is cosec 45&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 8 }, 
+
+	{ q: "What is cosec 60&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              /* 2 / sqrt(3) */
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 5 }, 
+
+	{ q: "What is cosec 90&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 10 }, 
+
+	{ q: "What is sec 0&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 10 }, 
+
+	{ q: "What is sec 30&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              /* 1 / sqrt(3) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              /* 2 / sqrt(3) */
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 5 }, 
+
+	{ q: "What is sec 45&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 8 }, 
+
+	{ q: "What is sec 60&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              /* 2 / sqrt(3) */
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 1 }, 
+
+	{ q: "What is sec 90&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 9 }, 
+
+	{ q: "What is cot 0&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 9 }, 
+
+	{ q: "What is cot 30&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              /* 1 / sqrt(3) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              /* 2 / sqrt(3) */
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 7 }, 
+
+	{ q: "What is cot 45&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+
+              /* 1 / sqrt(2) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 10 }, 
+
+	{ q: "What is cot 60&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              /* 1 / sqrt(3) */
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              /* 2 / sqrt(3) */
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 4 }, 
+
+	{ q: "What is cot 90&deg;?",
+          c: ["0", // 0
+              "2", // 1
+              "&frac12;", // 2
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">2</span></sub>", // 3
+              "<sup>1</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 4
+              "<sup>2</sup>&frasl;<sub>&radic;<span style=\"text-decoration:overline;\">3</span></sub>", // 5
+              /* sqrt(3) / 2 */
+              "<sup>&radic;<span style=\"text-decoration:overline;\">3</span></sup>&frasl;<sub>2</sub>", // 6
+              "&radic;<span style=\"text-decoration:overline;\">3</span>", // 7
+              "&radic;<span style=\"text-decoration:overline;\">2</span>", // 8
+              "&infin;", // 9
+              "1"], // 10
+          a: 0 }, 
+];
+
+window.onload = function () {
+  let my_choice_list = document.getElementById("choice_list");
+  let cur_qst_elem = document.getElementById('cur_qst');
+  var cur_qst = cur_qst_elem.value;
+
+  let question = document.getElementById('qst');
+  question.innerHTML = qst_bank[cur_qst].q;
+
+  for (var i = 0; i < qst_bank[cur_qst].c.length; ++i) {
+     var choice = qst_bank[cur_qst].c[i];
+     var radio_id = `choice_${i}`;
+     let li_elem = document.createElement("li");
+
+     var v = 0;
+     if (qst_bank[cur_qst].a == i) {
+        v = 1;
+     } 
+
+     li_elem.innerHTML = `<input type="radio" id="${radio_id}" name="choice" value="${v}"/> ${choice}</li>`;
+     
+     li_elem.id = `li_choice_${i}`;
+     my_choice_list.appendChild(li_elem);
+  }
+
+};
+
+/* Remove all the choices of the given question. */
+function remove_choices() {
+   let choice_list = document.getElementById("choice_list");
+   while (choice_list.lastChild) {
+     choice_list.removeChild(choice_list.lastChild);
+   }
+}
+
+function next_question() {
+   let cur_qst_elem = document.getElementById('cur_qst');
+   var cur_qst = cur_qst_elem.value;
+
+   cur_qst++;
+
+   if (cur_qst >= qst_bank.length) {
+      cur_qst = 0;
+   }
+
+   let question = document.getElementById('qst');
+   question.innerHTML = qst_bank[cur_qst].q;
+
+   /* Remove the old choices and add the new ones. */
+   remove_choices();
+
+   for (var i = 0; i < qst_bank[cur_qst].c.length; ++i) {
+      var li_name = `li_choice_${i}`;
+      let li_elem = document.getElementById(li_name);
+      var radio_id = `choice_${i}`;
+
+      var choice = `qst_bank[cur_qst].c[i]`;
+
+      if (li_elem == null) {
+         let my_choice_list = document.getElementById("choice_list");
+         li_elem = document.createElement("li");
+         li_elem.id = li_name;
+         my_choice_list.appendChild(li_elem);
+      }
+
+      var v = 0;
+      if (qst_bank[cur_qst].a == i) {
+         v = 1;
+      } 
+         
+      li_elem.innerHTML = `<input type="radio" id="${radio_id}" name="choice" value="${v}"/> ${eval(choice)}</li>`;
+   }
+   cur_qst_elem.value = cur_qst;
+}
+
+function verify_choice() {
+  let cur_qst_elem = document.getElementById('cur_qst');
+  var cur_qst = cur_qst_elem.value;
+  let user_chosen = 0;
+  let choices = document.getElementsByName('choice');
+  var answer = 0;
+  for (var i = 0; i < choices.length; ++i) {
+    if (choices[i].checked && choices[i].value == 1) {
+      answer = 1;
+      break;
+    }
+  }
+  if (answer == 0) {
+    window.alert("Wrong");
+  } else {
+    window.alert("Correct");
+  }
+}
+
+</script>
+
+<div id="mcq">
+   <p id="qst"> Question </p>
+   <input type="hidden" id="cur_qst" value="0"> 
+   <ul id="choice_list" style="list-style-type: none;">
+   <!-- No list items are here on purpose. -->
+   </ul>
+   <input type="button" value="Verify" onclick="verify_choice()" />
+   <input type="button" value="Next" onclick="next_question()" />
+</div>
+</body>
+</html>
+
