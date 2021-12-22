@@ -1,7 +1,8 @@
-const sqrt_2 = `&radic;<span style="text-decoration:overline;">2</span>`;
-const sqrt_3 = `&radic;<span style="text-decoration:overline;">3</span>`;
+class SampleQSet extends QSet {
+   constructor() {
+       super();
+       this.qst_bank = [
 
-let qst_bank = [
 	{ q: "What is sin &theta;?",
           c: ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
               "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
@@ -24,4 +25,6 @@ let qst_bank = [
               "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"],
           a: 1 }, 
 ];
-
+   }
+   getQstList() { return this.qst_bank; }
+}

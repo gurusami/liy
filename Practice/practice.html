@@ -6,58 +6,177 @@
 </head>
 <body>
 
+<script src="qset.js"></script>
 <script src="sample.js"></script>
+<script src="trigonometry.js"></script>
 
 <script>
-let ly_globals = {
-    cur_qst: 0
-};
 
-let is_correct = new Array(qst_bank.length);
+/******************************************************************************/
+/* Global Variables */
 
-for (var i = 0; i < is_correct.length; ++i) {
-   is_correct[i] = false;
+var cur_qst = 0;
+let cur_grp;
+let is_correct;
+let g_qbank;
+
+/******************************************************************************/
+/* Functions */
+
+function init_is_correct(len) {
+   is_correct = new Array(len);
+   for (var i = 0; i < len; ++i) {
+       is_correct[i] = false;
+   }
 }
 
-function calc_remain_q() {
-  var r = 0;
-  for (var i = 0; i < is_correct.length; ++i) {
-     if (is_correct[i] == false) {
-        r++;
-     }
-  }
-  return r;
-}
+/******************************************************************************/
+let ly_groups = new Array(2);
 
-
-window.onload = function () {
-  let my_choice_list = document.getElementById("choice_list");
-
-  let question = document.getElementById('qst');
-  question.innerHTML = qst_bank[ly_globals.cur_qst].q;
-
-  for (var i = 0; i < qst_bank[ly_globals.cur_qst].c.length; ++i) {
-     var choice = qst_bank[ly_globals.cur_qst].c[i];
-     var radio_id = `choice_${i}`;
-     let li_elem = document.createElement("li");
-
-     var v = 0;
-     if (qst_bank[ly_globals.cur_qst].a == i) {
-        v = 1;
-     } 
-
-     li_elem.innerHTML = `<input type="radio" id="${radio_id}" name="choice" value="${v}"/> ${choice}</li>`;
-     
-     li_elem.id = `li_choice_${i}`;
-     my_choice_list.appendChild(li_elem);
-  }
-  set_total_questions();
-  set_questions_remaining();
+class ly_group {
+   constructor(gid, pgid, name, title, is_group, qobj) {
+       this.gid = gid; /* Group id */
+       this.pgid = pgid; /* Parent group id */
+       this.name = name; /* Short name of the group. */
+       this.title = title; /* Title of the group. */
+       this.is_group = is_group; /* If true, it is a group, else it is qset. */
+       this.qobj = qobj; /* Derived class of QSet interface. */
+   }
 };
 
-function set_total_questions() {
+ly_groups[0] = new ly_group(1, 0, "Sample", "Just for development work", false,
+                            new SampleQSet());
+ly_groups[1] = new ly_group(2, 0, "Trigonometry", "Basic Trigonometric Ratios",
+                            false, new Trigonometry());
+
+function ly_get_group(grp_name) {
+   for (var i = 0; i < ly_groups.length; ++i) {
+       if (ly_groups[i].name == grp_name) {
+           return ly_groups[i];
+       }
+   }
+   return null;
+}
+
+function ly_subgroups_id(pgid) {
+   let grp_list = [];
+   for (var i = 0; i < ly_groups.length; ++i) {
+       if (ly_groups[i].pgid == pgid) {
+           grp_list.push(ly_groups[i]);
+       }
+   }
+   return grp_list;
+}
+
+function ly_subgroups(grp_name) {
+   let grp_list = [];
+   for (var i = 0; i < ly_groups.length; ++i) {
+       if (ly_groups[i].name == grp_name) {
+           grp_list.push(ly_groups[i]);
+       }
+   }
+   return grp_list;
+}
+
+/******************************************************************************/
+
+function init_qset_list(li_elem) {
+   let div_grp = document.getElementById("qset_list");
+   div_grp.style.visibility = "visible";
+   let grp_name = "";
+   if (li_elem == null) {
+       grp_name = "";
+   } else {
+       grp_name = li_elem.value;
+   }
+
+   cur_grp = ly_get_group(grp_name);
+
+   let div_mcq = document.getElementById("mcq");
+   if (cur_grp && cur_grp.is_group == false) {
+       g_qbank = cur_grp.qobj.getQstList();
+       init_is_correct(g_qbank.length);
+       init_mcq(grp_name);
+       div_mcq.style.visibility = "visible";
+   } else {
+
+       let local_groups = (grp_name == "") ? ly_subgroups_id(0) : ly_subgroups(grp_name);
+ 
+       let ol_elem = document.getElementById("qset_ol");
+       for (var i = 0; i < local_groups.length; ++i) {
+           let li_elem = document.createElement("li");
+           var gname = local_groups[i].name;
+           li_elem.innerHTML = `<input type="button" value="${gname}" onclick="init_qset_list(this)" />`;
+           ol_elem.appendChild(li_elem);
+       }
+       div_mcq.style.visibility = "hidden";
+   }
+}
+
+function init_mcq(grp_name) {
+   let div_mcq = document.getElementById("mcq");
+   div_mcq.style.visibility = "visible";
+   let div_grp = document.getElementById("qset_list");
+   div_grp.style.visibility = "hidden";
+
+   let my_choice_list = document.getElementById("choice_list");
+   let question = document.getElementById('qst');
+   let Q = g_qbank;
+   question.innerHTML = Q[cur_qst].q;
+
+   for (var i = 0; i < Q[cur_qst].c.length; ++i) {
+       var choice = Q[cur_qst].c[i];
+       var radio_id = `choice_${i}`;
+       let li_elem = document.createElement("li");
+
+       var v = 0;
+       if (Q[cur_qst].a == i) {
+           v = 1;
+       } 
+
+       li_elem.innerHTML = `<input type="radio" id="${radio_id}" \
+           name="choice" value="${v}"/> ${choice}</li>`;
+   
+       li_elem.id = `li_choice_${i}`;
+       my_choice_list.appendChild(li_elem);
+   }
+   set_total_questions(Q.length);
+   set_questions_remaining();
+}
+
+function verify_choice() {
+   let user_chosen = 0;
+   let choices = document.getElementsByName('choice');
+   var answer = 0;
+   let li_elem;
+   let li_elem_selected;
+   for (var i = 0; i < choices.length; ++i) {
+       var li_name = `li_choice_${i}`;
+       li_elem = document.getElementById(li_name);
+       if (choices[i].checked) {
+           li_elem_selected = li_elem;
+       }
+       if (choices[i].checked && choices[i].value == 1) {
+           answer = 1;
+       } else {
+           li_elem.style.background = "none";
+       }
+   }
+
+   if (answer == 0) {
+       li_elem_selected.style.background = "red";
+       is_correct[this.cur_qst] = false;
+       set_questions_remaining();
+   } else {
+       is_correct[this.cur_qst] = true;
+       set_questions_remaining();
+       li_elem_selected.style.background = "green";
+   }
+}
+
+function set_total_questions(total) {
    let total_q = document.getElementById("total_q");
-   total_q.innerHTML = `Total Questions: ${qst_bank.length}`;
+   total_q.innerHTML = `Total Questions: ${total}`;
 }
 
 /** Calculate the remaining questions that needs to be answered correctly. */
@@ -66,94 +185,86 @@ function set_questions_remaining() {
    remain_q.innerHTML = `Questions remaining: ${calc_remain_q()}`;
 }
 
-/* Remove all the choices of the given question. */
+function calc_remain_q() {
+      var r = 0;
+      for (var i = 0; i < is_correct.length; ++i) {
+         if (is_correct[i] == false) {
+            r++;
+         }
+      }
+      return r;
+}
+
+  /* Remove all the choices of the given question. */
 function remove_choices() {
    let choice_list = document.getElementById("choice_list");
    while (choice_list.lastChild) {
-     choice_list.removeChild(choice_list.lastChild);
+       choice_list.removeChild(choice_list.lastChild);
    }
 }
 
 function next_question() {
+   if (this.calc_remain_q() == 0) {
+       let question = document.getElementById('qst');
+       question.innerHTML = "Success! You have completed this practice!!";
 
-   if (calc_remain_q() == 0) {
-      let question = document.getElementById('qst');
-      question.innerHTML = "Success! You have completed this practice!!";
-
-      /* Remove the old choices. */
-      remove_choices();
-      return;
+       /* Remove the old choices. */
+       remove_choices();
+       return;
    }
 
-   ly_globals.cur_qst++;
+   cur_qst++;
 
-   if (ly_globals.cur_qst >= qst_bank.length) {
-      ly_globals.cur_qst = 0;
+   if (cur_qst >= g_qbank.length) {
+       cur_qst = 0;
    }
 
-   while (is_correct[ly_globals.cur_qst] == true) {
-     ++ly_globals.cur_qst;
+   while (is_correct[cur_qst] == true) {
+       ++cur_qst;
    }
 
    let question = document.getElementById('qst');
-   question.innerHTML = qst_bank[ly_globals.cur_qst].q;
+   question.innerHTML = g_qbank[cur_qst].q;
 
    /* Remove the old choices and add the new ones. */
    remove_choices();
 
-   for (var i = 0; i < qst_bank[ly_globals.cur_qst].c.length; ++i) {
-      var li_name = `li_choice_${i}`;
-      let li_elem = document.getElementById(li_name);
-      var radio_id = `choice_${i}`;
+   for (var i = 0; i < g_qbank[cur_qst].c.length; ++i) {
+       var li_name = `li_choice_${i}`;
+       let li_elem = document.getElementById(li_name);
+       var radio_id = `choice_${i}`;
 
-      var choice = `qst_bank[ly_globals.cur_qst].c[i]`;
+       var choice = `g_qbank[cur_qst].c[i]`;
 
-      if (li_elem == null) {
-         let my_choice_list = document.getElementById("choice_list");
-         li_elem = document.createElement("li");
-         li_elem.id = li_name;
-         my_choice_list.appendChild(li_elem);
-      }
+       if (li_elem == null) {
+           let my_choice_list = document.getElementById("choice_list");
+           li_elem = document.createElement("li");
+           li_elem.style.background = "none";
+           li_elem.id = li_name;
+           my_choice_list.appendChild(li_elem);
+       }
 
-      var v = 0;
-      if (qst_bank[ly_globals.cur_qst].a == i) {
-         v = 1;
-      } 
-         
-      li_elem.innerHTML = `<input type="radio" id="${radio_id}" name="choice" value="${v}"/> ${eval(choice)}`;
+       var v = 0;
+       if (g_qbank[cur_qst].a == i) {
+           v = 1;
+       } 
+
+       li_elem.innerHTML = `<input type="radio" id="${radio_id}" \
+           name="choice" value="${v}"/> ${eval(choice)}`;
    }
-   cur_qst_elem.value = ly_globals.cur_qst;
 }
 
-function verify_choice() {
-  let user_chosen = 0;
-  let choices = document.getElementsByName('choice');
-  var answer = 0;
-  let li_elem;
-  let li_elem_selected;
-  for (var i = 0; i < choices.length; ++i) {
-    var li_name = `li_choice_${i}`;
-    li_elem = document.getElementById(li_name);
-    if (choices[i].checked) {
-      li_elem_selected = li_elem;
-    }
-    if (choices[i].checked && choices[i].value == 1) {
-        answer = 1;
-    } else {
-      li_elem.style.background = "none";
-    }
-  }
-  if (answer == 0) {
-    li_elem_selected.style.background = "red";
-  } else {
-    is_correct[ly_globals.cur_qst] = true;
-    set_questions_remaining();
-    li_elem_selected.style.background = "green";
-  }
+window.onload = function() {
+  init_qset_list(null);
 }
-
 
 </script>
+
+<div id="qset_list">
+   <ol id="qset_ol">
+   <!-- No list items are here on purpose. -->
+   </ol>
+</div>
 
 <div id="mcq">
    <p id="qst"> Question </p>
