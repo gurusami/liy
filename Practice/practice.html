@@ -28,6 +28,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script src="qset.js"></script>
 <script src="sample.js"></script>
 <script src="trigonometry.js"></script>
+<script src="ly_data.js"> </script>
 
 <script>
 
@@ -50,23 +51,6 @@ function init_is_correct(len) {
 }
 
 /******************************************************************************/
-let ly_groups = new Array(2);
-
-class ly_group {
-   constructor(gid, pgid, name, title, is_group, qobj) {
-       this.gid = gid; /* Group id */
-       this.pgid = pgid; /* Parent group id */
-       this.name = name; /* Short name of the group. */
-       this.title = title; /* Title of the group. */
-       this.is_group = is_group; /* If true, it is a group, else it is qset. */
-       this.qobj = qobj; /* Derived class of QSet interface. */
-   }
-};
-
-ly_groups[0] = new ly_group(1, 0, "Sample", "Just for development work", false,
-                            new SampleQSet());
-ly_groups[1] = new ly_group(2, 0, "Trigonometry", "Basic Trigonometric Ratios",
-                            false, new Trigonometry());
 
 function ly_get_group(grp_name) {
    for (var i = 0; i < ly_groups.length; ++i) {
@@ -88,26 +72,42 @@ function ly_subgroups_id(pgid) {
 }
 
 function ly_subgroups(grp_name) {
-   let grp_list = [];
    for (var i = 0; i < ly_groups.length; ++i) {
        if (ly_groups[i].name == grp_name) {
-           grp_list.push(ly_groups[i]);
+           return ly_subgroups_id(ly_groups[i].gid);
        }
    }
-   return grp_list;
+   return null;
 }
 
 /******************************************************************************/
 
-function init_qset_list(li_elem) {
+function init_qset_list() {
    let div_grp = document.getElementById("qset_list");
    div_grp.style.visibility = "visible";
-   let grp_name = "";
-   if (li_elem == null) {
-       grp_name = "";
-   } else {
-       grp_name = li_elem.value;
+
+   let groups = ly_subgroups_id(0);
+
+   let ol_elem = document.getElementById("qset_ol");
+   for (var i = 0; i < groups.length; ++i) {
+       let li_elem = document.createElement("li");
+       li_elem.id = groups[i].name;
+       let in_elem = document.createElement("input");
+       in_elem.setAttribute("type", "button");
+       in_elem.setAttribute("value", li_elem.id);
+       in_elem.onclick = function(e) {
+           update_qset_list(e.target.value);
+       }
+       li_elem.appendChild(in_elem);
+       ol_elem.appendChild(li_elem);
    }
+   let div_mcq = document.getElementById("mcq");
+   div_mcq.style.visibility = "hidden";
+}
+
+function update_qset_list(grp_name) {
+   let div_grp = document.getElementById("qset_list");
+   div_grp.style.visibility = "visible";
 
    cur_grp = ly_get_group(grp_name);
 
@@ -118,14 +118,24 @@ function init_qset_list(li_elem) {
        init_mcq(grp_name);
        div_mcq.style.visibility = "visible";
    } else {
-
        let local_groups = (grp_name == "") ? ly_subgroups_id(0) : ly_subgroups(grp_name);
  
-       let ol_elem = document.getElementById("qset_ol");
+       let ol_elem = document.createElement("ol");
+       let par_li_elem = document.getElementById(grp_name);
+       par_li_elem.appendChild(ol_elem);
        for (var i = 0; i < local_groups.length; ++i) {
-           let li_elem = document.createElement("li");
            var gname = local_groups[i].name;
-           li_elem.innerHTML = `<input type="button" value="${gname}" onclick="init_qset_list(this)" />`;
+
+           let li_elem = document.createElement("li");
+           li_elem.id = gname;
+           let in_elem = document.createElement("input");
+           in_elem.setAttribute("type", "button");
+           in_elem.setAttribute("value", gname);
+           in_elem.onclick = function(e) {
+               update_qset_list(e.target.value);
+           }
+        
+           li_elem.appendChild(in_elem);
            ol_elem.appendChild(li_elem);
        }
        div_mcq.style.visibility = "hidden";
@@ -274,7 +284,7 @@ function next_question() {
 }
 
 window.onload = function() {
-  init_qset_list(null);
+  init_qset_list();
 }
 
 </script>
@@ -302,6 +312,7 @@ window.onload = function() {
 <hr>
 <p style="font-size: x-small;"> LIY: Learn it Yourself - Software to Promote Self Study. </p>
 <p style="font-size: xx-small;"> Copyright &copy; 2021 Annamalai Gurusami &lt;annamalai.gurusami@gmail.com&gt; </p>
+
 
 </body>
 </html>
