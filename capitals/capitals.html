@@ -1,0 +1,69 @@
+<!--
+Learn It Yourself (LIY) - Software to Promote Self Study
+
+Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title> LIY: Practice </title>
+</head>
+<body>
+
+<!-- include the script for the required ui -->
+<script src="ly_bank.js"> </script>
+<script src="mcq-ui.js"> </script>
+<script src="capitals.js"> </script>
+<script src="stopwatch.js"> </script>
+<script>
+
+window.onload = function() {
+   gMcqUI.init(gMcqData);
+   gMcqUI.setStopWatch(gStopWatch);
+}
+
+</script>
+
+<div id="mcq">
+<span id="stop_watch">Timer: 00:00</span>
+   <p id="question"> Question </p>
+   <ul id="ul_choice" style="list-style-type: none;">
+   <!--
+       No list items are here on purpose.  Each choice will have an id of
+       "li_choice_N" where N is an integer
+   -->
+   </ul>
+   <input id="btn_verify" type="button" value="Verify" onclick="verifyChoice()" />
+   <input id="btn_next" type="button" value="Next" onclick="nextQuestion()" />
+</div>
+
+<div id="div_progress" style="width: 100%;">
+<table id="table_progress" style="width: 100%; margin-left: auto; margin-right: auto;">
+  <tr>
+    <td id="progress_1" 
+        style="text-align: center; width: 0%; border: 1px solid green; background-color: green"> </td>
+    <td id="progress_2" style="text-align: center; width: 100%; border: 1px solid red; background-color: none;"> </td>
+  </tr>
+</table>
+</div>
+
+<span id="finish"> </span>
+<span id="time_taken"> </span>
+</body>
+</html>
+
