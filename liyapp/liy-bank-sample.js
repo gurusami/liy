@@ -51,6 +51,3 @@ class LiySampleSet extends QuestionBank {
    }
 }
 
-gQuestionBankCollection.addQuestionBank(
- new QuestionBankDetails("sample",  new LiySampleSet()));
-

@@ -24,11 +24,17 @@ class LiyUi {
        if (this.constructor == LiyUi) {
            throw new Error("Abstract classes can't be instantiated.");
        }
+
+       /* The top level HTML element that represents this UI object.  This needs
+       to be populated in the createUi() member function of the derived class.*/
+       this.mHtmlElem;
    }
 
    createUi() {
        throw new Error("Not implemented in abstract base class.");
    }
+
+   getElement() { return this.mHtmlElem; }
 }
 
 class LiyUiDetails {
@@ -41,8 +47,11 @@ class LiyUiDetails {
    createElement() {
        this.mUiElem = this.mUiObj.createUi();
    }
+
+   getUiElem() { return this.mUiElem; }
 }
 
+/* Maintains an array of LiyUiDetails. */
 class LiyUiArray {
    constructor() {
        this.mLiyUiArray = new Array();
@@ -52,6 +61,10 @@ class LiyUiArray {
        for (var i = 0; i < this.mLiyUiArray.length; ++i) {
            this.mLiyUiArray[i].createElement();
        }
+   }
+
+   getUiElem(idx) {
+       return this.mLiyUiArray[idx].getUiElem();
    }
 
    getUiDetails(uiName) {
@@ -77,6 +90,4 @@ class LiyUiArray {
        this.mLiyUiArray.push(uiDetails);
    }
 }
-
-let gLiyUiArray = new LiyUiArray();
 

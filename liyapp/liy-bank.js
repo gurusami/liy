@@ -116,9 +116,10 @@ class QuestionBank {
    }
 }
 
-class QuestionBankDetails {
-   constructor(name, obj) {
+class QBDetails {
+   constructor(name, title, obj) {
        this.mName = name;
+       this.mTitle = title;
        this.mBankObj = obj;
    }
 }
@@ -128,10 +129,12 @@ class QuestionBankCollection {
        this.mQuestionBankArray = new Array();
    }
 
+   getQBDetails(idx) {
+       return this.mQuestionBankArray[idx];
+   }
+
    getQuestionBank(qBankName) {
        for (var i = 0; i < this.mQuestionBankArray.length; ++i) {
-           // window.alert(qBankName);
-           // window.alert(this.mQuestionBankArray[i].mName);
            if (this.mQuestionBankArray[i].mName == qBankName) {
                return this.mQuestionBankArray[i].mBankObj;
            }
@@ -143,9 +146,9 @@ class QuestionBankCollection {
        return this.mQuestionBankArray.length;
    }
 
-   addQuestionBank(qBankDetails) {
+   // Add a question bank to the collection
+   addQB(qBankDetails) {
        this.mQuestionBankArray.push(qBankDetails);
    }
 }
 
-let gQuestionBankCollection = new QuestionBankCollection();

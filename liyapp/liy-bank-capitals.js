@@ -162,6 +162,3 @@ class CapitalsOfIndianStates extends QuestionBank {
        }
    }
 }
-
-gQuestionBankCollection.addQuestionBank(
- new QuestionBankDetails("capitals",  new CapitalsOfIndianStates()));

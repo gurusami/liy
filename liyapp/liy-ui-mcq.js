@@ -97,7 +97,7 @@ class LiyMcqUi extends LiyUi {
        var liElem = document.getElementById(liElemId);
 
        if (isCorrect == true) {
-           liElem.style.background = "green";
+           liElem.style.background = "darkseagreen";
        } else {
            liElem.style.background = "red";
        }
@@ -115,33 +115,6 @@ class LiyMcqUi extends LiyUi {
    }
 
 /*
-   nextQuestion() {
-       var isNextExists = this.mQuestionBank.nextQuestion();
-
-       if (isNextExists == true) {
-           this.showQuestion();
-       } else {
-           this.displayFinish();
-       }
-   }
-*/
-
-/*
-   displayFinish() {
-       window.clearInterval(1000);
-       let divMcq = document.getElementById("mcq");
-       let divProgress = document.getElementById("div_progress");
-       divMcq.parentNode.removeChild(divMcq);
-       divProgress.parentNode.removeChild(divProgress);
-
-       let spanFinish = document.getElementById("finish");
-       spanFinish.innerHTML = "Success! You have completed this practice!!";
-
-       let spanTimeTaken = document.getElementById("time_taken");
-       spanTimeTaken.innerHTML = `(Time Taken: ${this.mStopWatch.getValue()})`;
-   }
-*/
-
    setStopWatch(stopWatch) {
        this.mStopWatch = stopWatch;
        window.setInterval(this.updateStopWatch, 1000);
@@ -151,6 +124,7 @@ class LiyMcqUi extends LiyUi {
        let stopWatch = document.getElementById("stop_watch");
        stopWatch.textContent = `Timer: ${gStopWatch.tick()}`;
    }
+*/
 
    createUi() {
        let topDivElem = document.createElement("div");
@@ -175,32 +149,17 @@ class LiyMcqUi extends LiyUi {
        inputElemNext.setAttribute("value", "Next");
        inputElemNext.addEventListener("click", liyNextQuestion);
 
-       // let spanElem = document.createElement("span");
-       // spanElem.setAttribute("id", "stop_watch");
-       // spanElem.textContent = `Timer: 00:00`;
-        
-       // topDivElem.appendChild(spanElem);
        topDivElem.appendChild(pQuestElem);
        topDivElem.appendChild(ulChoiceElem);
        topDivElem.appendChild(inputElemVerify);
        topDivElem.appendChild(inputElemNext);
 
-       let divPage = document.getElementById("div-page");
-       divPage.appendChild(topDivElem);
-
+       this.mHtmlElem = topDivElem;
        return topDivElem;
    }
 }
 
-gLiyUiArray.addUiDetails(new LiyUiDetails("mcq", new LiyMcqUi()));
-
 function verifyChoice() {
    gLiyUiArray.getUiObj("mcq").verifyChoice();
 }
-
-/*
-function nextQuestion() {
-   gLiyUiArray.getUiObj("mcq").nextQuestion();
-}
-*/
 

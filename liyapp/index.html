@@ -29,24 +29,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script src="liy-ui.js"> </script>
 <script src="liy-ui-mcq.js"> </script>
 <script src="liy-ui-stopwatch.js"> </script>
+<script src="liy-ui-menu.js"> </script>
+<script src="liy-ui-progressbar.js"> </script>
 <script src="liy-bank.js"> </script>
 <script src="liy-bank-capitals.js"> </script>
 <script src="liy-bank-sample.js"> </script>
 <script src="liy-top.js"> </script>
 <script>
 
-let gBankName = "sample";
-let gStopWatchUi;
-let gStopWatchDiv;
-
 window.onload = function() {
-   liyMainRun(gBankName);
+   liyStart();
 }
 
 </script>
 
 <div id="div-page"> </div>
 
+<!--
 <div id="div_progress" style="width: 100%;">
 <table id="table_progress" style="width: 100%; margin-left: auto; margin-right: auto;">
   <tr>
@@ -56,6 +55,7 @@ window.onload = function() {
   </tr>
 </table>
 </div>
+-->
 
 <span id="finish"> </span>
 <span id="time_taken"> </span>

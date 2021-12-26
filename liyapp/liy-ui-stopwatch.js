@@ -19,7 +19,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 *******************************************************************************/
 
-
 class StopWatch {
    constructor(min, sec) {
        this.min = min;
@@ -55,8 +54,6 @@ class StopWatch {
    }
 }
 
-var gStopWatch = new StopWatch(0, 0);
-
 function updateStopWatch() {
    let stopWatch = document.getElementById("stop_watch");
    stopWatch.textContent = `Timer: ${gStopWatch.tick()}`;
@@ -83,20 +80,13 @@ class LiyStopWatchUi extends LiyUi {
 
        divElem.appendChild(this.spanElem);
 
-       let divPage = document.getElementById("div-page");
-       divPage.appendChild(divElem);
-       
+       this.mHtmlElem = divElem;
        return (divElem);
    }
 
    update() {
        let stopWatch = document.getElementById("stop_watch");
-       this.spanElem.textContent = `Timer: ${gStopWatch.tick()}`;
+       this.spanElem.textContent = `Timer: ${this.mStopWatch.tick()}`;
    }
 }
 
-/*
-let gStopWatchUi = new LiyStopWatchUi();
-let gStopWatchDiv = gStopWatchUi.createUi();
-window.setInterval(function() { gStopWatchUi.update(); }, 1000);
-*/
