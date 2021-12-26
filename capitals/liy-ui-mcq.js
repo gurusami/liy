@@ -19,16 +19,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 *******************************************************************************/
 
-class McqUI {
+// This UI is to be used when the question type is "mcq".
+class LiyMcqUi extends LiyUi {
    constructor() {
+       super();
        this.mQuestionBank;
        this.mStopWatch;
    }
 
    init(questionBank) {
        this.mQuestionBank = questionBank;
-       this.mQuestionBank.init();
-       this.showQuestion();
    }
 
    showQuestion() {
@@ -62,7 +62,7 @@ class McqUI {
            ulChoiceElem.appendChild(liChoice);
 
            let spanElem = document.createElement("span");
-           spanElem.innerText = choices[i];
+           spanElem.innerHTML = choices[i];
            liChoice.appendChild(spanElem);
        }
        this.updateProgress();
@@ -105,7 +105,6 @@ class McqUI {
 
    updateProgress() {
        let p_2 = this.mQuestionBank.getRemainingPercentage();
-       // window.alert(`Remaining Percentage: ${p_2}`);
        let p_1 = 100 - p_2;
        let progress_1 = document.getElementById("progress_1");
        let progress_2 = document.getElementById("progress_2");
@@ -115,6 +114,7 @@ class McqUI {
        progress_2.innerHTML = this.mQuestionBank.getRemaining();
    }
 
+/*
    nextQuestion() {
        var isNextExists = this.mQuestionBank.nextQuestion();
 
@@ -124,7 +124,9 @@ class McqUI {
            this.displayFinish();
        }
    }
+*/
 
+/*
    displayFinish() {
        window.clearInterval(1000);
        let divMcq = document.getElementById("mcq");
@@ -138,6 +140,7 @@ class McqUI {
        let spanTimeTaken = document.getElementById("time_taken");
        spanTimeTaken.innerHTML = `(Time Taken: ${this.mStopWatch.getValue()})`;
    }
+*/
 
    setStopWatch(stopWatch) {
        this.mStopWatch = stopWatch;
@@ -148,15 +151,56 @@ class McqUI {
        let stopWatch = document.getElementById("stop_watch");
        stopWatch.textContent = `Timer: ${gStopWatch.tick()}`;
    }
+
+   createUi() {
+       let topDivElem = document.createElement("div");
+       topDivElem.setAttribute("id", "mcq");
+
+       let pQuestElem = document.createElement("p");
+       pQuestElem.setAttribute("id", "question");
+
+       let ulChoiceElem = document.createElement("ul");
+       ulChoiceElem.setAttribute("id", "ul_choice");
+       ulChoiceElem.style.listStyleType = "none";
+
+       let inputElemVerify = document.createElement("input");
+       inputElemVerify.setAttribute("id", "btn_verify");
+       inputElemVerify.setAttribute("type", "button");
+       inputElemVerify.setAttribute("value", "Verify");
+       inputElemVerify.addEventListener("click", verifyChoice);
+
+       let inputElemNext = document.createElement("input");
+       inputElemNext.setAttribute("id", "btn_next");
+       inputElemNext.setAttribute("type", "button");
+       inputElemNext.setAttribute("value", "Next");
+       inputElemNext.addEventListener("click", liyNextQuestion);
+
+       // let spanElem = document.createElement("span");
+       // spanElem.setAttribute("id", "stop_watch");
+       // spanElem.textContent = `Timer: 00:00`;
+        
+       // topDivElem.appendChild(spanElem);
+       topDivElem.appendChild(pQuestElem);
+       topDivElem.appendChild(ulChoiceElem);
+       topDivElem.appendChild(inputElemVerify);
+       topDivElem.appendChild(inputElemNext);
+
+       let divPage = document.getElementById("div-page");
+       divPage.appendChild(topDivElem);
+
+       return topDivElem;
+   }
 }
 
-var gMcqUI = new McqUI();
+gLiyUiArray.addUiDetails(new LiyUiDetails("mcq", new LiyMcqUi()));
 
 function verifyChoice() {
-   gMcqUI.verifyChoice();
+   gLiyUiArray.getUiObj("mcq").verifyChoice();
 }
 
+/*
 function nextQuestion() {
-   gMcqUI.nextQuestion();
+   gLiyUiArray.getUiObj("mcq").nextQuestion();
 }
+*/
 

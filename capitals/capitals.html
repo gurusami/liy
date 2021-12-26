@@ -25,32 +25,27 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </head>
 <body>
 
-<!-- include the script for the required ui -->
-<script src="ly_bank.js"> </script>
-<script src="mcq-ui.js"> </script>
-<script src="capitals.js"> </script>
-<script src="stopwatch.js"> </script>
+<script src="liy-define.js"> </script>
+<script src="liy-ui.js"> </script>
+<script src="liy-ui-mcq.js"> </script>
+<script src="liy-ui-stopwatch.js"> </script>
+<script src="liy-bank.js"> </script>
+<script src="liy-bank-capitals.js"> </script>
+<script src="liy-bank-sample.js"> </script>
+<script src="liy-top.js"> </script>
 <script>
 
+let gBankName = "sample";
+let gStopWatchUi;
+let gStopWatchDiv;
+
 window.onload = function() {
-   gMcqUI.init(gMcqData);
-   gMcqUI.setStopWatch(gStopWatch);
+   liyMainRun(gBankName);
 }
 
 </script>
 
-<div id="mcq">
-<span id="stop_watch">Timer: 00:00</span>
-   <p id="question"> Question </p>
-   <ul id="ul_choice" style="list-style-type: none;">
-   <!--
-       No list items are here on purpose.  Each choice will have an id of
-       "li_choice_N" where N is an integer
-   -->
-   </ul>
-   <input id="btn_verify" type="button" value="Verify" onclick="verifyChoice()" />
-   <input id="btn_next" type="button" value="Next" onclick="nextQuestion()" />
-</div>
+<div id="div-page"> </div>
 
 <div id="div_progress" style="width: 100%;">
 <table id="table_progress" style="width: 100%; margin-left: auto; margin-right: auto;">

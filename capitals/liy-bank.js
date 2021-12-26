@@ -46,6 +46,7 @@ class QuestionBank {
        }
    }
 
+   /* This needs to be implemented by derived classes. */
    initQuestionArray() {
        throw new Error("Not yet implemented.");
    }
@@ -115,3 +116,36 @@ class QuestionBank {
    }
 }
 
+class QuestionBankDetails {
+   constructor(name, obj) {
+       this.mName = name;
+       this.mBankObj = obj;
+   }
+}
+
+class QuestionBankCollection {
+   constructor() {
+       this.mQuestionBankArray = new Array();
+   }
+
+   getQuestionBank(qBankName) {
+       for (var i = 0; i < this.mQuestionBankArray.length; ++i) {
+           // window.alert(qBankName);
+           // window.alert(this.mQuestionBankArray[i].mName);
+           if (this.mQuestionBankArray[i].mName == qBankName) {
+               return this.mQuestionBankArray[i].mBankObj;
+           }
+       }
+       return null;
+   }
+
+   getCount() {
+       return this.mQuestionBankArray.length;
+   }
+
+   addQuestionBank(qBankDetails) {
+       this.mQuestionBankArray.push(qBankDetails);
+   }
+}
+
+let gQuestionBankCollection = new QuestionBankCollection();
