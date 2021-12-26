@@ -58,5 +58,16 @@ class LiyUiProgressBar extends LiyUi {
 
        this.mHtmlElem = divElem;
    }
+
+   update(nDone, nRemain) {
+       let p_1 = (nDone * 100)/(nDone + nRemain);
+       let p_2 = (100 - p_1);
+       let progress_1 = document.getElementById("progress_1");
+       let progress_2 = document.getElementById("progress_2");
+       progress_1.style.width = `${p_1}%`;
+       progress_1.innerHTML = nDone;
+       progress_2.style.width = `${p_2}%`;
+       progress_2.innerHTML = nRemain;
+   }
 }
 

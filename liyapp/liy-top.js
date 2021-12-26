@@ -26,21 +26,16 @@ let gLiyUiArray; // For each question type, there is one entry in this array.
 let gLiyUiMenu;
 let gLiyQBC; // Question Bank Collection (QBC).
 let gLiyUiProgressBar;
+let gLiyUiVerify;
 
 function liyInitGlobals() {
    gLiyUiArray = new LiyUiArray();
    gLiyUiArray.addUiDetails(new LiyUiDetails("mcq", new LiyMcqUi()));
+   gLiyUiArray.addUiDetails(new LiyUiDetails("fai", new LiyUiFai()));
    gLiyUiArray.createElements();
 
    gLiyQBC = new QuestionBankCollection();
-
-   gLiyQBC.addQB(new QBDetails("sample",
-                               "Sample Questions For Development Purposes",
-                               new LiySampleSet()));
-
-   gLiyQBC.addQB(new QBDetails("capitals",
-                               "Capitals of Indian States",
-                               new CapitalsOfIndianStates()));
+   liyLoadQBC();
 
    // window.alert(`gLiyQBC.length = ${gLiyQBC.length}`);
    gLiyUiStopWatch = new LiyStopWatchUi();
@@ -52,8 +47,43 @@ function liyInitGlobals() {
 
    gLiyUiProgressBar = new LiyUiProgressBar();
    gLiyUiProgressBar.createUi();
+
+   gLiyUiVerify = new LiyUiVerify();
+   gLiyUiVerify.createUi();
 }
 
+/******************************************************************************/
+
+function liyLoadQBC() {
+   gLiyQBC.addQB(new QBDetails("sample",
+                               "Sample Questions For Development Purposes",
+                               new LiySampleSet()));
+
+   gLiyQBC.addQB(new QBDetails("multiply100x100",
+                               "Multiply Integers Upto 100 x 100",
+                               new LiyMultiplyQB(2, 100, 2, 100)));
+
+   gLiyQBC.addQB(new QBDetails("multiplyNxNN",
+                               "Multiply 1-digit with 2-digit Integers",
+                               new LiyMultiplyQB(2, 10, 10, 100)));
+
+   gLiyQBC.addQB(new QBDetails("multiplyNxNNN",
+                               "Multiply 1-digit with 3-digit Integers",
+                               new LiyMultiplyQB(2, 10, 100, 1000)));
+
+   gLiyQBC.addQB(new QBDetails("multiplyNxNNNN",
+                               "Multiply 1-digit with 4-digit Integers",
+                               new LiyMultiplyQB(2, 10, 1000, 10000)));
+
+   gLiyQBC.addQB(new QBDetails("capitals",
+                               "Capitals of Indian States",
+                               new CapitalsOfIndianStates()));
+
+   gLiyQBC.addQB(new QBDetails("c6geoagri",
+                               "Class 6: Geography: Chapter 4: Agriculture",
+                               new Class6GeoAgri()));
+}
+ 
 /******************************************************************************/
 
 function liyUiRemoveMenu() {
@@ -76,11 +106,23 @@ function liyUiAddProgressBar() {
    divPage.appendChild(gLiyUiProgressBar.mHtmlElem);
 }
 
+function liyUiReplaceQuestion(newDivQues) {
+   let divPage = document.getElementById("div-page");
+   let oldDivQues = document.getElementById("div-question");
+   divPage.replaceChild(newDivQues, oldDivQues);
+}
+
+function liyUiAddVerify() {
+   let divPage = document.getElementById("div-page");
+   divPage.appendChild(gLiyUiVerify.mHtmlElem);
+}
+
 function liyTakePractice() {
    liyUiRemoveMenu();
    liyUiAddProgressBar();
    liyUiAddStopWatch();
    liyUiAddQuestion();
+   liyUiAddVerify();
 
    // Given the name get the question bank.
    let qBankObj = gLiyQBC.getQuestionBank(gBankName);
@@ -103,9 +145,14 @@ function liyNextQuestion() {
        let qType = questionObj.getQuestionType();
        let uiDetails = gLiyUiArray.getUiDetails(questionObj.getQuestionType());
        let uiObj = uiDetails.mUiObj;
+       let uiQuestionDiv = uiDetails.getUiElem();
+       liyUiReplaceQuestion(uiQuestionDiv);
        uiObj.init(qBankObj);
        uiObj.showQuestion();
-       uiObj.updateProgress();
+       let nDone = qBankObj.getCompleted();
+       let nRemain = qBankObj.getRemaining();
+       gLiyUiProgressBar.update(nDone, nRemain);
+       gLiyUiVerify.update();
    } else {
        liyDisplayFinish();
    }
@@ -116,7 +163,6 @@ function liyShowMenu() {
    while (divPage.lastChild) {
        divPage.removeChild(divPage.lastChild);
    }
-   // window.alert(`${gLiyUiMenu.mHtmlElem}`);
 
    divPage.appendChild(gLiyUiMenu.mHtmlElem);
 }

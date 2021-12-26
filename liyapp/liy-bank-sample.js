@@ -23,11 +23,7 @@ class LiySampleSet extends QuestionBank {
    constructor() {
        super();
        this.qst_bank = [
-	   new QuestionMCQ("What is sin &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 0), 
+	   new QuestionFAI("What is 2 &times; 9?", 18),
 
 	   new QuestionMCQ("What is cos &theta;?",
                ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
@@ -46,7 +42,10 @@ class LiySampleSet extends QuestionBank {
    initQuestionArray() {
        this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
-           this.mQuestionArray[i].shuffleChoices();
+           let qst = this.mQuestionArray[i];
+           if (qst instanceof QuestionMCQ) {
+               this.mQuestionArray[i].shuffleChoices();
+           }
        }
    }
 }

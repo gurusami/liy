@@ -27,6 +27,10 @@ class LiyQuestion {
    getQuestionType() {
        return this.mQuestionType;
    }
+
+   verify(obj) {
+       throw new Error("To be implemented in derived class");
+   }
 }
 
 class QuestionMCQ extends LiyQuestion {
@@ -50,6 +54,23 @@ class QuestionMCQ extends LiyQuestion {
            this.mChoices[i] = this.mChoices[j];
            this.mChoices[j] = k;
        }
+   }
+
+   verify(intValue) {
+       return this.mAnswer == intValue;
+   }
+}
+
+/* Question type is Fill an Integer (FAI). */
+class QuestionFAI extends LiyQuestion {
+   constructor(q, a) {
+       super("fai");
+       this.mQuestion = q;
+       this.mAnswer   = a;
+   }
+
+   verify(intValue) {
+       return this.mAnswer == intValue;
    }
 }
 

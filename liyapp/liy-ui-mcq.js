@@ -20,15 +20,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 *******************************************************************************/
 
 // This UI is to be used when the question type is "mcq".
-class LiyMcqUi extends LiyUi {
+class LiyMcqUi extends LiyUiQues {
    constructor() {
        super();
-       this.mQuestionBank;
        this.mStopWatch;
-   }
-
-   init(questionBank) {
-       this.mQuestionBank = questionBank;
    }
 
    showQuestion() {
@@ -65,10 +60,21 @@ class LiyMcqUi extends LiyUi {
            spanElem.innerHTML = choices[i];
            liChoice.appendChild(spanElem);
        }
-       this.updateProgress();
    }
 
-   getSelectedChoice() {
+   respondCorrect(userChoice) {
+       var liElemId = `li_choice_${userChoice}`;
+       var liElem = document.getElementById(liElemId);
+       liElem.style.background = "darkseagreen";
+   }
+
+   respondWrong(userChoice) {
+       var liElemId = `li_choice_${userChoice}`;
+       var liElem = document.getElementById(liElemId);
+       liElem.style.background = "red";
+   }
+
+   getUserAnswer() {
        let choices = document.getElementsByName('choice');
        var j = choices.length;
        for (var i = 0; i < choices.length; ++i) {
@@ -82,53 +88,9 @@ class LiyMcqUi extends LiyUi {
        return j;
    }
 
-   verifyChoice() {
-       let userChoice = this.getSelectedChoice();
-       var qb = this.mQuestionBank;
-       var mcq = qb.getCurrentQuestion();
-       var choices = mcq.mChoices;
-       if (userChoice == choices.length) {
-           return;
-       }
-
-       let isCorrect = qb.verifyChoice(userChoice);
-
-       var liElemId = `li_choice_${userChoice}`;
-       var liElem = document.getElementById(liElemId);
-
-       if (isCorrect == true) {
-           liElem.style.background = "darkseagreen";
-       } else {
-           liElem.style.background = "red";
-       }
-   }
-
-   updateProgress() {
-       let p_2 = this.mQuestionBank.getRemainingPercentage();
-       let p_1 = 100 - p_2;
-       let progress_1 = document.getElementById("progress_1");
-       let progress_2 = document.getElementById("progress_2");
-       progress_1.style.width = `${p_1}%`;
-       progress_1.innerHTML = this.mQuestionBank.getCompleted();
-       progress_2.style.width = `${p_2}%`;
-       progress_2.innerHTML = this.mQuestionBank.getRemaining();
-   }
-
-/*
-   setStopWatch(stopWatch) {
-       this.mStopWatch = stopWatch;
-       window.setInterval(this.updateStopWatch, 1000);
-   }
-
-   updateStopWatch() {
-       let stopWatch = document.getElementById("stop_watch");
-       stopWatch.textContent = `Timer: ${gStopWatch.tick()}`;
-   }
-*/
-
    createUi() {
        let topDivElem = document.createElement("div");
-       topDivElem.setAttribute("id", "mcq");
+       topDivElem.setAttribute("id", "div-question");
 
        let pQuestElem = document.createElement("p");
        pQuestElem.setAttribute("id", "question");
@@ -137,29 +99,11 @@ class LiyMcqUi extends LiyUi {
        ulChoiceElem.setAttribute("id", "ul_choice");
        ulChoiceElem.style.listStyleType = "none";
 
-       let inputElemVerify = document.createElement("input");
-       inputElemVerify.setAttribute("id", "btn_verify");
-       inputElemVerify.setAttribute("type", "button");
-       inputElemVerify.setAttribute("value", "Verify");
-       inputElemVerify.addEventListener("click", verifyChoice);
-
-       let inputElemNext = document.createElement("input");
-       inputElemNext.setAttribute("id", "btn_next");
-       inputElemNext.setAttribute("type", "button");
-       inputElemNext.setAttribute("value", "Next");
-       inputElemNext.addEventListener("click", liyNextQuestion);
-
        topDivElem.appendChild(pQuestElem);
        topDivElem.appendChild(ulChoiceElem);
-       topDivElem.appendChild(inputElemVerify);
-       topDivElem.appendChild(inputElemNext);
 
        this.mHtmlElem = topDivElem;
        return topDivElem;
    }
-}
-
-function verifyChoice() {
-   gLiyUiArray.getUiObj("mcq").verifyChoice();
 }
 

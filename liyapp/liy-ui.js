@@ -37,6 +37,36 @@ class LiyUi {
    getElement() { return this.mHtmlElem; }
 }
 
+class LiyUiQues extends LiyUi {
+   constructor() {
+       super();
+       let topDivElem = document.createElement("div");
+       topDivElem.setAttribute("id", "div-question");
+       this.mHtmlElem = topDivElem;
+       this.mQuestionBank;
+   }
+
+   init(questionBank) {
+       this.mQuestionBank = questionBank;
+   }
+
+   showQuestion() {
+       throw new Error("Not implemented in abstract base class.");
+   }
+
+   getUserAnswer() {
+       throw new Error("Not implemented in abstract base class.");
+   }
+
+   respondCorrect(obj) {
+       throw new Error("Not implemented in abstract base class.");
+   }
+
+   respondWrong(obj) {
+       throw new Error("Not implemented in abstract base class.");
+   }
+}
+
 class LiyUiDetails {
    constructor(name, obj) {
        this.mName = name;

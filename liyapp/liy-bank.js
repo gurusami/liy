@@ -79,9 +79,18 @@ class QuestionBank {
        return true;
    }
 
+   markCorrect() {
+       this.mCorrectArray[this.mCurrentIndex] = true;
+   }
+
+   markWrong() {
+       this.mCorrectArray[this.mCurrentIndex] = false;
+   }
+
+/*
    verifyChoice(userChoice) {
        var curq = this.getCurrentQuestion();
-       var isCorrect = (curq.mAnswer == userChoice);
+       var isCorrect = curq.verify(userChoice);
 
        if (isCorrect) {
            this.mCorrectArray[this.mCurrentIndex] = true;
@@ -90,6 +99,7 @@ class QuestionBank {
        }
        return (isCorrect);
    }
+*/
 
    getRemaining() {
       var r = 0;
