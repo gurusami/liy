@@ -86,6 +86,11 @@ function liyLoadQBC() {
    gLiyQBC.addQB(new QBDetails("c9mathtrig",
                                "Class 9: Mathematics: Trigonometry",
                                new LiyClass9TrigonometryQB()));
+
+   gLiyQBC.addQB(
+       new QBDetails("c9geoveg",
+           "Class 9: Geography: Natural Vegetation",
+           new LiyClass9GeoVegetationQB()));
 }
  
 /******************************************************************************/

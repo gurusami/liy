@@ -42,7 +42,7 @@ class QuestionMCQ extends LiyQuestion {
    }
 
    shuffleChoices() {
-       for (var i = this.mChoices.length - 1; i !== 0; --i) {
+       for (var i = this.mChoices.length - 1; i > 0; --i) {
            let j = Math.floor(Math.random() * i);
            if (j == this.mAnswer) {
                /* i and j are being swapped. So change answer to j. */

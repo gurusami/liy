@@ -52,7 +52,7 @@ class QuestionBank {
    }
 
    shuffleQuestions() {
-       for (var i = this.mQuestionArray.length - 1; i !== 0; --i) {
+       for (var i = this.mQuestionArray.length - 1; i > 0; --i) {
            let j = Math.floor(Math.random() * i);
            let k = this.mQuestionArray[i];
            this.mQuestionArray[i] = this.mQuestionArray[j];
@@ -74,8 +74,10 @@ class QuestionBank {
 
        while (this.mCorrectArray[this.mCurrentIndex] == true) {
            this.mCurrentIndex++;
+           if (this.mCurrentIndex == this.mQuestionArray.length) {
+               this.mCurrentIndex = 0;
+           }
        }
-
        return true;
    }
 
