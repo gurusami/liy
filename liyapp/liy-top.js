@@ -82,6 +82,10 @@ function liyLoadQBC() {
    gLiyQBC.addQB(new QBDetails("c6geoagri",
                                "Class 6: Geography: Chapter 4: Agriculture",
                                new Class6GeoAgri()));
+
+   gLiyQBC.addQB(new QBDetails("c9mathtrig",
+                               "Class 9: Mathematics: Trigonometry",
+                               new LiyClass9TrigonometryQB()));
 }
  
 /******************************************************************************/
