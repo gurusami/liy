@@ -147,22 +147,15 @@ class LiyAngle {
 
    setAngle(totalSeconds) {
        const maxAngleInSeconds = 360 * 3600;
-       console.log(`setAngle: given=${totalSeconds}`);
        let remain = totalSeconds % maxAngleInSeconds;
-       console.log(`setAngle: remain=${remain}`);
        this.mDegree = Math.floor(remain / 3600);
-       console.log(`setAngle: mDegree=${this.mDegree}`);
        remain = remain % 3600;
        this.mMinute = Math.floor(remain / 60);
-       console.log(`setAngle: mMinute=${this.mMinute}`);
        this.mSecond = remain % 60;
-       console.log(`setAngle: mSecond=${this.mSecond}`);
-       console.log(`angleNow=${this.mDegree}, ${this.mMinute}, ${this.mSecond}`);
    }
 
    add(otherAngleObj) {
        let total = this.inSeconds() + otherAngleObj.inSeconds();
-       console.log(`${this.inSeconds()} + ${otherAngleObj.inSeconds()} = ${total}`);
        this.setAngle(total);
    }
 
@@ -242,19 +235,13 @@ class LiyHourHand {
    }
 
    move(tiObj) {
-       console.log(`time=${tiObj.toString()}`);
        let y = this.timeToAngle(tiObj);
-       console.log(`current position=${this.toString()}`);
-       console.log(`delta position=${y.toString()}`);
        this.mPosition.add(y);
-       console.log(`end position=${this.toString()}`);
    }
 
    moveInHours(timeInHour) {
        let x = new LiyTimeInterval(timeInHour, 0, 0);
-       console.log(`x=${x.toString()}`);
        let y = this.timeToAngle(x);
-       console.log(`y=${y.toString()}`);
        this.mPosition.add(y);
    }
 
@@ -276,20 +263,15 @@ class LiyHourHand {
 
    getAngleInSeconds() {
        let val = this.mPosition.inSeconds();
-       console.log(`Hour Hand Angle in Seconds: ${val}`);
        return val;
    }
 
    timeToAngle(liyTimeObj) {
        let liyAngleObj = new LiyAngle();
        let timeInSecs = liyTimeObj.inSeconds();
-       console.log(`Hour Hand: tiObj = ${liyTimeObj.toString()}`);
-       console.log(`Hour Hand: timeInSecs = ${timeInSecs}`);
        // In 1 second hour hand moves 30''
        let angleInSecs = timeInSecs * 30;
-       console.log(`Hour Hand AngleInSecs: = ${angleInSecs}`);
        liyAngleObj.setAngle(angleInSecs);
-       console.log(`Hour Hand Angle: = ${liyAngleObj.toString()}`);
        return liyAngleObj;
    }
 
@@ -326,7 +308,6 @@ class LiyMinuteHand {
 
    getAngleInSeconds() {
        let val = this.mPosition.inSeconds();
-       console.log(`Minute Hand Angle in Seconds: ${val}`);
        return val;
    }
 
@@ -353,9 +334,6 @@ class LiyMinuteHand {
        // In 60 seconds, minute hand moves 6*3600''
        // In 1 second, minute hand moves 360''
        let angleInSecs = timeInSecs * 360;
-       console.log(`Minute Hand: tiObj = ${liyTimeObj.toString()}`);
-       console.log(`Minute Hand: timeInSecs = ${timeInSecs}`);
-       console.log(`Minute Hand: angleInSecs = ${angleInSecs}`);
        let liyAngleObj = new LiyAngle();
        liyAngleObj.setAngle(angleInSecs);
        return liyAngleObj;
@@ -394,10 +372,8 @@ class LiyClock {
    }
 
    setClock(tiObj) {
-       console.log(`clock1=${this.toString()}`);
        this.mHourHand.move(tiObj);
        this.mMinuteHand.move(tiObj);
-       console.log(`clock2=${this.toString()}`);
    }
 
    tickSecond() {
@@ -417,11 +393,9 @@ class LiyClock {
    angleBetweenHands() {
        let hourAngle = this.mHourHand.getAngleInSeconds();
        let minuteAngle = this.mMinuteHand.getAngleInSeconds();
-       console.log(`hourAngle=${hourAngle}, minuteAngle=${minuteAngle}`);
        let angle = Math.abs(hourAngle - minuteAngle);
        let angleObj = new LiyAngle();
        angleObj.setAngle(angle);
-       console.log(`Angle Between Hands: ${angleObj.toString()}`);
        return angleObj;
    }
 }
@@ -445,10 +419,6 @@ class ClockProblemType3
                randChoice = LiyAngle.random();
            }
            c[i] = randChoice.toString();
-       }
-
-       for (var i = 0; i < c.length; ++i) {
-           console.log(`choice: ${c[i]}`);
        }
 
        return c;
@@ -476,14 +446,10 @@ class ClockProblemType3
                    }
                }
            } while (duplicate);
-           console.log(`Random Time Interval: ${ti.toString()}`);
            dup.push(ti);
            let clock = new LiyClock();
-           console.log(ti.toString());
            clock.setClock(ti);
-           console.log(`clock=${clock.toString()}`);
            let ans = clock.angleBetweenHands();
-           console.log(`Answer: ${ans.toString()}`);
 
            let qst = `If the time is ${clock.timeString()}, what is the angle
                between the hour and minute handle?`;

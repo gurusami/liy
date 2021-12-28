@@ -27,6 +27,7 @@ let gLiyUiMenu;
 let gLiyQBC; // Question Bank Collection (QBC).
 let gLiyUiProgressBar;
 let gLiyUiVerify;
+let gLiyStatistics;
 
 function liyInitGlobals() {
    gLiyUiArray = new LiyUiArray();
@@ -50,6 +51,9 @@ function liyInitGlobals() {
 
    gLiyUiVerify = new LiyUiVerify();
    gLiyUiVerify.createUi();
+
+   gLiyStatistics = new LiyStatistics();
+   gLiyStatistics.setStartTime();
 }
 
 /******************************************************************************/
@@ -139,7 +143,12 @@ function liyTakePractice() {
    liyUiAddVerify();
 
    // Given the name get the question bank.
-   let qBankObj = gLiyQBC.getQuestionBank(gBankName);
+   let qBankDetails = gLiyQBC.findQBDetails(gBankName);
+   let qBankObj = qBankDetails.mBankObj;
+
+   gLiyStatistics.getMap().set("Question Bank Name", gBankName);
+   gLiyStatistics.getMap().set("Question Bank Title", qBankDetails.mTitle);
+   gLiyStatistics.getMap().set("JavaScript Class", qBankObj.constructor.name);
 
    // Initialize question bank.
    qBankObj.init();
@@ -188,15 +197,13 @@ function liyDisplayFinish() {
    while (divPage.lastChild) {
        divPage.removeChild(divPage.lastChild);
    }
+   gLiyStatistics.setTimeTaken(gLiyUiStopWatch.getValue());
+   gLiyStatistics.setEndTime();
 
-   let spanFinish = document.createElement("span");
-   spanFinish.innerHTML = "Success! You have completed this practice!!";
-
-   let spanTimeTaken = document.createElement("span");
-   spanTimeTaken.innerHTML = `(Time Taken: ${gLiyUiStopWatch.getValue()})`;
-
-   divPage.appendChild(spanFinish);
-   divPage.appendChild(spanTimeTaken);
+   let liyUiStats = new LiyUiStats();
+   let htmlElem = liyUiStats.createUi();
+   liyUiStats.display(gLiyStatistics);
+   divPage.appendChild(htmlElem);
 }
 
 /* The Main Entry Point. */

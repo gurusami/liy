@@ -154,6 +154,15 @@ class QuestionBankCollection {
        return null;
    }
 
+   findQBDetails(qBankName) {
+       for (var i = 0; i < this.mQuestionBankArray.length; ++i) {
+           if (this.mQuestionBankArray[i].mName == qBankName) {
+               return this.mQuestionBankArray[i];
+           }
+       }
+       return null;
+   }
+
    getCount() {
        return this.mQuestionBankArray.length;
    }
