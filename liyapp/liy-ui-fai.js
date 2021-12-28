@@ -24,17 +24,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiyUiFai extends LiyUiQues {
    constructor() {
        super();
+       this.mQuestElem;
    }
 
    createUi() {
-       let pQuestElem = document.createElement("p");
-       pQuestElem.setAttribute("id", "question");
+       this.mQuestElem = document.createElement("p");
+       this.mQuestElem.setAttribute("id", "question");
 
        let inputElem = document.createElement("input");
        inputElem.setAttribute("id", "user_integer");
        inputElem.setAttribute("type", "text");
 
-       this.mHtmlElem.appendChild(pQuestElem);
+       this.mHtmlElem.appendChild(this.mQuestElem);
        this.mHtmlElem.appendChild(inputElem);
 
        return this.mHtmlElem;
@@ -47,6 +48,7 @@ class LiyUiFai extends LiyUiQues {
        qstElem.innerHTML = ques.mQuestion;
        qstElem.style.backgroundColor = "none";
        let userInput = document.getElementById("user_integer");
+       this.clearBgColor();
        userInput.focus();
    }
 
@@ -55,13 +57,15 @@ class LiyUiFai extends LiyUiQues {
        return inElem.value;
    }
 
+   clearBgColor() {
+       this.mQuestElem.style.backgroundColor = "white";
+   }
+
    respondCorrect(obj) {
-       let qstElem = document.getElementById("question");
-       qstElem.style.backgroundColor = "darkseagreen";
+       this.mQuestElem.style.backgroundColor = "darkseagreen";
    }
 
    respondWrong(obj) {
-       let qstElem = document.getElementById("question");
-       qstElem.style.backgroundColor = "red";
+       this.mQuestElem.style.backgroundColor = "red";
    }
 }

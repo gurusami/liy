@@ -91,6 +91,11 @@ function liyLoadQBC() {
        new QBDetails("c9geoveg",
            "Class 9: Geography: Natural Vegetation",
            new LiyClass9GeoVegetationQB()));
+
+   gLiyQBC.addQB(
+       new QBDetails("matclock",
+           "MAT: Clock Problems",
+           new LiyClockProblemQB()));
 }
  
 /******************************************************************************/

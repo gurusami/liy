@@ -74,3 +74,29 @@ class QuestionFAI extends LiyQuestion {
    }
 }
 
+/******************************************************************************/
+
+class LiY {
+
+   static ryRandomInRange(minValue, maxValue) {
+       return Math.floor(Math.random() * (maxValue - minValue) + minValue);
+   }
+
+   static ryRandom(minValue, maxValue, dupArray) {
+       let n;
+       let duplicate = false;
+       do {
+           duplicate = false;
+           n = Math.floor(Math.random() * (maxValue - minValue) + minValue);
+           for (var i = 0; i < dupArray.length; ++i) {
+               if (n == dupArray[i]) {
+                   duplicate = true;
+                   break;
+               }
+           }
+       } while (duplicate == true);
+       dupArray.push(n);
+       return n;
+   }
+}
+
