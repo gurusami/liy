@@ -63,9 +63,11 @@ function liyVerifyAnswer(e) {
    if (questionObj.verify(userAnswer)) {
        uiObj.respondCorrect(userAnswer);
        qBankObj.markCorrect();
+       gLiyStatistics.incrCorrect();
    } else {
        uiObj.respondWrong(userAnswer);
        qBankObj.markWrong();
+       gLiyStatistics.incrWrong();
    }
    e.target.disabled = true;
 }

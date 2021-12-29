@@ -23,6 +23,7 @@ class LiyUiStats extends LiyUi {
    constructor() {
        super();
        this.mTableElem;
+       this.mScoreh2Elem;
    }
 
    createUi() {
@@ -36,6 +37,7 @@ class LiyUiStats extends LiyUi {
        this.mTableElem.style.marginRight = "auto";
        this.addHeaderRow();
        this.addSuccessMessage();
+       this.addScore();
        divElem.appendChild(this.mTableElem);
        return divElem;
    }
@@ -61,6 +63,18 @@ class LiyUiStats extends LiyUi {
        this.mHtmlElem.appendChild(h1);
    }
 
+   addScore() {
+       let h2 = document.createElement("h2");
+       this.mScoreh2Elem = h2;
+       h2.setAttribute("align", "center");
+       h2.id = "h2ScoreElem";
+       this.mHtmlElem.appendChild(h2);
+   }
+
+   updateScore(score) {
+       this.mScoreh2Elem.innerHTML = `Score: ${score}%`;
+   }
+
    addRow(value, key) {
        let rowElem = document.createElement("tr");
        let colElem1 = document.createElement("td");
@@ -78,7 +92,9 @@ class LiyUiStats extends LiyUi {
    display(liyStatistics) {
        let m = liyStatistics.getMap();
        console.log(`Map has ${m.size} entries`);
-       liyStatistics.getMap().forEach(this.addRow, this);
+       liyStatistics.finalize();
+       m.forEach(this.addRow, this);
+       this.updateScore(liyStatistics.getScore());
    }
 }
 
@@ -87,6 +103,36 @@ class LiyUiStats extends LiyUi {
 class LiyStatistics {
    constructor() {
        this.mKeyMap = new Map();
+       this.mCorrect = 0;
+       this.mWrong = 0;
+       this.mScore = 0;
+   }
+
+   incrCorrect() {
+       this.mCorrect++;
+   }
+
+   incrWrong() {
+       this.mWrong++;
+   }
+
+   calculateScore() {
+       this.mScore = (this.mCorrect / (this.mWrong + this.mCorrect)) * 100;
+       if (this.mWrong == 0) {
+           this.mScore = this.mScore.toPrecision(5);
+       } else if (Math.floor(this.mScore) < 10) {
+           this.mScore = this.mScore.toPrecision(3);
+       } else {
+           this.mScore = this.mScore.toPrecision(4);
+       }
+       return this.mScore;
+   }
+
+   getScore() { return this.mScore; }
+
+   finalize() {
+       this.calculateScore();
+       this.mKeyMap.set('Score', `${this.mScore}%`);
    }
 
    setStartTime() {
