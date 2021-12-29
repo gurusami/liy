@@ -104,6 +104,9 @@ function liyLoadQBC() {
    gLiyQBC.addQB(new QBDetails("Class9GeoWildLife", `Class 9: Geography:
        Wildlife`, null));
 
+   gLiyQBC.addQB(new QBDetails("Class9EconomicsPoverty",
+       `Class 9: Economics: Poverty`, null));
+
 /******************************************************************************/
 
    gLiyQBC.addQB(
