@@ -108,12 +108,12 @@ class LiyClass9GeoVegetationQB extends QuestionBank {
 
 	   new QuestionMCQ(`What are the main plant species of tropical
                dry deciduous forests?`,
-               ["Acacias, palms, euphorbias, cacti",
-                "Teak, sal, peepal, neem",
+               ["Teak, sal, peepal, neem",
+                "Acacias, palms, euphorbias, cacti",
                 "Teak, Bamboos, sandalwood, mulberry",
                 "Silver fir, junipers, pines, birches",
                 "Sundari trees, palm, coconut",
-                "Ebony, mahogany, rosewood, rubber, cinchona"], 2),
+                "Ebony, mahogany, rosewood, rubber, cinchona"], 0),
 
 	   new QuestionMCQ(`What are the main plant species of montane
                forests?`,

@@ -48,6 +48,7 @@ class LiyUiFai extends LiyUiQues {
        qstElem.innerHTML = ques.mQuestion;
        qstElem.style.backgroundColor = "none";
        let userInput = document.getElementById("user_integer");
+       userInput.value = "";
        this.clearBgColor();
        userInput.focus();
    }

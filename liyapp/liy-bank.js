@@ -171,5 +171,14 @@ class QuestionBankCollection {
    addQB(qBankDetails) {
        this.mQuestionBankArray.push(qBankDetails);
    }
+
+   createBankObj(bankName) {
+       if (bankName == "Class9GeoWildLife") {
+           let bankObj = new LiyClass9GeoWildLifeQB();
+           let bankDetails = this.findQBDetails(bankName);
+           bankDetails.mBankObj = bankObj;
+       }
+       return null;
+   }
 }
 

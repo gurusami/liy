@@ -21,6 +21,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /* Global Variables. */
 let gBankName = "sample";
+let gBankObj;
+let gBankDetails;
 let gLiyUiStopWatch;
 let gLiyUiArray; // For each question type, there is one entry in this array.
 let gLiyUiMenu;
@@ -87,6 +89,9 @@ function liyLoadQBC() {
                                "Class 6: Geography: Chapter 4: Agriculture",
                                new Class6GeoAgri()));
 
+/******************************************************************************/
+/* Class 9 */
+
    gLiyQBC.addQB(new QBDetails("c9mathtrig",
                                "Class 9: Mathematics: Trigonometry",
                                new LiyClass9TrigonometryQB()));
@@ -95,6 +100,11 @@ function liyLoadQBC() {
        new QBDetails("c9geoveg",
            "Class 9: Geography: Natural Vegetation",
            new LiyClass9GeoVegetationQB()));
+
+   gLiyQBC.addQB(new QBDetails("Class9GeoWildLife", `Class 9: Geography:
+       Wildlife`, null));
+
+/******************************************************************************/
 
    gLiyQBC.addQB(
        new QBDetails("matclock",
@@ -141,6 +151,9 @@ function liyTakePractice() {
    liyUiAddStopWatch();
    liyUiAddQuestion();
    liyUiAddVerify();
+
+   // Given the name create the question bank.
+   gLiyQBC.createBankObj(gBankName);
 
    // Given the name get the question bank.
    let qBankDetails = gLiyQBC.findQBDetails(gBankName);
