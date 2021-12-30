@@ -99,6 +99,9 @@ class MinuteHandDeg2Min extends LiyClockProblem {
 /******************************************************************************/
 
 class LiyAngle {
+   static degreesPerHour = 30;
+   static secondsInDegree = 3600;
+
    constructor(d, m, s) {
        this.mDegree = d;
        this.mMinute = m;
@@ -169,10 +172,22 @@ class LiyAngle {
 }
 
 class LiyTimeInterval {
+   static secondsInHour = 3600; // Number of seconds in one hour. 
+
    constructor(h, m, s) {
        this.mHour = h;
        this.mMinute = m;
        this.mSecond = s;
+       this.normalize();
+   }
+
+   tick() {
+       this.mSecond++;
+       this.normalize();
+   }
+
+   tickMinute() {
+       this.mMinute++;
        this.normalize();
    }
 
@@ -219,79 +234,113 @@ class LiyTimeInterval {
    }
 }
 
+/* The hour hand of the clock. */
 class LiyHourHand {
+
+   // Position of the hour hand repeats every 12 hours.
+   static posRepeatInHours = 12;
+
+   // Position of the hour hand repeats every 12*60 = 720 minutes.
+   static posRepeatInMinutes = 720;
+
+   // Position of the hour hand repeats every 12*60*60 = 43200 seconds.
+   static posRepeatInSeconds = 43200;
+
+   // In 1 second hour hand moves 30'' (angle = 30 seconds)
+   static movePerSecond = 30; 
+
    constructor() {
+       /* The initial position of the hour hand is on 12. Consider this position
+       as 0 degree 0 minutes and 0 seconds. */
        this.mPosition = new LiyAngle(0, 0, 0);
    }
 
+   /* Get the position of the hour hand.  The position is given by degree,
+   minute and seconds. */
    toString() {
        return this.mPosition.toString();
    }
 
+   /* Get the hour based on the position of the hour hand. Using the hour hand
+   we should only identify the hour.  But the position of the hour hand will
+   depend on minutes and seconds.  Therefore, while converting position to hour,
+   ignore the minutes and seconds. */
    getHours() {
        let angleInSeconds = this.mPosition.inSeconds();   
-       let angleInDegrees = Math.floor(angleInSeconds / 3600);
-       return Math.floor(angleInDegrees/30);
+       let angleInDegrees =
+           Math.floor(angleInSeconds / LiyAngle.secondsInDegree);
+       // console.log(`angleInSeconds=${angleInSeconds}`);
+       // console.log(`angleInDegrees=${angleInDegrees}`);
+       return Math.floor(angleInDegrees/LiyAngle.degreesPerHour);
    }
 
+   /* Move the hour hand from the current position, for the given time
+   interval. */
    move(tiObj) {
        let y = this.timeToAngle(tiObj);
        this.mPosition.add(y);
    }
 
+   /* Move the hour hand if the given number of hours have elapsed. */
    moveInHours(timeInHour) {
-       let x = new LiyTimeInterval(timeInHour, 0, 0);
+       let timeInHour2 = timeInHour % LiyHourHand.posRepeatInHours;
+       let x = new LiyTimeInterval(timeInHour2, 0, 0);
        let y = this.timeToAngle(x);
        this.mPosition.add(y);
    }
 
+   /* Move the hour hand if the given number of minutes have elapsed. */
    moveInMinutes(timeInMinutes) {
-       let x = new LiyTimeInterval(0, timeInMinutes, 0);
+       let timeInMin2 = timeInMinutes % LiyHourHand.posRepeatInMinutes;
+       let x = new LiyTimeInterval(0, timeInMin2, 0);
        let y = this.timeToAngle(x);
        this.mPosition.add(y);
    }
 
+   /* Move the hour hand if the given number of seconds have elapsed. */
    moveInSeconds(timeInSeconds) {
-       let x = new LiyTimeInterval(0, 0, timeInSeconds);
+       let timeInSec2 = timeInSeconds % LiyHourHand.posRepeatInSeconds;
+       let x = new LiyTimeInterval(0, 0, timeInSec2);
        let y = this.timeToAngle(x);
        this.mPosition.add(y);
    }
 
+   /* Move the position of the hour hand to the given angle position, whence
+   the current position. */
    movePosition(angleObj) {
        this.mPosition.add(angleObj);
    }
 
+   /* Get the position of the hour hand in seconds. */
    getAngleInSeconds() {
        let val = this.mPosition.inSeconds();
        return val;
    }
 
+   /* Get the movement of the hour hand in angle, for the given time interval.*/
    timeToAngle(liyTimeObj) {
-       let liyAngleObj = new LiyAngle();
        let timeInSecs = liyTimeObj.inSeconds();
+       let timeInSec2 = timeInSecs % LiyHourHand.posRepeatInSeconds;
        // In 1 second hour hand moves 30''
-       let angleInSecs = timeInSecs * 30;
+       let angleInSecs = timeInSec2 * LiyHourHand.movePerSecond;
+       let liyAngleObj = new LiyAngle();
        liyAngleObj.setAngle(angleInSecs);
        return liyAngleObj;
-   }
-
-   angleToTime(liyAngleObj) {
-       let liyTimeObj = new LiyTimeInterval();
-       let angleInSecs = liyAngleObj.inSeconds();
-       // Hour hand moves 30'' angle, for every second.
-       let timeInSecs = Math.floor(angleInSecs / 3);
-       liyTimeObj.setTime(timeInSecs);
-       // 1 degree to 2 minutes.
-       // 1 degree to 120 seconds.
-       // 60' to 120 seconds.
-       // 360'' to 120 seconds.
-       // 3'' to 1 seconds.
-       // 1'' to 1/3 seconds.
-       return liyTimeObj;
    }
 };
 
 class LiyMinuteHand {
+   // Position of the minute hand repeats every 1 hour or 60 minutes.
+   static posRepeatInMinutes = 60;
+
+   // Position of the minute hand repeats every 60*60 seconds.
+   static posRepeatInSeconds = 3600;
+
+   // In 1 minute, minute hand moves 6 degree
+   // In 60 seconds, minute hand moves 6*3600''
+   // In 1 second, minute hand moves 360''
+   static movePerSecond = 360; 
+
    constructor() {
        this.mPosition = new LiyAngle(0, 0, 0);
    }
@@ -300,6 +349,9 @@ class LiyMinuteHand {
        return this.mPosition.toString();
    }
 
+   /* Get the minutes from the minute hand.  Don't attempt to calculate seconds
+   using this hand.  Minute hand is only for minute hand.  For seconds, you need
+   a second hand. */
    getMinutes() {
        let angleInSeconds = this.mPosition.inSeconds();   
        let angleInDegrees = Math.floor(angleInSeconds/3600);
@@ -316,39 +368,30 @@ class LiyMinuteHand {
        this.mPosition.add(y);
    }
 
+   /* Move the minute hand if given minutes have elapsed. */
    moveInMinutes(timeInMinutes) {
-       let x = new LiyTimeInterval(0, timeInMinutes, 0);
+       let timeInMin = timeInMinutes % LiyMinuteHand.posRepeatInMinutes;
+       let x = new LiyTimeInterval(0, timeInMin, 0);
        let y = this.timeToAngle(x);
        this.mPosition.add(y);
    }
 
+   /* Move the minute hand if given seconds have elapsed. */
    moveInSeconds(timeInSeconds) {
-       let x = new LiyTimeInterval(0, 0, timeInSeconds);
+       let timeInSec = timeInSeconds % LiyMinuteHand.posRepeatInSeconds;
+       let x = new LiyTimeInterval(0, 0, timeInSec);
        let y = this.timeToAngle(x);
        this.mPosition.add(y);
    }
 
+   /* How much to move the minute hand, if given time has elapsed. */
    timeToAngle(liyTimeObj) {
        let timeInSecs = liyTimeObj.inSeconds();
-       // In 1 minute, minute hand moves 6 degree
-       // In 60 seconds, minute hand moves 6*3600''
-       // In 1 second, minute hand moves 360''
-       let angleInSecs = timeInSecs * 360;
+       let timeInSecs2 = timeInSecs % LiyMinuteHand.posRepeatInSeconds;
+       let angleInSecs = timeInSecs2 * LiyMinuteHand.movePerSecond;
        let liyAngleObj = new LiyAngle();
        liyAngleObj.setAngle(angleInSecs);
        return liyAngleObj;
-   }
-
-   angleToTime(liyAngleObj) {
-       let liyTimeObj = new LiyTimeInterval();
-       let angleInSecs = liyAngleObj.inSeconds();
-       // Minute hand moves 1 degree for 10 seconds.
-       // Minute hand moves 360'' degree for 10 seconds.
-       // Minute hand moves 36'' degree for 1 seconds.
-       // 1 degree to 10 seconds.
-       let timeInSecs = angleInSecs * 36;
-       liyTimeObj.setTime(timeInSecs);
-       return liyTimeObj;
    }
 }
 
@@ -371,9 +414,21 @@ class LiyClock {
        return `${hrString}:${minString}`;
    }
 
+   getHour() {
+       return this.mHourHand.getHours();
+   }
+
+   setTime(hour, minute, seconds) {
+       let tiObj = new LiyTimeInterval(hour, minute, seconds);
+       // console.log(`Time Interval: ${tiObj.toString()}`);
+       this.setClock(tiObj);
+   }
+
    setClock(tiObj) {
        this.mHourHand.move(tiObj);
        this.mMinuteHand.move(tiObj);
+       // console.log(`Hour Hand: ${this.mHourHand.toString()}`);
+       // console.log(`Minute Hand: ${this.mMinuteHand.toString()}`);
    }
 
    tickSecond() {
@@ -397,6 +452,18 @@ class LiyClock {
        let angleObj = new LiyAngle();
        angleObj.setAngle(angle);
        return angleObj;
+   }
+
+   closeToOverlap() {
+       let hourAngle = this.mHourHand.getAngleInSeconds();
+       let minuteAngle = this.mMinuteHand.getAngleInSeconds();
+       return Math.abs(hourAngle - minuteAngle) < 70;
+   }
+
+   doTheyOverlap() {
+       let hourAngle = this.mHourHand.getAngleInSeconds();
+       let minuteAngle = this.mMinuteHand.getAngleInSeconds();
+       return Math.abs(hourAngle - minuteAngle) < 200;
    }
 }
 
@@ -462,6 +529,94 @@ class ClockProblemType3
 }
 
 /******************************************************************************/
+/* Find the overlap positions. */
+class ClockProblemType4 {
+
+   randomMcqArray() {
+       let mcqs = new Array();
+
+       for (let hour = 1; hour < 12; ++hour) {
+           mcqs.push(this.getOverlapMCQ(hour));
+            
+       }
+
+       return mcqs;
+   }
+
+   getOverlapMCQ(hour) {
+       let q = this.getOverlapQuestion(hour);
+       let c = this.getOverlapChoices(hour);
+       let a = this.getOverlapAnswer(hour, c);
+       return new QuestionMCQ(q, c, a);
+   }
+
+   getOverlapAnswer(hour, choices) {
+       let ans = this.findOneOverlap(hour);
+       for (var i = 0; i < choices.length; ++i) {
+           console.log(`choices=${choices[i]}, answer=${ans}`);
+           if (ans == choices[i]) {
+               console.log(`${choices[i]}, ${ans}`);
+               return i;
+           }
+       }
+       return null;
+   }
+
+   getOverlapChoices(hour) {
+       const N = 6;
+       let choices = new Array(N);
+       let tiObj = new LiyTimeInterval(hour, hour*5, 0);
+       let clock = new LiyClock();
+       clock.setClock(tiObj);
+       for (var i = 0; i < N; ++i) {
+           choices[i] = clock.timeString();
+           clock.tickMinute();
+       }
+       return choices;
+   }
+
+
+   getOverlapQuestion(from) {
+       return `Between ${from} O'Clock and ${from + 1} O'Clock, when do the hour hand
+           and minute hand of the clock overlap (assuming that each have 
+           exactly 360 positions)`;
+   }
+
+   findOneOverlap(hour) {
+       let clock = new LiyClock();
+       let curTimeInterval = new LiyTimeInterval(hour, hour*5, 0);
+       clock.setClock(curTimeInterval);
+
+       while (true) {
+           if (clock.doTheyOverlap()) {
+               console.log(`Found Overlap: ${clock.timeString()}`);
+               break;
+           }
+           clock.tickSecond();
+           curTimeInterval.tick();
+       }
+       return clock.timeString();
+   }
+
+   static findOverlap() {
+       let clock = new LiyClock();
+       let curTimeInterval = new LiyTimeInterval(0, 0, 0);
+       let endTimeInterval = new LiyTimeInterval(11, 59, 59);
+
+       while (curTimeInterval.equals(endTimeInterval) == false) {
+           clock.tickSecond();
+           curTimeInterval.tick();
+
+           if (clock.doTheyOverlap()) {
+               console.log(`Found Overlap: ${clock.timeString()}`);
+               break;
+           }
+
+       }
+   }
+}
+
+/******************************************************************************/
 
 class LiyClockProblemQB extends QuestionBank {
    constructor() {
@@ -470,6 +625,10 @@ class LiyClockProblemQB extends QuestionBank {
        this.minuteHandDegree = new MinuteHandDeg2Min();
        this.mQuestionArray = new Array();
        let dup = new Array();
+
+       this.mQuestionArray.push(new QuestionMCQ(`How many times does the hour
+           and minute hand of the clock overlap in a day?`, ["21", "12", "24",
+           "20", "22"], 0));
 
        // Five problems of this kind.
        for (let i = 0; i < 5; ++i) {
@@ -488,6 +647,14 @@ class LiyClockProblemQB extends QuestionBank {
            this.mQuestionArray.push(x[i]);
        }
 
+       // Type 4 Problems
+       let type4Obj = new ClockProblemType4();
+       let type4 = type4Obj.randomMcqArray();
+       for (let i = 0; i < type4.length; ++i) {
+           this.mQuestionArray.push(type4[i]);
+       }
+
+       // ClockProblemType4.findOverlap();
    }
 
    initQuestionArray() {
