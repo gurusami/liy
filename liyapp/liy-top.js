@@ -109,10 +109,10 @@ function liyLoadQBC() {
 
 /******************************************************************************/
 
-   gLiyQBC.addQB(
-       new QBDetails("matclock",
-           "MAT: Clock Problems",
+   gLiyQBC.addQB(new QBDetails("matclock", "MAT: Clock Problems",
            new LiyClockProblemQB()));
+
+   gLiyQBC.addQB(new QBDetails("matseries", "MAT: Number Series", null));
 }
  
 /******************************************************************************/

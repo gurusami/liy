@@ -181,7 +181,12 @@ class QuestionBankCollection {
            let bankObj = new LiyClass9EconomicsPovertyQB();
            let bankDetails = this.findQBDetails(bankName);
            bankDetails.mBankObj = bankObj;
+       } else if (bankName == "matseries") {
+           let bankObj = new LiySeriesQB();
+           let bankDetails = this.findQBDetails(bankName);
+           bankDetails.mBankObj = bankObj;
        }
+       
        return null;
    }
 }
