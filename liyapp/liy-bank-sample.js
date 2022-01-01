@@ -23,7 +23,7 @@ class LiySampleSet extends QuestionBank {
    constructor() {
        super();
        this.qst_bank = [
-	   new QuestionFAI("What is 2 &times; 9?", 18),
+	   new QuestionFIB("What is 2 &times; 9?", 18),
 
 	   new QuestionMCQ("What is cos &theta;?",
                ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",

@@ -18,10 +18,10 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 *******************************************************************************/
-// Question Type: Fill An Integer (FAI) 
-// This UI is to be used when the question type is "fai".
+// Question Type: Fill in Blanks (FIB) 
+// This UI is to be used when the question type is "fib".
 
-class LiyUiFai extends LiyUiQues {
+class LiyUiFib extends LiyUiQues {
    constructor() {
        super();
        this.mQuestElem;
@@ -34,11 +34,19 @@ class LiyUiFai extends LiyUiQues {
        let inputElem = document.createElement("input");
        inputElem.setAttribute("id", "user_integer");
        inputElem.setAttribute("type", "text");
+       inputElem.addEventListener('keypress', this.handleKeyPress);
 
        this.mHtmlElem.appendChild(this.mQuestElem);
        this.mHtmlElem.appendChild(inputElem);
 
        return this.mHtmlElem;
+   }
+
+   handleKeyPress(e) {
+       if (e.keyCode == 13) {
+           /* Enter key has been pressed. */
+           liyVerifyAnswer(e);
+       }
    }
 
    showQuestion() {

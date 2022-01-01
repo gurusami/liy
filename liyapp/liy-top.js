@@ -34,7 +34,7 @@ let gLiyStatistics;
 function liyInitGlobals() {
    gLiyUiArray = new LiyUiArray();
    gLiyUiArray.addUiDetails(new LiyUiDetails("mcq", new LiyMcqUi()));
-   gLiyUiArray.addUiDetails(new LiyUiDetails("fai", new LiyUiFai()));
+   gLiyUiArray.addUiDetails(new LiyUiDetails("fib", new LiyUiFib()));
    gLiyUiArray.createElements();
 
    gLiyQBC = new QuestionBankCollection();
@@ -107,6 +107,10 @@ function liyLoadQBC() {
    gLiyQBC.addQB(new QBDetails("Class9EconomicsPoverty",
        `Class 9: Economics: Poverty`, null));
 
+   /* Class 9: History */
+   gLiyQBC.addQB(new QBDetails("Class9FrenchRevolution",
+       `Class 9: History: French Revolution`, null));
+
 /******************************************************************************/
 
    gLiyQBC.addQB(new QBDetails("matclock", "MAT: Clock Problems",
@@ -168,6 +172,10 @@ function liyTakePractice() {
 
    // Initialize question bank.
    qBankObj.init();
+
+   gBankObj = qBankObj;
+
+   gLiyStatistics.getMap().set("Total Questions", gBankObj.getTotal());
 
    // Choose a question.
    liyNextQuestion();

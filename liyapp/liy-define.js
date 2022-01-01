@@ -61,16 +61,19 @@ class QuestionMCQ extends LiyQuestion {
    }
 }
 
-/* Question type is Fill an Integer (FAI). */
-class QuestionFAI extends LiyQuestion {
+/* Question type is Fill in Blanks (FIB). */
+class QuestionFIB extends LiyQuestion {
    constructor(q, a) {
-       super("fai");
+       super("fib");
        this.mQuestion = q;
        this.mAnswer   = a;
    }
 
-   verify(intValue) {
-       return this.mAnswer == intValue;
+   verify(val) {
+       if (typeof this.mAnswer == "string") {
+           return val.toLowerCase() == this.mAnswer.toLowerCase();
+       } 
+       return (this.mAnswer == val);
    }
 }
 

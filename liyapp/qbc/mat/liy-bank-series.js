@@ -27,12 +27,12 @@ class LiySeriesQB extends QuestionBank {
            this.addQuestionsType2();
    }
 
-   getQuestionFAI(series) {
+   getQuestionFIB(series) {
        /* Last element is the answer. */
        let answer = series.pop();
        let qst = `What is the next term in the given number series:
            ${series.toString()}?`;
-       return new QuestionFAI(qst, answer);
+       return new QuestionFIB(qst, answer);
    }
 
    /* Type 1 Number Series: Each number in the series is sum of two numbers:
@@ -72,16 +72,16 @@ class LiySeriesQB extends QuestionBank {
    addQuestionsType1() {
        for (let multiple = 1; multiple < 11; ++multiple) {
            let series = this.getSeriesType1(multiple);
-           let faiQues = this.getQuestionFAI(series);
-           this.mQuestionArray.push(faiQues);
+           let fibQues = this.getQuestionFIB(series);
+           this.mQuestionArray.push(fibQues);
        }
    }
 
    addQuestionsType2() {
        for (let num = 2; num < 11; ++num) {
            let series = this.getSeriesType2(num);
-           let faiQues = this.getQuestionFAI(series);
-           this.mQuestionArray.push(faiQues);
+           let fibQues = this.getQuestionFIB(series);
+           this.mQuestionArray.push(fibQues);
        }
    }
 

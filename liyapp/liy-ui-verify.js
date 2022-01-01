@@ -51,6 +51,16 @@ class LiyUiVerify extends LiyUi {
        let verifyBtn = document.getElementById("btn_verify");
        verifyBtn.disabled = false;
    }
+
+   disableVerifyButton() {
+       let verifyBtn = document.getElementById("btn_verify");
+       verifyBtn.disabled = true;
+   }
+
+   focusNextButton() {
+       let nextBtn = document.getElementById("btn_next");
+       nextBtn.focus();
+   }
 }
 
 function liyVerifyAnswer(e) {
@@ -70,5 +80,7 @@ function liyVerifyAnswer(e) {
        gLiyStatistics.incrWrong();
    }
    e.target.disabled = true;
+   gLiyUiVerify.disableVerifyButton();
+   gLiyUiVerify.focusNextButton();
 }
 

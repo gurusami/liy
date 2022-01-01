@@ -173,21 +173,22 @@ class QuestionBankCollection {
    }
 
    createBankObj(bankName) {
+       let bankObj = null;
+
        if (bankName == "Class9GeoWildLife") {
-           let bankObj = new LiyClass9GeoWildLifeQB();
-           let bankDetails = this.findQBDetails(bankName);
-           bankDetails.mBankObj = bankObj;
+           bankObj = new LiyClass9GeoWildLifeQB();
        } else if (bankName == "Class9EconomicsPoverty") {
-           let bankObj = new LiyClass9EconomicsPovertyQB();
-           let bankDetails = this.findQBDetails(bankName);
-           bankDetails.mBankObj = bankObj;
+           bankObj = new LiyClass9EconomicsPovertyQB();
        } else if (bankName == "matseries") {
-           let bankObj = new LiySeriesQB();
+           bankObj = new LiySeriesQB();
+       } else if (bankName == "Class9FrenchRevolution") {
+           bankObj = new LiyClass9FrenchRevolutionQB();
+       }
+
+       if (bankObj instanceof QuestionBank) {
            let bankDetails = this.findQBDetails(bankName);
            bankDetails.mBankObj = bankObj;
        }
-       
-       return null;
    }
 }
 

@@ -34,7 +34,7 @@ class TwoNumbers {
    }
 
    makeQuestion() {
-       return new QuestionFAI(`What is ${this.x} &times; ${this.y}?`,
+       return new QuestionFIB(`What is ${this.x} &times; ${this.y}?`,
                               this.x*this.y);
    }
 }
