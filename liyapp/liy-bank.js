@@ -183,6 +183,8 @@ class QuestionBankCollection {
            bankObj = new LiySeriesQB();
        } else if (bankName == "Class9FrenchRevolution") {
            bankObj = new LiyClass9FrenchRevolutionQB();
+       } else if (bankName == "Class9Socialism") {
+           bankObj = new LiyClass9SocialismQB();
        }
 
        if (bankObj instanceof QuestionBank) {

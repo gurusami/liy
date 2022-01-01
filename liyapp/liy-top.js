@@ -89,34 +89,16 @@ function liyLoadQBC() {
                                "Class 6: Geography: Chapter 4: Agriculture",
                                new Class6GeoAgri()));
 
-/******************************************************************************/
-/* Class 9 */
-
-   gLiyQBC.addQB(new QBDetails("c9mathtrig",
-                               "Class 9: Mathematics: Trigonometry",
-                               new LiyClass9TrigonometryQB()));
-
-   gLiyQBC.addQB(
-       new QBDetails("c9geoveg",
-           "Class 9: Geography: Natural Vegetation",
-           new LiyClass9GeoVegetationQB()));
-
-   gLiyQBC.addQB(new QBDetails("Class9GeoWildLife", `Class 9: Geography:
-       Wildlife`, null));
-
-   gLiyQBC.addQB(new QBDetails("Class9EconomicsPoverty",
-       `Class 9: Economics: Poverty`, null));
-
-   /* Class 9: History */
-   gLiyQBC.addQB(new QBDetails("Class9FrenchRevolution",
-       `Class 9: History: French Revolution`, null));
-
-/******************************************************************************/
-
    gLiyQBC.addQB(new QBDetails("matclock", "MAT: Clock Problems",
            new LiyClockProblemQB()));
 
    gLiyQBC.addQB(new QBDetails("matseries", "MAT: Number Series", null));
+}
+
+function addToGlobalQBC(menuArray) {
+   for (var i = 0; i < menuArray.length; ++i) {
+      gLiyQBC.addQB(menuArray[i]);
+   }
 }
  
 /******************************************************************************/

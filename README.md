@@ -1,2 +1,2 @@
-# liy
-Learn It Yourself (LIY) - Software to Promote Self Study
+# LiY
+Learn it Yourself (LiY) - Software to Promote Self Study
