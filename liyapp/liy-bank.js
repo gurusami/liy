@@ -193,6 +193,8 @@ class QuestionBankCollection {
            bankObj = new LiyClass9PastoralistQB();
        } else if (bankName == "Class6AirAroundUs") {
            bankObj = new LiyClass6AirAroundUsQB();
+       } else if (bankName == "Class6Agriculture") {
+           bankObj = new Class6GeoAgri();
        }
 
        if (bankObj instanceof QuestionBank) {

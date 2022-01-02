@@ -85,14 +85,6 @@ function liyLoadQBC() {
                                "Capitals of Indian States",
                                new CapitalsOfIndianStates()));
 
-   gLiyQBC.addQB(new QBDetails("c6geoagri",
-                               "Class 6: Geography: Chapter 4: Agriculture",
-                               new Class6GeoAgri()));
-
-   gLiyQBC.addQB(new QBDetails("Class6AirAroundUs",
-                               "Class 6: Chemistry: Air Around Us",
-                               null));
-
    gLiyQBC.addQB(new QBDetails("matclock", "MAT: Clock Problems",
            new LiyClockProblemQB()));
 

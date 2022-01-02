@@ -32,7 +32,7 @@ class LiyClass9SocialismQB extends QuestionBank {
            new QuestionMCQ(`Russia followed the Julian calendar until
                1 February 1918. The country then changed to the Gregorian
                calendar, which is followed everywhere today. How many days does
-               the Julian and Gregorian calendar differ?`
+               the Julian and Gregorian calendar differ?`,
                ["Gregorian dates are 13 days ahead of Julian dates",
                 "Julian dates are 13 days ahead of Gregorian dates",
                 "Julian dates are 17 days ahead of Gregorian dates",
