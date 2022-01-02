@@ -82,7 +82,7 @@ class Class6GeoAgri extends QuestionBank {
 
 	   new QuestionMCQ(`What is meant by agriculture?`,
                ["Growing of crops", "Raising Livestock", "Forestry", "Fishing",
-                "All the above"], 4), 
+                "All of the above"], 4), 
 
 	   new QuestionMCQ(`The type of agriculture that is practised for
                domestic consumption of the farmers is called?`,

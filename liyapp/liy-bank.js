@@ -185,6 +185,14 @@ class QuestionBankCollection {
            bankObj = new LiyClass9FrenchRevolutionQB();
        } else if (bankName == "Class9Socialism") {
            bankObj = new LiyClass9SocialismQB();
+       } else if (bankName == "Class9Nazism") {
+           bankObj = new LiyClass9NazismQB();
+       } else if (bankName == "Class9Colonialism") {
+           bankObj = new LiyClass9ColonialismQB();
+       } else if (bankName == "Class9Pastoralist") {
+           bankObj = new LiyClass9PastoralistQB();
+       } else if (bankName == "Class6AirAroundUs") {
+           bankObj = new LiyClass6AirAroundUsQB();
        }
 
        if (bankObj instanceof QuestionBank) {

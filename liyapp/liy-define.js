@@ -41,18 +41,34 @@ class QuestionMCQ extends LiyQuestion {
        this.mAnswer   = a;
    }
 
+   swapChoice(i, j) {
+       if (j == this.mAnswer) {
+           /* i and j are being swapped. So change answer to j. */
+           this.mAnswer = i;
+       } else if (i == this.mAnswer) {
+           this.mAnswer = j;
+       }
+       let k = this.mChoices[i];
+       this.mChoices[i] = this.mChoices[j];
+       this.mChoices[j] = k;
+   }
+
    shuffleChoices() {
        for (var i = this.mChoices.length - 1; i > 0; --i) {
            let j = Math.floor(Math.random() * i);
-           if (j == this.mAnswer) {
-               /* i and j are being swapped. So change answer to j. */
-               this.mAnswer = i;
-           } else if (i == this.mAnswer) {
-               this.mAnswer = j;
+           this.swapChoice(i, j);
+       }
+       this.allOfTheAbove();
+   }
+
+   allOfTheAbove() {
+       /* If there is a choice 'All of the above', then ensure that it is the
+       last choice. */
+       let j = this.mChoices.length - 1;
+       for (var i = 0; i < j; i++) {
+           if (this.mChoices[i].toLowerCase() == 'all of the above') {
+               this.swapChoice(i, j);
            }
-           let k = this.mChoices[i];
-           this.mChoices[i] = this.mChoices[j];
-           this.mChoices[j] = k;
        }
    }
 

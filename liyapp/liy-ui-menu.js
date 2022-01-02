@@ -82,28 +82,33 @@ class LiyUiMenu extends LiyUi {
    createClass9Menu() {
        let class9Menu = new Array();
 
-       class9Menu.push(new QBDetails("c9mathtrig",
-                               "Class 9: Mathematics: Trigonometry",
-                               new LiyClass9TrigonometryQB()));
+       class9Menu.push(new QBDetails("c9mathtrig", `Class 9: Mathematics:
+           Trigonometry`, new LiyClass9TrigonometryQB()));
 
-       class9Menu.push(
-           new QBDetails("c9geoveg", "Class 9: Geography: Natural Vegetation",
-           new LiyClass9GeoVegetationQB()));
+       class9Menu.push(new QBDetails("c9geoveg", `Class 9: Geography: Natural
+           Vegetation`, new LiyClass9GeoVegetationQB()));
 
        class9Menu.push(new QBDetails("Class9GeoWildLife", `Class 9: Geography:
-       Wildlife`, null));
+           Wildlife`, null));
 
-       class9Menu.push(new QBDetails("Class9EconomicsPoverty",
-       `Class 9: Economics: Poverty`, null));
+       class9Menu.push(new QBDetails("Class9EconomicsPoverty", `Class 9:
+           Economics: Poverty`, null));
 
        /* Class 9: History */
-       class9Menu.push(new QBDetails("Class9FrenchRevolution",
-       `Class 9: History: French Revolution`, null));
+       class9Menu.push(new QBDetails("Class9FrenchRevolution", `Class 9:
+           History: French Revolution`, null));
 
-       class9Menu.push(
-           new QBDetails("Class9Socialism",
-           `Class 9: History: Socialism in Europe and the Russian Revolution`,
-           null));
+       class9Menu.push(new QBDetails("Class9Socialism", `Class 9: History:
+           Socialism in Europe and the Russian Revolution`, null));
+
+       class9Menu.push(new QBDetails("Class9Nazism", `Class 9: History: Nazism
+           and the Rise of Hitler`, null));
+
+       class9Menu.push(new QBDetails("Class9Colonialism", `Class 9: History:
+           Forest Society and Colonialism`, null));
+
+       class9Menu.push(new QBDetails("Class9Pastoralist", `Class 9: History:
+           Pastoralists in the Modern World`, null));
 
        return class9Menu;
    }
