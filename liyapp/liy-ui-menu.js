@@ -28,6 +28,8 @@ class LiyUiMenu extends LiyUi {
 
    createUi() {
        let divElem = document.createElement("div");
+       divElem.style.cssFloat = "left";
+       divElem.style.border = "solid 1px blue";
        divElem.setAttribute("id", "div-menu"); 
 
        this.tableElem = document.createElement("table");
@@ -115,7 +117,16 @@ class LiyUiMenu extends LiyUi {
 
    createClass9MenuUi(menu) {
        let div = document.createElement("div");
+       div.style.cssFloat = "left";
+       div.style.border = "solid 1px blue";
+       div.style.marginLeft = "5px";
        div.setAttribute("id", "div-class9"); 
+
+       let h3 = document.createElement("h3");
+       h3.setAttribute("id", "class9-title-h3");
+       h3.setAttribute("align", "center");
+       h3.innerHTML = "Class 9";
+       div.appendChild(h3);
 
        let tableElem = document.createElement("table");
        tableElem.setAttribute("id", "class9-table-menu");

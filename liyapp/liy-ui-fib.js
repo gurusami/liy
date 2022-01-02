@@ -58,6 +58,7 @@ class LiyUiFib extends LiyUiQues {
        let userInput = document.getElementById("user_integer");
        userInput.value = "";
        this.clearBgColor();
+       userInput.disabled = false;
        userInput.focus();
    }
 

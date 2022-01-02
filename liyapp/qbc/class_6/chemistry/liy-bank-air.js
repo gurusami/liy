@@ -23,6 +23,11 @@ class LiyClass6AirAroundUsQB extends QuestionBank {
    constructor() {
        super();
        this.qst_bank = [
+           new QuestionMCQ(`Which gas when present in excess amount in the 
+               atmosphere causes <i>global warming</i>?`,
+               ["Carbon Dioxide", "Nitrogen", "Oxygen", "Hydrogen", "Air",
+                "Helium"], 0),
+
            new QuestionFIB(`Which is the second most abundant gas in the
                atmosphere?`, "Oxygen"),
 
@@ -91,10 +96,12 @@ class LiyClass6AirAroundUsQB extends QuestionBank {
                Enter without percentage symbol %)`, 21),
 	   new QuestionFIB(`What is the percentage of Carbon Dioxide in air?
                (Note: Enter without percentage symbol %)`, "0.03"),
+
 	   new QuestionMCQ(`Which gas is also known as the inactive
-               component of the air?`
+               component of the air?`,
                ["Nitrogen", "Oxygen", "Carbon dioxide", "Hydrogen",
                 "Water Vapour"], 0),
+
 	   new QuestionMCQ(`Which is the most abundant gas in the atmosphere?`,
                ["Nitrogen", "Oxygen", "Carbon dioxide", "Hydrogen",
                 "Water Vapour"], 0),
@@ -113,11 +120,11 @@ class LiyClass6AirAroundUsQB extends QuestionBank {
                burned in this layer and are seen as shooting stars.  Which is
                this layer?`,
                ["Troposphere", "Stratosphere", "Mesophere", "Thermosphere",
-                "Exosphere"] , 2),
+                "Exosphere"], 2),
 	   new QuestionMCQ(`Which layer of atmosphere contains the ozone
                layer?`,
                ["Troposphere", "Stratosphere", "Mesophere", "Thermosphere",
-                "Exosphere"] , 1),
+                "Exosphere"], 1),
 	   new QuestionMCQ(`Which layer of atmosphere is present above the
                Troposphere?`, 
                ["Stratosphere", "Mesophere", "Thermosphere", "Exosphere"] , 0),
