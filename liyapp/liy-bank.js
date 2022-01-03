@@ -191,6 +191,8 @@ class QuestionBankCollection {
            bankObj = new LiyClass9ColonialismQB();
        } else if (bankName == "Class9Pastoralist") {
            bankObj = new LiyClass9PastoralistQB();
+       } else if (bankName == "Class9BiologyWhyIll") {
+           bankObj = new LiyClass9BiologyWhyIllQB();
        } else if (bankName == "Class6AirAroundUs") {
            bankObj = new LiyClass6AirAroundUsQB();
        } else if (bankName == "Class6Agriculture") {

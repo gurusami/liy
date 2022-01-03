@@ -33,8 +33,9 @@ class LiyUiFib extends LiyUiQues {
        this.mQuestElem.style.fontSize = "large";
 
        let inputElem = document.createElement("input");
-       inputElem.setAttribute("id", "user_integer");
+       inputElem.setAttribute("id", "user_answer");
        inputElem.setAttribute("type", "text");
+       inputElem.setAttribute("size", "80");
        inputElem.style.margin = "10px";
        inputElem.style.padding = "10px";
        inputElem.addEventListener('keypress', this.handleKeyPress);
@@ -58,7 +59,7 @@ class LiyUiFib extends LiyUiQues {
        let qstElem = document.getElementById("question");
        qstElem.innerHTML = `<i>Question: </i> ${ques.mQuestion}`;
        qstElem.style.backgroundColor = "none";
-       let userInput = document.getElementById("user_integer");
+       let userInput = document.getElementById("user_answer");
        userInput.value = "";
        this.clearBgColor();
        userInput.disabled = false;
@@ -66,7 +67,7 @@ class LiyUiFib extends LiyUiQues {
    }
 
    getUserAnswer() {
-       let inElem = document.getElementById("user_integer");
+       let inElem = document.getElementById("user_answer");
        return inElem.value;
    }
 

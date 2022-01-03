@@ -160,6 +160,9 @@ class LiyUiMenu extends LiyUi {
            new QBDetails("Class9GeoWildLife", `Class 9: Geography:
                Wildlife`, null),
 
+           new QBDetails("Class9BiologyWhyIll", `Class 9: Biology:
+               Why do we fall ill?`, null),
+
            new QBDetails("Class9EconomicsPoverty", `Class 9:
                Economics: Poverty`, null)];
        let ui = this.createMenuUi("Class9", "Class 9", menu);

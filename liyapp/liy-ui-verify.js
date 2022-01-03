@@ -34,7 +34,8 @@ class LiyUiVerify extends LiyUi {
        inputElemVerify.setAttribute("type", "button");
        inputElemVerify.setAttribute("value", "Verify");
        inputElemVerify.style.margin = "5px";
-       inputElemVerify.style.padding = "1px";
+       inputElemVerify.style.padding = "2px";
+       inputElemVerify.style.fontSize = "large";
        inputElemVerify.addEventListener("click", liyVerifyAnswer);
 
        let inputElemNext = document.createElement("input");
@@ -42,7 +43,8 @@ class LiyUiVerify extends LiyUi {
        inputElemNext.setAttribute("type", "button");
        inputElemNext.setAttribute("value", "Next");
        inputElemNext.style.margin = "5px";
-       inputElemNext.style.padding = "1px";
+       inputElemNext.style.padding = "2px";
+       inputElemNext.style.fontSize = "large";
        inputElemNext.addEventListener("click", liyNextQuestion);
 
        topDivElem.appendChild(inputElemVerify);
