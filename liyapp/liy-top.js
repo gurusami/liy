@@ -61,34 +61,6 @@ function liyInitGlobals() {
 /******************************************************************************/
 
 function liyLoadQBC() {
-   gLiyQBC.addQB(new QBDetails("sample",
-                               "Sample Questions For Development Purposes",
-                               new LiySampleSet()));
-
-   gLiyQBC.addQB(new QBDetails("multiply100x100",
-                               "Multiply Integers Upto 100 x 100",
-                               new LiyMultiplyQB(2, 100, 2, 100)));
-
-   gLiyQBC.addQB(new QBDetails("multiplyNxNN",
-                               "Multiply 1-digit with 2-digit Integers",
-                               new LiyMultiplyQB(2, 10, 10, 100)));
-
-   gLiyQBC.addQB(new QBDetails("multiplyNxNNN",
-                               "Multiply 1-digit with 3-digit Integers",
-                               new LiyMultiplyQB(2, 10, 100, 1000)));
-
-   gLiyQBC.addQB(new QBDetails("multiplyNxNNNN",
-                               "Multiply 1-digit with 4-digit Integers",
-                               new LiyMultiplyQB(2, 10, 1000, 10000)));
-
-   gLiyQBC.addQB(new QBDetails("capitals",
-                               "Capitals of Indian States",
-                               new CapitalsOfIndianStates()));
-
-   gLiyQBC.addQB(new QBDetails("matclock", "MAT: Clock Problems",
-           new LiyClockProblemQB()));
-
-   gLiyQBC.addQB(new QBDetails("matseries", "MAT: Number Series", null));
 }
 
 function addToGlobalQBC(menuArray) {
@@ -102,6 +74,15 @@ function addToGlobalQBC(menuArray) {
 function liyUiRemoveMenu() {
    let divPage = document.getElementById("div-page");
    divPage.removeChild(gLiyUiMenu.mHtmlElem);
+}
+
+function liyAddTitle() {
+   let h3 = document.createElement("h3");
+   h3.innerHTML = gBankDetails.mTitle;
+   h3.setAttribute("align", "center");
+   h3.setAttribute("id", `h3-${gBankName}`);
+   let divPage = document.getElementById("div-page");
+   divPage.appendChild(h3);
 }
 
 function liyUiAddStopWatch() {
@@ -131,18 +112,20 @@ function liyUiAddVerify() {
 }
 
 function liyTakePractice() {
-   liyUiRemoveMenu();
-   liyUiAddProgressBar();
-   liyUiAddStopWatch();
-   liyUiAddQuestion();
-   liyUiAddVerify();
-
    // Given the name create the question bank.
    gLiyQBC.createBankObj(gBankName);
 
    // Given the name get the question bank.
    let qBankDetails = gLiyQBC.findQBDetails(gBankName);
    let qBankObj = qBankDetails.mBankObj;
+   gBankDetails = qBankDetails;
+
+   liyUiRemoveMenu();
+   liyUiAddProgressBar();
+   liyUiAddStopWatch();
+   liyAddTitle();
+   liyUiAddQuestion();
+   liyUiAddVerify();
 
    gLiyStatistics.getMap().set("Question Bank Name", gBankName);
    gLiyStatistics.getMap().set("Question Bank Title", qBankDetails.mTitle);

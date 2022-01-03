@@ -195,6 +195,8 @@ class QuestionBankCollection {
            bankObj = new LiyClass6AirAroundUsQB();
        } else if (bankName == "Class6Agriculture") {
            bankObj = new Class6GeoAgri();
+       } else if (bankName == "Class6MathsKnowingYourNumbers") {
+           bankObj = new LiyClass6MathsKnowingYourNumbersQB();
        }
 
        if (bankObj instanceof QuestionBank) {

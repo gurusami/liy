@@ -151,7 +151,10 @@ class Class6GeoAgri extends QuestionBank {
    initQuestionArray() {
        this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
-           this.mQuestionArray[i].shuffleChoices();
+           let qst = this.mQuestionArray[i];
+           if (qst instanceof QuestionMCQ) {
+               qst.shuffleChoices();
+           }
        }
    }
 }

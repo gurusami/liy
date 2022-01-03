@@ -30,10 +30,13 @@ class LiyUiFib extends LiyUiQues {
    createUi() {
        this.mQuestElem = document.createElement("p");
        this.mQuestElem.setAttribute("id", "question");
+       this.mQuestElem.style.fontSize = "large";
 
        let inputElem = document.createElement("input");
        inputElem.setAttribute("id", "user_integer");
        inputElem.setAttribute("type", "text");
+       inputElem.style.margin = "10px";
+       inputElem.style.padding = "10px";
        inputElem.addEventListener('keypress', this.handleKeyPress);
 
        this.mHtmlElem.appendChild(this.mQuestElem);
@@ -53,7 +56,7 @@ class LiyUiFib extends LiyUiQues {
        var qb = this.mQuestionBank;
        var ques = qb.getCurrentQuestion();
        let qstElem = document.getElementById("question");
-       qstElem.innerHTML = ques.mQuestion;
+       qstElem.innerHTML = `<i>Question: </i> ${ques.mQuestion}`;
        qstElem.style.backgroundColor = "none";
        let userInput = document.getElementById("user_integer");
        userInput.value = "";

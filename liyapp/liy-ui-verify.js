@@ -33,12 +33,16 @@ class LiyUiVerify extends LiyUi {
        inputElemVerify.setAttribute("id", "btn_verify");
        inputElemVerify.setAttribute("type", "button");
        inputElemVerify.setAttribute("value", "Verify");
+       inputElemVerify.style.margin = "5px";
+       inputElemVerify.style.padding = "1px";
        inputElemVerify.addEventListener("click", liyVerifyAnswer);
 
        let inputElemNext = document.createElement("input");
        inputElemNext.setAttribute("id", "btn_next");
        inputElemNext.setAttribute("type", "button");
        inputElemNext.setAttribute("value", "Next");
+       inputElemNext.style.margin = "5px";
+       inputElemNext.style.padding = "1px";
        inputElemNext.addEventListener("click", liyNextQuestion);
 
        topDivElem.appendChild(inputElemVerify);
