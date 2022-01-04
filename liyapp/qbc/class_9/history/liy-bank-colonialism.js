@@ -23,6 +23,28 @@ class LiyClass9ColonialismQB extends QuestionBank {
    constructor() {
        super();
        this.mQuestionArray = [
+           new QuestionFIB(`_______ cultivation was a system in which local
+               farmers were allowed to cultivate temporarily within a
+               plantation.`, "Taungya"),
+
+           new QuestionMCQ(`In swidden cultivation, parts of the forest are cut
+               and burnt in rotation. This method of cultivation has many local
+               names in different countries.  Which one of the following is its
+               local name in Sri Lanka?`, ["Chena", "Milpa", "Jhum",
+               "Chitemene", "Penda"], 0),
+
+           new QuestionMCQ(`In shifting cultivation, parts of the forest are cut
+               and burnt in rotation. This method of cultivation has many local
+               names in different countries.  Which one of the following is its
+               local name in Central America?`, ["Milpa", "Lading", "Jhum",
+               "Chitemene", "Penda", "Khandad"], 0),
+
+           new QuestionMCQ(`In swidden or shifting cultivation, parts of the
+               forest are cut and burnt in rotation. This method of cultivation
+               has many local names in different countries.  Which one of the
+               following is NOT its local name in India?`,
+               ["Tavy", "Bewar", "Jhum", "Podu", "Penda", "Nevad"], 0),
+
            new QuestionMCQ(`After the Indian Forest Act of 1878 divided forests
                into three categories: reserved, protected and village forests.
                From which category of forests can wood be taken for the purpose
