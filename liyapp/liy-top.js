@@ -38,9 +38,7 @@ function liyInitGlobals() {
    gLiyUiArray.createElements();
 
    gLiyQBC = new QuestionBankCollection();
-   liyLoadQBC();
 
-   // window.alert(`gLiyQBC.length = ${gLiyQBC.length}`);
    gLiyUiStopWatch = new LiyStopWatchUi();
    gLiyUiStopWatch.createUi();
 
@@ -58,17 +56,6 @@ function liyInitGlobals() {
    gLiyStatistics.setStartTime();
 }
 
-/******************************************************************************/
-
-function liyLoadQBC() {
-}
-
-function addToGlobalQBC(menuArray) {
-   for (var i = 0; i < menuArray.length; ++i) {
-      gLiyQBC.addQB(menuArray[i]);
-   }
-}
- 
 /******************************************************************************/
 
 function liyUiRemoveMenu() {
@@ -112,9 +99,6 @@ function liyUiAddVerify() {
 }
 
 function liyTakePractice() {
-   // Given the name create the question bank.
-   gLiyQBC.createBankObj(gBankName);
-
    // Given the name get the question bank.
    let qBankDetails = gLiyQBC.findQBDetails(gBankName);
    let qBankObj = qBankDetails.mBankObj;

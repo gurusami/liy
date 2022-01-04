@@ -26,7 +26,7 @@ class LiyClass9TrigonometryQB extends QuestionBank {
        this.sqrt_2 = `&radic;<span style="text-decoration:overline;">2</span>`;
        this.sqrt_3 = `&radic;<span style="text-decoration:overline;">3</span>`;
    
-       this.qst_bank = [
+       this.mQuestionArray = [
 	   new QuestionMCQ("What is sin &theta;?",
                ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
                 "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
@@ -123,7 +123,6 @@ class LiyClass9TrigonometryQB extends QuestionBank {
    }
 
    initQuestionArray() {
-       this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {

@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiyClass9GeoVegetationQB extends QuestionBank {
    constructor() {
        super();
-       this.qst_bank = [
+       this.mQuestionArray  = [
 	   new QuestionMCQ(`Which of the following vegetation zone is the
                coldest?`,
                ["Alpine", "Tropical", "Subtropical", "Temperate"], 0),
@@ -144,7 +144,6 @@ class LiyClass9GeoVegetationQB extends QuestionBank {
    }
 
    initQuestionArray() {
-       this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {

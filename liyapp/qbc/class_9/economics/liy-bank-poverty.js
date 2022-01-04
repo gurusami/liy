@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiyClass9EconomicsPovertyQB extends QuestionBank {
    constructor() {
        super();
-       this.qst_bank = [
+       this.mQuestionArray = [
 	   new QuestionMCQ(`The poverty ratio of India is worse than Pakistan
                and Bangladesh`, ["True", "False"], 0),
 	   new QuestionMCQ(`Poverty ratio is the percentage of the population
@@ -94,12 +94,9 @@ class LiyClass9EconomicsPovertyQB extends QuestionBank {
                "Sick people cannot afford treatment",
                "Lack of clean water and sanitation facilities",
                "Lack of a regular job at minimum decent wages"], 0)];
-
-       console.log(`Initialized Question Bank: LiyClass9EconomicsPovertyQB`);
    }
 
    initQuestionArray() {
-       this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {

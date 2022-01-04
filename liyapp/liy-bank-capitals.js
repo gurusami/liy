@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class CapitalsOfIndianStates extends QuestionBank {
    constructor() {
        super();
-       this.mQ = [
+       this.mQuestionArray = [
            new QuestionMCQ("What is the legislative capital of Tamil Nadu?",
                ["Chennai", "Salem", "Madurai", "Coimbatore", "Trivandrum",
                 "Kanyakumari"], 0),
@@ -155,8 +155,6 @@ class CapitalsOfIndianStates extends QuestionBank {
    }
 
    initQuestionArray() {
-       this.mQuestionArray = this.mQ;
-
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            this.mQuestionArray[i].shuffleChoices();
        }

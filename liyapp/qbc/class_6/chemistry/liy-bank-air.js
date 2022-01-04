@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiyClass6AirAroundUsQB extends QuestionBank {
    constructor() {
        super();
-       this.qst_bank = [
+       this.mQuestionArray = [
            new QuestionMCQ(`Which gas when present in excess amount in the 
                atmosphere causes <i>global warming</i>?`,
                ["Carbon Dioxide", "Nitrogen", "Oxygen", "Hydrogen", "Air",
@@ -150,7 +150,6 @@ class LiyClass6AirAroundUsQB extends QuestionBank {
    }
 
    initQuestionArray() {
-       this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {

@@ -24,8 +24,8 @@ class QuestionBank {
        if (this.constructor == QuestionBank) {
            throw new Error("Abstract classes can't be instantiated.");
        }
-       this.mQuestionArray;
-       this.mCorrectArray;
+       this.mQuestionArray = [];
+       this.mCorrectArray = [];
        this.mCurrentIndex = 0;
    }
 
@@ -89,20 +89,6 @@ class QuestionBank {
        this.mCorrectArray[this.mCurrentIndex] = false;
    }
 
-/*
-   verifyChoice(userChoice) {
-       var curq = this.getCurrentQuestion();
-       var isCorrect = curq.verify(userChoice);
-
-       if (isCorrect) {
-           this.mCorrectArray[this.mCurrentIndex] = true;
-       } else {
-           this.mCorrectArray[this.mCurrentIndex] = false;
-       }
-       return (isCorrect);
-   }
-*/
-
    getRemaining() {
       var r = 0;
       for (var i = 0; i < this.mCorrectArray.length; ++i) {
@@ -117,9 +103,11 @@ class QuestionBank {
        return this.mCorrectArray.length;
    }
 
+   getCount() {
+       return this.mQuestionArray.length;
+   }
+
    getRemainingPercentage() {
-       // window.alert(`Remaining: ${this.getRemaining()}`);
-       // window.alert(`mCorrectArray.length: ${this.mCorrectArray.length}`);
        return ((this.getRemaining() * 100) / this.getTotal());
    }
 
@@ -138,7 +126,183 @@ class QBDetails {
 
 class QuestionBankCollection {
    constructor() {
-       this.mQuestionBankArray = new Array();
+       this.mQuestionBankArray = [
+           /*******************************************************************/
+           /* General Knowledge */
+           /********************/
+
+           new QBDetails("sample", "Sample Questions For Development Purposes",
+               new LiySampleSet()),
+
+           new QBDetails("multiply100x100", "Multiply Integers Upto 100 x 100",
+               new LiyMultiplyQB(2, 100, 2, 100)),
+
+           new QBDetails("multiplyNxNN", `Multiply 1-digit with 2-digit
+               Integers`, new LiyMultiplyQB(2, 10, 10, 100)),
+
+           new QBDetails("multiplyNxNNN", `Multiply 1-digit with 3-digit
+               Integers`, new LiyMultiplyQB(2, 10, 100, 1000)),
+
+           new QBDetails("multiplyNxNNNN", `Multiply 1-digit with 4-digit
+               Integers`, new LiyMultiplyQB(2, 10, 1000, 10000)),
+
+           new QBDetails("capitals", "Capitals of Indian States",
+               new CapitalsOfIndianStates()),
+
+           new QBDetails("matclock", "MAT: Clock Problems",
+               new LiyClockProblemQB()),
+
+           new QBDetails("matseries", "MAT: Number Series", new LiySeriesQB()),
+
+           // General Knowledge ^
+           /*******************************************************************/
+           /* Class 6 */
+           /**********/
+
+           new QBDetails("Class6MathsKnowingYourNumbers", `Class 6: Mathematics:
+               Knowing Your Numbers`, new LiyClass6MathsKnowingYourNumbersQB()),
+
+           new QBDetails("Class6AirAroundUs", `Class 6: Chemistry: Air Around
+               Us`, new LiyClass6AirAroundUsQB()),
+
+           new QBDetails("Class6Agriculture", `Class 6: Geography: Agriculture`,
+               new Class6GeoAgri()),
+
+           /*******************************************************************/
+           /* Class 9 */
+           /**********/
+
+           new QBDetails("Class9FrenchRevolution", `Class 9: Social Science:
+               History: French Revolution`, new LiyClass9FrenchRevolutionQB()),
+
+           new QBDetails("Class9Socialism", `Class 9: Social Science: History:
+               Socialism in Europe and the Russian Revolution`,
+               new LiyClass9SocialismQB()),
+
+           new QBDetails("Class9Nazism", `Class 9: Social Science: History:
+               Nazism and the Rise of Hitler`, new LiyClass9NazismQB()),
+
+           new QBDetails("Class9Colonialism", `Class 9: Social Science: History:
+               Forest Society and Colonialism`, new LiyClass9ColonialismQB()),
+
+           new QBDetails("Class9Pastoralist", `Class 9: Social Science: History:
+               Pastoralists in the Modern World`, new LiyClass9PastoralistQB()),
+
+           new QBDetails("C9Democracy", `Class 9: Social Science: Political
+               Science: What is Democracy? Why Democracy?`, new C9Democracy()),
+
+           new QBDetails("C9Constitution", `Class 9: Social Science: Political
+               Science: Constitutional Design`, new C9Constitution()),
+
+           new QBDetails("C9Election", `Class 9: Social Science: Political
+               Science: Electoral Politics`, new C9Election()),
+
+           new QBDetails("C9Institutions", `Class 9: Social Science: Political
+               Science: Working of Institutions`, new C9Institutions()),
+
+           new QBDetails("C9Rights", `Class 9: Social Science: Political
+               Science: Democratic Rights`, new C9Rights()),
+
+           new QBDetails("C9Palambur", `Class 9: Social Science:
+               Economics: The Story of Village Palambur`, new C9Palambur()),
+
+           new QBDetails("C9People", `Class 9: Social Science: Economics:
+               People as Resource`, new C9People()),
+
+           new QBDetails("Class9EconomicsPoverty", `Class 9: Social Science:
+               Economics: Poverty as a Challenge`,
+               new LiyClass9EconomicsPovertyQB()),
+
+           new QBDetails("C9FoodSecurity", `Class 9: Social Science: Economics:
+               Food Security in India`, new C9FoodSecurity()),
+
+           new QBDetails("C9Location", `Class 9: Social Science: Geography:
+               India - Size and Location`, new C9Location()),
+
+           new QBDetails("C9Physical", `Class 9: Social Science:
+               Geography: Physical Features of India`, new C9Physical()),
+
+           new QBDetails("C9Drainage", `Class 9: Social Science:
+               Geography: Drainage`, new C9Drainage()),
+
+           new QBDetails("C9Climate", `Class 9: Social Science:
+               Geography: Climate`, new C9Climate()),
+
+           new QBDetails("c9geoveg", `Class 9: Social Science: Geography:
+               Natural Vegetation`, new LiyClass9GeoVegetationQB()),
+
+           new QBDetails("Class9GeoWildLife", `Class 9: Social Science:
+               Geography: Wildlife`, new LiyClass9GeoWildLifeQB()),
+
+           new QBDetails("Class9Science", `Class 9: Science: Chemistry: Matter
+               in our Surroundings`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Chemistry: Is
+               Matter around us Pure?`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Chemistry: Atoms
+               and Molecules`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Chemistry:
+               Structure of the atom`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Biology: The 
+               Fundamental Unit of Life`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Biology: Tissues`,
+               null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Biology: Diversity
+               in living organisms`, null),
+
+           new QBDetails("Class9BiologyWhyIll", `Class 9: Science: Biology: Why
+               do we fall ill?`, new LiyClass9BiologyWhyIllQB()),
+
+           new QBDetails("Class9Science", `Class 9: Science: Physics: Motion`,
+               null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Physics: Force and
+               Laws of Motion`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Physics:
+               Gravitation`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Physics: Work and
+               Energy`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Physics: Sound`,
+               null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Physics: Natural
+               Resources`, null),
+
+           new QBDetails("Class9Science", `Class 9: Science: Physics:
+               Improvement in Food Resources`, null),
+
+           new QBDetails("c9mathtrig", `Class 9: Mathematics: Trigonometry`, new LiyClass9TrigonometryQB()),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Number Systems`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Polynomials`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Coordinate Geometry`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Linear Equations in Two Variables`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Introduction to Euclid's Geometry`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Lines and Angles`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Triangles`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Quadrilaterals`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Areas of Parallelograms and Triangles`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Circles`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Constructions`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Heron's Formula`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Surface Areas and Volumns`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Statistics`, null),
+           new QBDetails("Class9Maths", `Class 9: Mathematics: Probability`, null),
+
+           // The End.
+           /*******************************************************************/
+       ];
+   }
+
+   getQBC() {
+       return this.mQuestionBankArray;
    }
 
    getQBDetails(idx) {
@@ -167,44 +331,16 @@ class QuestionBankCollection {
        return this.mQuestionBankArray.length;
    }
 
-   // Add a question bank to the collection
-   addQB(qBankDetails) {
-       this.mQuestionBankArray.push(qBankDetails);
-   }
-
-   createBankObj(bankName) {
-       let bankObj = null;
-
-       if (bankName == "Class9GeoWildLife") {
-           bankObj = new LiyClass9GeoWildLifeQB();
-       } else if (bankName == "Class9EconomicsPoverty") {
-           bankObj = new LiyClass9EconomicsPovertyQB();
-       } else if (bankName == "matseries") {
-           bankObj = new LiySeriesQB();
-       } else if (bankName == "Class9FrenchRevolution") {
-           bankObj = new LiyClass9FrenchRevolutionQB();
-       } else if (bankName == "Class9Socialism") {
-           bankObj = new LiyClass9SocialismQB();
-       } else if (bankName == "Class9Nazism") {
-           bankObj = new LiyClass9NazismQB();
-       } else if (bankName == "Class9Colonialism") {
-           bankObj = new LiyClass9ColonialismQB();
-       } else if (bankName == "Class9Pastoralist") {
-           bankObj = new LiyClass9PastoralistQB();
-       } else if (bankName == "Class9BiologyWhyIll") {
-           bankObj = new LiyClass9BiologyWhyIllQB();
-       } else if (bankName == "Class6AirAroundUs") {
-           bankObj = new LiyClass6AirAroundUsQB();
-       } else if (bankName == "Class6Agriculture") {
-           bankObj = new Class6GeoAgri();
-       } else if (bankName == "Class6MathsKnowingYourNumbers") {
-           bankObj = new LiyClass6MathsKnowingYourNumbersQB();
+   getTotalQuestions() {
+       let total = 0;
+       for (var i = 0; i < this.mQuestionBankArray.length; ++i) {
+           let bankObj = this.mQuestionBankArray[i].mBankObj;
+           if (bankObj == null) {
+           } else {
+               total += this.mQuestionBankArray[i].mBankObj.getCount();
+           }
        }
-
-       if (bankObj instanceof QuestionBank) {
-           let bankDetails = this.findQBDetails(bankName);
-           bankDetails.mBankObj = bankObj;
-       }
+       return total;
    }
 }
 

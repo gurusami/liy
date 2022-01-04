@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class Class6GeoAgri extends QuestionBank {
    constructor() {
        super();
-       this.qst_bank = [
+       this.mQuestionArray = [
 	   new QuestionMCQ(`In which of the following countries is intensive
                subsistence agriculture practiced?`,
                ["Canada",
@@ -149,7 +149,6 @@ class Class6GeoAgri extends QuestionBank {
    }
 
    initQuestionArray() {
-       this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {

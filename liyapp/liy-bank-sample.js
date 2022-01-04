@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiySampleSet extends QuestionBank {
    constructor() {
        super();
-       this.qst_bank = [
+       this.mQuestionArray = [
 	   new QuestionFIB("What is 2 &times; 9?", 18),
 	   new QuestionFIB("What is 2 &times; 10?", 18),
 
@@ -41,7 +41,6 @@ class LiySampleSet extends QuestionBank {
    }
 
    initQuestionArray() {
-       this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {

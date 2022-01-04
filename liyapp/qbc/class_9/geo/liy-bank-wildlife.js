@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiyClass9GeoWildLifeQB extends QuestionBank {
    constructor() {
        super();
-       this.qst_bank = [
+       this.mQuestionArray  = [
 	   new QuestionMCQ(`What is a biosphere reserve?`,
                ["Science for Sustainability Support Sites",
                 "Wildlife Sanctuary", "Bird Sanctuary", "National Park",
@@ -72,7 +72,6 @@ class LiyClass9GeoWildLifeQB extends QuestionBank {
    }
 
    initQuestionArray() {
-       this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {

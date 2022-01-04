@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiyClass6MathsKnowingYourNumbersQB extends QuestionBank {
    constructor() {
        super();
-       this.qst_bank = [
+       this.mQuestionArray = [
 	   new QuestionFIB(`How many lakhs make a million?`, 10),
 	   new QuestionFIB(`How many millions make a crore?`, 10),
 	   new QuestionFIB(`How many lakhs make a crore?`, 100),
@@ -91,7 +91,6 @@ class LiyClass6MathsKnowingYourNumbersQB extends QuestionBank {
    }
 
    initQuestionArray() {
-       this.mQuestionArray  = this.qst_bank;
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {
