@@ -23,21 +23,31 @@ class C9Institutions extends QuestionBank {
    constructor() {
        super();
        this.mQuestionArray = [
-	   new QuestionFIB("What is 2 &times; 9?", 18),
-	   new QuestionFIB("What is 2 &times; 10?", 18),
+           new QuestionMCQ(`Who won the Supreme Court case of Indira Sawhney
+               and Others Vs Union of India?`,
+               ["Indira Sawhney", "Union of India"], 1),
 
-	   new QuestionMCQ("What is cos &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 2), 
+           new QuestionMCQ(`The Mandal Commission, was established in India on
+               1979 by the Janata Party government with a mandate to "identify
+               the socially or educationally backward classes" of India.  Who
+               was the Prime Minister at that time?`,
+               ["Vishwanath Pratap Singh", "Morarji Desai", "Rajiv Gandhi",
+                "Chandra Sekhar", "P V Narasimha Rao", "I K Gujral"], 1),
 
-           /* tan(x) = sin(x)/cos(x) = Opposite/Adjacent. */
-	   new QuestionMCQ("What is tan &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 1)];
+           new QuestionMCQ(`Which Prime Minister of India implemented the
+               Mandal Commission report?`, ["Vishwanath Pratap Singh",
+               "Morarji Desai", "Rajiv Gandhi", "Chandra Sekhar",
+               "P V Narasimha Rao"], 0),
+
+           new QuestionMCQ(`Mandal Commission recommended job reservations for
+               Socially and Educationally Backward Classes (SEBC).  How much
+               percentage was recommended?`,
+               ["27%", "18%", "22%", "49%", "24%"], 0),
+
+           new QuestionMCQ(`When did Mandal Commission submit its report to the
+               Government of India?`, ["31-Dec-1980", "01-Dec-1985",
+               "13-Aug-1990", "17-July-1979"], 0)
+       ];
    }
 
    initQuestionArray() {

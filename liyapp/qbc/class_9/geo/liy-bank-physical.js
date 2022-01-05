@@ -23,21 +23,96 @@ class C9Physical extends QuestionBank {
    constructor() {
        super();
        this.mQuestionArray = [
-	   new QuestionFIB("What is 2 &times; 9?", 18),
-	   new QuestionFIB("What is 2 &times; 10?", 18),
+           new QuestionMCQ(`Geologically, which of the following regions of
+               India is the most stable?`, ["Himalayas", "Northern Plains",
+               "Peninsular Plateau", "Indian Desert", "Coastal Plains"], 2),
 
-	   new QuestionMCQ("What is cos &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 2), 
+           new QuestionMCQ(`Geologically, which of the following regions of
+               India is the most unstable?`, ["Himalayas", "Northern Plains",
+               "Peninsular Plateau", "Indian Desert", "Coastal Plains"], 0),
 
-           /* tan(x) = sin(x)/cos(x) = Opposite/Adjacent. */
-	   new QuestionMCQ("What is tan &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 1)];
+           new QuestionMCQ(`Geologically, which of the following regions of
+               India is the youngest?`, ["Himalayas", "Northern Plains",
+               "Peninsular Plateau", "Indian Desert", "Coastal Plains"], 0),
+
+           new QuestionMCQ(`What kind of rocks does the Deccan Trap have?`,
+               ["Igneous", "Sedimentary", "Sandstones", "Metamorphic rocks",
+                "Clay"], 0),
+
+           new QuestionMCQ(`Purvachal, also known as Eastern Highlands, are the
+               mountain ranges in eastern India.  Which of the following is not
+               part of Purvachal?`, ["Pir Panjal", "Patkai Hills", "Naga Hills",
+               "Manipur Hills", "Mizo Hills"], 0),
+
+           new QuestionMCQ(`The part of Himalayas lying between Indus and
+               Satluj rivers is known as ________`, ["Kumaon Himalayas",
+               "Punjab Himalayas", "Assam Himalayas", "Nepal Himalayas"], 1),
+
+           new QuestionMCQ(`The part of Himalayas lying between Teesta and
+               Dihang rivers is known as ________`, ["Kumaon Himalayas",
+               "Punjab Himalayas", "Assam Himalayas", "Nepal Himalayas"], 2),
+
+           new QuestionMCQ(`The part of Himalayas lying between Kali and Teesta
+               rivers is known as ________`, ["Kumaon Himalayas",
+               "Punjab Himalayas", "Assam Himalayas", "Nepal Himalayas"], 3),
+
+           new QuestionMCQ(`The part of Himalayas lying between Satluj and Kali
+               rivers is known as ________`, ["Kumaon Himalayas",
+               "Punjab Himalayas", "Assam Himalayas", "Nepal Himalayas"], 0),
+
+           new QuestionMCQ(`In which Indian state are the following popular
+               tourist places located - Nainital, Mussoorie, Haridwar,
+               Kedarnath, Rishikesh, Badrinath?`, ["Uttarkhand",
+               "Uttar Pradesh", "Haryana", "Himachal Pradesh"], 0),
+
+           new QuestionMCQ(`Choose the odd one out: `, ["Narmada River",
+               "Mahanadi River", "Cauvery River", "Krishna River",
+               "Godavari River"], 0),
+
+           new QuestionMCQ(`Choose the odd one out: `, ["Coromandel Coast",
+               "Konkan Coast", "Kannad Coast", "Malabar Coast"], 0),
+
+           new QuestionMCQ(`The Chilika lake is the largest salt water lake
+               in India. In which state is this lake located?`,
+               ["Odisha", "Chattisgarh", "Jharkhand", "Telangana", "Bihar"], 0),
+
+           new QuestionMCQ(`Which is the highest peak in the Western Ghats?`,
+               ["Mahendragiri", "Anai Mudi", "Doda Betta", "Kanchenjunga",
+                "Nanga Parbat"], 1),
+              
+           new QuestionMCQ(`Which is the highest peak in the Eastern Ghats?`,
+               ["Mahendragiri", "Anai Mudi", "Doda Betta", "Kanchenjunga"], 0),
+
+           new QuestionMCQ(`Which of the following is a tributary of
+               Brahmaputra?`, ["Teesta", "Chenab", "Ravi", "Beas", "Satluj",
+               "Jhelum"], 0),
+
+           new QuestionMCQ(`In which range of Himalayas do the following peaks
+               exists - Kanchenjunga, Nanda Parbat, Nanda Devi, Kamet?`,
+               ["Himadri", "Himachal", "Shiwaliks", "Purvachal"], 0),
+
+           new QuestionMCQ(`Which of the following peak of Himalayas lies in
+               Nepal?`, ["Dhaulagiri", "Kanchenjunga", "Nanga Parbat",
+               "Nanda Devi", "Kamet", "Namcha Barwa"], 0),
+
+           new QuestionMCQ(`Which of the following peak of Himalayas lies in
+               India?`, ["Namcha Barwa", "Makalu", "Dhaulagiri", "Annapurna",
+               "Gurla Mandhata"], 0),
+
+           new QuestionMCQ(`Which is the highest peak of Himalayas in India?`,
+               ["Mt. Everest", "Kanchenjunga", "Nanga Parbat", "Nanda Devi",
+                "Annapurna"], 1),
+
+           new QuestionMCQ(`Which is the highest peak of Himalayas?`,
+               ["Mt. Everest", "Kanchenjunga", "Nanga Parbat", "Nanda Devi",
+                "Annapurna"], 0),
+
+           new QuestionMCQ(`Geologically, which of the following land of India
+               constitutes one of the ancient landmasses on the earth's
+               surface?`,
+               ["Peninsular Plateau", "Himalayan Mountains", "Northern Plains",
+                "Indian Desert", "Coastal Plains"], 0)
+       ];
    }
 
    initQuestionArray() {
