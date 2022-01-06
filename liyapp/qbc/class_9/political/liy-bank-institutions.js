@@ -23,6 +23,62 @@ class C9Institutions extends QuestionBank {
    constructor() {
        super();
        this.mQuestionArray = [
+           new QuestionMCQ(`In India, every law passed by the Parliament needs
+               approval of the Supreme Court.`, ["True", "False"], 1),
+
+           new QuestionMCQ(`Choose the incorrect statement: `,
+               [`President is part of the Political Executive`,
+               `Civil Service officials like IAS and IPS officers are part of
+                the Permanent Non-Political Executive`,
+               `Prime Minister and the Cabinet Ministers are part of the
+                Political Executive`,
+               `Political Executive is elected by the people for a specific
+                period of time`], 0),
+
+           new QuestionFIB(`What is the length of the term (in years) for 
+               members of Lok Sabha?`, 5),
+
+           new QuestionFIB(`What is the length of the term (in years) for 
+               members of Rajya Sabha?`, 6),
+
+           new QuestionMCQ(`Who elects the members of the Rajya Sabha or
+               the Council of States in India?`,
+               ["Members of State Legislative Assembly",
+                "Members of Parliament",
+                "President of India",
+                "Prime Minister of India",
+                "People of India"], 0),
+
+           new QuestionMCQ(`What is the maximum membership of the Rajya Sabha
+               (Council of States) allotted by the Constitution of India?`,
+               ["250", "200", "150",  "450", "550"], 0),
+
+           new QuestionMCQ(`What is the maximum membership of the Lok Sabha
+               (House of the People) allotted by the Constitution of India?`,
+               ["550", "300", "350",  "400", "450"], 0),
+
+           new QuestionMCQ(`Who is the 14th President of India?`,
+               ["Ram Nath Kovind", "Rajendra Prasad", "A P J Abdul Kalam",
+               "Pratibha Patil", "Pranab Mukherjee" ], 0),
+
+           new QuestionMCQ(`In India, which institution can change an existing
+               law?`, ["Parliament", "President", "Prime Minister",
+                       "Supreme Court", "Council of Ministers"], 0),
+
+           new QuestionMCQ(`Who among the following is a part of the political
+               executive?`, ["Home Minister", "District Collector", 
+               "Director General of Police",
+               "Secretary of the Ministry of Home Affairs"], 0),
+
+           new QuestionMCQ(`Which of the following is NOT true about Rajya
+               Sabha?`, ["It is also known as the Council of States",
+               `The potential seating capacity of the Rajya Sabha is 250, of
+                which 12 members can be appointed by the President`,
+               `Rajya Sabha can only recommend changes to a money bill and
+                does not have the power to reject or amend it.`,
+               `Rajya Sabha has the power to bring no-confidence motion against
+                the government`], 3),
+
            new QuestionMCQ(`Who won the Supreme Court case of Indira Sawhney
                and Others Vs Union of India?`,
                ["Indira Sawhney", "Union of India"], 1),

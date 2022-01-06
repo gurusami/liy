@@ -23,21 +23,7 @@ class C9Rights extends QuestionBank {
    constructor() {
        super();
        this.mQuestionArray = [
-	   new QuestionFIB("What is 2 &times; 9?", 18),
-	   new QuestionFIB("What is 2 &times; 10?", 18),
-
-	   new QuestionMCQ("What is cos &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 2), 
-
-           /* tan(x) = sin(x)/cos(x) = Opposite/Adjacent. */
-	   new QuestionMCQ("What is tan &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 1)];
+       ];
    }
 
    initQuestionArray() {
