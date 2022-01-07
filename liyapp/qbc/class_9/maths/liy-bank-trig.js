@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-Learn It Yourself (LIY) - Software to Promote Self Study
+Learn it Yourself (LiY) - Software to Promote Self Study
 
 Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
 

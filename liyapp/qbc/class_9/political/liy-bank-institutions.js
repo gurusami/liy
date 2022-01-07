@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-Learn It Yourself (LIY) - Software to Promote Self Study
+Learn it Yourself (LiY) - Software to Promote Self Study
 
 Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
 
@@ -20,9 +20,63 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 *******************************************************************************/
 
 class C9Institutions extends QuestionBank {
+
    constructor() {
+       const q1 =
+   `Match the following:
+   <table>
+       <tr>
+           <td> 
+               <ol>
+                   <li> Cabinet Ministers </li>
+                   <li> Ministers of State with Independent Charge </li>
+                   <li> Ministers of State </li>
+                   <li> Council of Ministers </li>
+                   <li> Cabinet Secretariat </li>
+               </ol>
+           </td>
+           <td>
+               <ol type="a"> 
+                   <li> Includes many civil servants who try to co-ordinate
+                       the working of different ministries. </li>
+                   <li> Attached to and required to assist Cabinet Ministers </li>
+                   <li> In-charge of smaller ministries. </li>
+                   <li> Top-level leaders of the ruling party. </li>
+                   <li> Official name for the body that includes all the
+                       Ministers. </li>
+               </ol>
+           </td>
+       </tr>
+
+   </table>
+`;
        super();
+       this.mLastUpdated = `07-Jan-2022`;
        this.mQuestionArray = [
+           new QuestionMCQ(q1, ["1-d, 2-c, 3-b, 4-e, 5-a"], 0),
+
+           new QuestionMCQ(`In India, which institution acts as the guardian of
+               the Fundamental Rights of the citizens?`,
+               ["Judiciary", "Parliament", "Political Executive",
+                "Permanent Executive"], 0),
+
+           new QuestionMCQ(`In India, the Supreme Court CANNOT take up which of
+               the following disputes?`, ["None of the above",
+               "Between citizens of the country",
+               "Between citizens and government",
+               "Between two or more state governments",
+               "Between governments at the union and state level"], 0),
+
+           new QuestionMCQ(`In India, the Supreme Court CANNOT overturn the
+               judgements of the High Courts.`, ["True", "False"], 1),
+
+           new QuestionMCQ(`In India, the Supreme Court and the High Courts have
+               the power to interpret the Constitution of the country. They can
+               declare invalid any law of the legislature or the actions of the
+               executive, whether at the Union level or at the state level, if
+               they find such a law or action is against the Indian
+               Constitution.`, ["True", "False"], 0),
+
            new QuestionMCQ(`In India, every law passed by the Parliament needs
                approval of the Supreme Court.`, ["True", "False"], 1),
 

@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-Learn It Yourself (LIY) - Software to Promote Self Study
+Learn it Yourself (LiY) - Software to Promote Self Study
 
 Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
 
@@ -24,11 +24,14 @@ class QuestionBank {
        if (this.constructor == QuestionBank) {
            throw new Error("Abstract classes can't be instantiated.");
        }
+       this.mLastUpdated = `07-Jan-2022`;
        this.mQuestionArray = [];
        this.mCorrectArray = [];
        this.mCurrentIndex = 0;
    }
 
+   /** Initialize the question bank. NOTE: Calling this multiple times should
+   not be a problem for the question bank. */
    init() {
        this.initQuestionArray();
        this.shuffleQuestions();
@@ -114,6 +117,24 @@ class QuestionBank {
    getCompleted() {
        return (this.getTotal() - this.getRemaining());
    }
+
+   /** Provide random questions to the caller.
+   @param[in,out]  outArray  an output array. The randomly selected questions
+                             are appended to this array.
+   @param[in]  count  the number of questions requested by the caller. */
+   provideRandomQuestions(outArray, count) {
+       if (count < this.mQuestionArray.length) {
+           let dup = new Array();
+           for (var i = 0; i < count; ++i) {
+               let j = LiY.ryRandom(0, this.mQuestionArray.length, dup);
+               outArray.push(this.mQuestionArray[j]);
+           }
+       } else {
+           for (var i = 0; i < this.mQuestionArray.length; ++i) {
+               outArray.push(this.mQuestionArray[i]);
+           }
+       }
+   }
 }
 
 class QBDetails {
@@ -172,6 +193,11 @@ class QuestionBankCollection {
            /* Class 9 */
            /**********/
 
+           /* Class 9: Social Science: History */
+           new QBDetails("Class9History", `Class 9: Social Science: History`,
+               new LiyPractice(["Class9FrenchRevolution", "Class9Socialism",
+                   "Class9Nazism", "Class9Colonialism", "Class9Pastoralist"])),
+
            new QBDetails("Class9FrenchRevolution", `Class 9: Social Science:
                History: French Revolution`, new LiyClass9FrenchRevolutionQB()),
 
@@ -188,20 +214,21 @@ class QuestionBankCollection {
            new QBDetails("Class9Pastoralist", `Class 9: Social Science: History:
                Pastoralists in the Modern World`, new LiyClass9PastoralistQB()),
 
-           new QBDetails("C9Democracy", `Class 9: Social Science: Political
-               Science: What is Democracy? Why Democracy?`, new C9Democracy()),
-
-           new QBDetails("C9Constitution", `Class 9: Social Science: Political
-               Science: Constitutional Design`, new C9Constitution()),
-
-           new QBDetails("C9Election", `Class 9: Social Science: Political
-               Science: Electoral Politics`, new C9Election()),
-
-           new QBDetails("C9Institutions", `Class 9: Social Science: Political
-               Science: Working of Institutions`, new C9Institutions()),
-
-           new QBDetails("C9Rights", `Class 9: Social Science: Political
-               Science: Democratic Rights`, new C9Rights()),
+           new QBDetails("C9Democracy",
+               `Class 9: Social Science: Political Science: What is Democracy? Why Democracy?`,
+               new C9Democracy()),
+           new QBDetails("C9Constitution",
+               `Class 9: Social Science: Political Science: Constitutional Design`,
+               new C9Constitution()),
+           new QBDetails("C9Election",
+               `Class 9: Social Science: Political Science: Electoral Politics`,
+               new C9Election()),
+           new QBDetails("C9Institutions",
+               `Class 9: Social Science: Political Science: Working of Institutions`,
+               new C9Institutions()),
+           new QBDetails("C9Rights",
+               `Class 9: Social Science: Political Science: Democratic Rights`,
+               new C9Rights()),
 
            new QBDetails("C9Palambur", `Class 9: Social Science:
                Economics: The Story of Village Palambur`, new C9Palambur()),
@@ -281,7 +308,8 @@ class QuestionBankCollection {
 
            new QBDetails("c9mathtrig", `Class 9: Mathematics: Trigonometry`, new LiyClass9TrigonometryQB()),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Number Systems`, null),
-           new QBDetails("Class9Maths", `Class 9: Mathematics: Polynomials`, null),
+           new QBDetails("C9Polynomials", `Class 9: Mathematics: Polynomials`,
+               new C9Polynomials()),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Coordinate Geometry`, null),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Linear Equations in Two Variables`, null),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Introduction to Euclid's Geometry`, null),
@@ -307,6 +335,18 @@ class QuestionBankCollection {
 
    getQBDetails(idx) {
        return this.mQuestionBankArray[idx];
+   }
+
+   /** Initialize the question bank collection by initialization each of the
+   question bank. For auto generated questions (Refer to LiyPractice), this is
+   needed to populate the questions and get proper question count. */
+   init() {
+       for (var i = 0; i < this.mQuestionBankArray.length; ++i) {
+           if (this.mQuestionBankArray[i].mBankObj == null) {
+           } else {
+               this.mQuestionBankArray[i].mBankObj.init();
+           }
+       }
    }
 
    getQuestionBank(qBankName) {

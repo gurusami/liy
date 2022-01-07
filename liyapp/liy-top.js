@@ -42,6 +42,10 @@ function liyInitGlobals() {
    gLiyUiStopWatch = new LiyStopWatchUi();
    gLiyUiStopWatch.createUi();
 
+   /* Before initializing the menu, initialize the question bank count.  This is
+   need to get the question count correct for auto-generated practices. */
+   gLiyQBC.init();
+
    gLiyUiMenu = new LiyUiMenu();
    gLiyUiMenu.createUi();
    gLiyUiMenu.initMenu();
@@ -54,6 +58,7 @@ function liyInitGlobals() {
 
    gLiyStatistics = new LiyStatistics();
    gLiyStatistics.setStartTime();
+
 }
 
 /******************************************************************************/

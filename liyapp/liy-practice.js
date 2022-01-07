@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-Learn It Yourself (LIY) - Software to Promote Self Study
+Learn it Yourself (LiY) - Software to Promote Self Study
 
 Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
 
@@ -19,31 +19,30 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 *******************************************************************************/
 
-class LiySampleSet extends QuestionBank {
-   constructor() {
+class LiyPractice extends QuestionBank {
+   constructor(qbArray) {
        super();
-       this.mQuestionArray = [
 
-           new QuestionMTF(["Father", "Mother", "Son", "Daughter"],
-               ["Annamalai", "Ramya", "Kadhiravan", "Mythili"]).getMCQ(),
+       /* Contains an array of question bank names. */
+       this.mQBArray = qbArray;
 
-	   new QuestionFIB("What is 2 &times; 9?", 18),
-	   new QuestionFIB("What is 2 &times; 10?", 18),
+       /* Minimum number of questions in practice. */
+       this.mMinCount = 30;
 
-	   new QuestionMCQ("What is cos &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 2), 
-
-	   new QuestionMCQ("What is tan &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 1)];
+       /* Number of questions per question bank. */
+       this.mCountPerQB = Math.ceil(this.mMinCount / this.mQBArray.length);
+       this.mLastUpdated = 'Auto-generated';
+       this.mQuestionArray = new Array();
    }
 
    initQuestionArray() {
+
+       for (var i = 0; i < this.mQBArray.length; ++i) {
+           /* Given name of QB get the QBDetails. */
+           let qbObj = gLiyQBC.getQuestionBank(this.mQBArray[i]);
+           qbObj.provideRandomQuestions(this.mQuestionArray, this.mCountPerQB);
+       }
+
        for (var i = 0; i < this.mQuestionArray.length; ++i) {
            let qst = this.mQuestionArray[i];
            if (qst instanceof QuestionMCQ) {

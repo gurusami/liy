@@ -36,22 +36,52 @@ class LiyUiMenu extends LiyUi {
    createUi() {
    }
 
+   addHeader(tableElem) {
+       let rowElem = document.createElement("tr");
+       let col1Elem = document.createElement("th");
+       let col2Elem = document.createElement("th");
+       let col3Elem = document.createElement("th");
+       let col4Elem = document.createElement("th");
+
+       rowElem.style.padding = "4px";
+       col1Elem.style.padding = "4px";
+       col2Elem.style.padding = "4px";
+       col3Elem.style.padding = "4px";
+       col4Elem.style.padding = "4px";
+
+       col1Elem.innerHTML = "Action";
+       col2Elem.innerHTML = "Questions";
+       col3Elem.innerHTML = "Question Bank Name";
+       col4Elem.innerHTML = "Last Updated";
+
+       rowElem.appendChild(col1Elem);
+       rowElem.appendChild(col2Elem);
+       rowElem.appendChild(col3Elem);
+       rowElem.appendChild(col4Elem);
+
+       tableElem.appendChild(rowElem);
+   }
+
    addRow(tableElem, qbDetails) {
        let rowElem = document.createElement("tr");
        rowElem.style.padding = "3px";
        let col1Elem = document.createElement("td");
        let col2Elem = document.createElement("td");
        let col3Elem = document.createElement("td");
+       let col4Elem = document.createElement("td");
        let count = 0;
+       let lastUpdated = "";
 
        if (qbDetails.mBankObj == null) {
            count = 0;
        } else {
            count = qbDetails.mBankObj.getCount();
+           lastUpdated = qbDetails.mBankObj.mLastUpdated;
        }
 
 
        col3Elem.innerHTML = qbDetails.mTitle;
+       col4Elem.innerHTML = lastUpdated;
 
        col2Elem.innerHTML = count;
 
@@ -59,11 +89,23 @@ class LiyUiMenu extends LiyUi {
        inputBtnElem.setAttribute("type", "button");
        inputBtnElem.setAttribute("id", qbDetails.mName);
 
-       // if (qbDetails.mBankObj == null) {
        if (count == 0) {
            inputBtnElem.disabled = true;
            rowElem.style.backgroundColor = "gainsboro";
        }
+
+       /* If the practice is auto-generated, then don't disable it.  Initially
+       it will show as zero questions.  Use a different color to highlight the
+       fact that it is auto-generated practice. */
+       if (qbDetails.mBankObj == null) {
+       } else {
+           if (qbDetails.mBankObj.constructor.name == "LiyPractice") {
+               inputBtnElem.disabled = false;
+               rowElem.style.backgroundColor = "Aquamarine";
+           }
+       }
+
+       this.setBackgroundColor(rowElem, qbDetails);
 
        inputBtnElem.setAttribute("value", "Take");
        inputBtnElem.addEventListener("click",
@@ -74,8 +116,17 @@ class LiyUiMenu extends LiyUi {
        rowElem.appendChild(col1Elem);
        rowElem.appendChild(col2Elem);
        rowElem.appendChild(col3Elem);
+       rowElem.appendChild(col4Elem);
 
        tableElem.appendChild(rowElem);
+   }
+
+   setBackgroundColor(rowElem, qbDetails) {
+       if (qbDetails.mTitle.includes("Political Science")) {
+           rowElem.style.backgroundColor = "Coral";
+       } else if (qbDetails.mTitle.includes("Mathematics")) {
+           rowElem.style.backgroundColor = "DarkSeaGreen";
+       }
    }
 
    initMenu() {
@@ -107,6 +158,7 @@ class LiyUiMenu extends LiyUi {
        this.tableElem.style.padding = "5px";
        this.tableElem.style.margin = "5px";
        this.mHtmlElem.appendChild(this.tableElem);
+       this.addHeader(this.tableElem);
        this.addRows(gLiyQBC.getQBC());
    }
 }
