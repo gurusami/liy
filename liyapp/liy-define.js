@@ -107,6 +107,147 @@ class QuestionFIB extends LiyQuestion {
 
 /******************************************************************************/
 
+/* Refer to Johnson-Trotter Algorithm Listing All Permutations
+
+Refer to the following websites for more details:
+https://www.geeksforgeeks.org/johnson-trotter-algorithm/
+https://www.cut-the-knot.org/Curriculum/Combinatorics/JohnsonTrotter.shtml */
+
+class DirectedInteger {
+   constructor(val) {
+       this.mInteger = val;
+       this.mDirection = false; // Initially all are left facing.
+   }
+
+   /** Determine if the integer is left facing.
+   @return true if the integer is left facing. */
+   isLeft() {
+       return this.mDirection == false;
+   }
+
+   /** Determine if the integer is right facing.
+   @return true if the integer is right facing. */
+   isRight() {
+       return this.mDirection == true;
+   }
+
+   isEqual(obj) {
+       return this.mInteger == obj.mInteger;
+   }
+
+   isGreater(obj) {
+       if (obj == null) {
+           return true;
+       }
+       return this.mInteger > obj.mInteger;
+   }
+
+   flip() {
+       if (this.mDirection == true) {
+           this.mDirection = false;
+       } else {
+           this.mDirection = true;
+       }
+   }
+
+   toString() {
+       if (this.mDirection == false) {
+           return `<${this.mInteger}`;
+       } else {
+           return `>${this.mInteger}`;
+       }
+   }
+}
+
+class LiyPermutation {
+   constructor(size) {
+       this.mArray = new Array(size);
+
+       /* Initialize the array. */
+       for (var i = 0; i < size; ++i) {
+           this.mArray[i] = new DirectedInteger(i + 1);
+       }
+   }
+
+   getLargestMobile() {
+       let largestMobile = null;
+
+       for (var x = 0; x < this.mArray.length; ++x) {
+           let cur = this.mArray[x];
+           if (cur.isLeft()) {
+               if (x > 0) {
+                   let prev = this.mArray[x-1];
+                   if (cur.isGreater(prev) && cur.isGreater(largestMobile)) {
+                       largestMobile = cur;
+                   }
+               }
+           } else {
+               if (x < this.mArray.length -1) {
+                   let next = this.mArray[x+1];
+                   if (cur.isGreater(next) && cur.isGreater(largestMobile)) {
+                       largestMobile = cur;
+                   }
+               }
+           }
+       }
+
+       return largestMobile;
+   }
+
+   getPosition(mobile) {
+       for (var x = 0; x < this.mArray.length; ++x) {
+           if (this.mArray[x].isEqual(mobile)) {
+               return x;
+           }
+       }
+   }
+
+   getAllPermutations() {
+       let total = 1;
+       for (var f = this.mArray.length; f >0; --f) {
+           total *= f;
+       }
+
+       let result = new Array();
+       for (var i = 1; i < total; ++i) {
+           result.push(this.getOnePermutation());
+       }
+
+       return result;
+   }
+
+   getOnePermutation() {
+       let mobile = this.getLargestMobile();
+       let pos = this.getPosition(mobile);
+
+       if (mobile.isLeft()) {
+           let tmp = this.mArray[pos];
+           this.mArray[pos] = this.mArray[pos - 1];
+           this.mArray[pos - 1] = tmp;
+       } else {
+           let tmp = this.mArray[pos];
+           this.mArray[pos] = this.mArray[pos + 1];
+           this.mArray[pos + 1] = tmp;
+       }
+
+       for (var x = 0; x < this.mArray.length; ++x) {
+           if (this.mArray[x].isGreater(mobile)) {
+               this.mArray[x].flip();
+           }
+       }
+
+
+       let result = new Array(this.mArray.length);
+       for (var i = 0; i < result.length; ++i) {
+           result[i] = this.mArray[i].mInteger;
+       }
+
+       return result;
+   }
+}
+
+/******************************************************************************/
+
 class QuestionMTF {
    constructor(left, right) {
        this.mLeftList = left;
@@ -114,13 +255,39 @@ class QuestionMTF {
        this.mJumbledLeft = this.jumbleList(this.mLeftList);
        this.mJumbledRight = this.jumbleList(this.mRightList);
        this.mAnswer = 0;
+
+       this.mP = new LiyPermutation(this.mLeftList.length);
+       this.mChoices = this.mP.getAllPermutations();
    }
 
    getMCQ() {
        let q = this.createQuestion();
        let c = this.allChoices();
-       return new QuestionMCQ(q, c, this.mAnswer);
+       let fewChoices = this.getFewChoices(c);
+       let a = 0;
+       return new QuestionMCQ(q, fewChoices, a);
    }
+
+   getFewChoices(fullChoice) {
+       const numChoices = 5;
+
+       let ans = this.getAnswer();
+       let ansIndex = this.getAnswerIndex(fullChoice, ans);
+
+       let result = new Array();
+       result.push(ans);
+
+       let dup = new Array();
+       dup.push(ansIndex);
+
+       for (var i = 0; i < numChoices; ++i) {
+         let r = LiY.ryRandom(0, fullChoice.length, dup);
+         result.push(fullChoice[r]);
+       }
+
+       return result;
+   }
+
 
    getCorrectIndex(val) {
        for (var i = 0; i < this.mLeftList.length; i++) {
@@ -128,33 +295,77 @@ class QuestionMTF {
                return i;
            }
        }
-       console.log(`Not Found: ${val}`);
        return -1;
    }
 
-   nextCombination(a) {
-       for (var i = 0; i < a.length; i++) {
-           a[i] = (++a[i]) % a.length;
+   findLeftPosition(val) {
+       for (var i = 0; i < this.mLeftList.length; ++i) {
+           if (val == this.mLeftList[i]) {
+               return i;
+           }
        }
-       return (a[0] != 0);
    }
+
+   findAnswerPosition(val) {
+       for (var i = 0; i < this.mJumbledRight.length; ++i) {
+           if (val == this.mJumbledRight[i]) {
+               return i;
+           }
+       }
+   }
+
+   getAnswerIndex(c, ans) {
+       for (var i =0; i < c.length; ++i) {
+           if (c[i] == ans) {
+               return i;
+           }
+       }
+   }
+
+   getAnswer() {
+       let result = "";
+       for (var i = 0; i < this.mJumbledLeft.length; ++i) {
+           let left = this.mJumbledLeft[i];
+           /* Find pos of the left. */
+           let idx = this.findLeftPosition(left);
+           let ans = this.mRightList[idx];
+           let ansPos = this.findAnswerPosition(ans);
+           let ansString = (ansPos + 10).toString(36);
+           if (i > 0) {
+               result += ", ";
+           }
+           result += `${i + 1} - ${ansString}`
+       }
+       return result;
+   }
+
+   getChoice(posArray, r) {
+       let result = "";
+       for (var i = 0; i < posArray.length; ++i) {
+           let j = posArray[i] - 1;
+           if (i > 0) {
+               result += ", ";
+           }
+           result += `${i + 1} - ${r[j]}`
+       }
+       return result;
+   }
+
 
    allChoices() {
        let r = new Array();
        let choice = new Array();
        for (var i = 0; i < this.mJumbledLeft.length; ++i) {
-           choice.push(i);
            r.push((i + 10).toString(36));
        }
 
-       let all = new Array();
-       let isAnswer = true;
-       let y = 0;
-       do {
-           console.log(choice.toString());
-       } while (this.nextCombination(choice));
 
-       return all;
+       for (var j = 0; j < this.mChoices.length; ++j) {
+           let p1 = this.getChoice(this.mChoices[j], r);
+           choice.push(p1);
+       }
+
+       return choice;
    }
 
    jumbleList(aList) {

@@ -22,38 +22,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class C9Institutions extends QuestionBank {
 
    constructor() {
-       const q1 =
-   `Match the following:
-   <table>
-       <tr>
-           <td> 
-               <ol>
-                   <li> Cabinet Ministers </li>
-                   <li> Ministers of State with Independent Charge </li>
-                   <li> Ministers of State </li>
-                   <li> Council of Ministers </li>
-                   <li> Cabinet Secretariat </li>
-               </ol>
-           </td>
-           <td>
-               <ol type="a"> 
-                   <li> Includes many civil servants who try to co-ordinate
-                       the working of different ministries. </li>
-                   <li> Attached to and required to assist Cabinet Ministers </li>
-                   <li> In-charge of smaller ministries. </li>
-                   <li> Top-level leaders of the ruling party. </li>
-                   <li> Official name for the body that includes all the
-                       Ministers. </li>
-               </ol>
-           </td>
-       </tr>
-
-   </table>
-`;
        super();
-       this.mLastUpdated = `07-Jan-2022`;
+
+       const mtf_1 = new QuestionMTF(["Cabinet Ministers",
+               "Ministers of State with Independent Charge",
+               "Ministers of State",
+               "Council of Ministers",
+               "Cabinet Secretariat"],
+               ["Top-level leaders of the ruling party",
+               "In-charge of smaller ministries",
+               "Attached to and required to assist Cabinet Ministers",
+               "Official name for the body that includes all the Ministers",
+               "Includes many civil servants who try to co-ordinate the working of different ministries."]);
+
+       this.mLastUpdated = `08-Jan-2022`;
+
        this.mQuestionArray = [
-           new QuestionMCQ(q1, ["1-d, 2-c, 3-b, 4-e, 5-a"], 0),
+
+           mtf_1.getMCQ(),
 
            new QuestionMCQ(`In India, which institution acts as the guardian of
                the Fundamental Rights of the citizens?`,
