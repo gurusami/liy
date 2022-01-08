@@ -270,8 +270,8 @@ class QuestionBankCollection {
            new QBDetails("Class9Science", `Class 9: Science: Chemistry: Atoms
                and Molecules`, null),
 
-           new QBDetails("Class9Science", `Class 9: Science: Chemistry:
-               Structure of the atom`, null),
+           new QBDetails("C9AtomicStructure", `Class 9: Science: Chemistry:
+               Structure of the atom`, new C9AtomicStructure()),
 
            new QBDetails("Class9Science", `Class 9: Science: Biology: The 
                Fundamental Unit of Life`, null),
