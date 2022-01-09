@@ -155,19 +155,19 @@ class QuestionBankCollection {
            new QBDetails("sample", "Sample Questions For Development Purposes",
                new LiySampleSet()),
 
-           new QBDetails("multiply100x100", "Multiply Integers Upto 100 x 100",
+           new QBDetails("multiply100x100", "Basic Mathematics: Multiply Integers Upto 100 x 100",
                new LiyMultiplyQB(2, 100, 2, 100)),
 
-           new QBDetails("multiplyNxNN", `Multiply 1-digit with 2-digit
+           new QBDetails("multiplyNxNN", `Basic Mathematics: Multiply 1-digit with 2-digit
                Integers`, new LiyMultiplyQB(2, 10, 10, 100)),
 
-           new QBDetails("multiplyNxNNN", `Multiply 1-digit with 3-digit
+           new QBDetails("multiplyNxNNN", `Basic Mathematics: Multiply 1-digit with 3-digit
                Integers`, new LiyMultiplyQB(2, 10, 100, 1000)),
 
-           new QBDetails("multiplyNxNNNN", `Multiply 1-digit with 4-digit
+           new QBDetails("multiplyNxNNNN", `Basic Mathematics: Multiply 1-digit with 4-digit
                Integers`, new LiyMultiplyQB(2, 10, 1000, 10000)),
 
-           new QBDetails("capitals", "Capitals of Indian States",
+           new QBDetails("capitals", "General Knowledge: Capitals of Indian States",
                new CapitalsOfIndianStates()),
 
            new QBDetails("matclock", "MAT: Clock Problems",
@@ -272,6 +272,9 @@ class QuestionBankCollection {
 
            new QBDetails("C9AtomicStructure", `Class 9: Science: Chemistry:
                Structure of the atom`, new C9AtomicStructure()),
+
+           new QBDetails("C9AtomicNumber", `Class 9: Science: Chemistry:
+               Atomic Number From 1 to 30`, new C9AtomicNumber()),
 
            new QBDetails("Class9Science", `Class 9: Science: Biology: The 
                Fundamental Unit of Life`, null),

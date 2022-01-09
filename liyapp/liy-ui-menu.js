@@ -126,6 +126,14 @@ class LiyUiMenu extends LiyUi {
            rowElem.style.backgroundColor = "Coral";
        } else if (qbDetails.mTitle.includes("Mathematics")) {
            rowElem.style.backgroundColor = "DarkSeaGreen";
+       } else if (qbDetails.mTitle.includes("History")) {
+           rowElem.style.backgroundColor = "SkyBlue";
+       } else if (qbDetails.mTitle.includes("Geography")) {
+           rowElem.style.backgroundColor = "LightGreen";
+       } else if (qbDetails.mTitle.includes("Chemistry")) {
+           rowElem.style.backgroundColor = "Yellow";
+       } else if (qbDetails.mTitle.includes("MAT")) {
+           rowElem.style.backgroundColor = "turquoise";
        }
    }
 

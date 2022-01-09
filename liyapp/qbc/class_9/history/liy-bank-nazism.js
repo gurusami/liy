@@ -22,7 +22,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiyClass9NazismQB extends QuestionBank {
    constructor() {
        super();
+       this.mLastUpdated = "09-Jan-2022";
+
        this.mQuestionArray = [
+
+           new QuestionFIB(`<i>"The image of Germans carrying cartloads of
+               currency notes to buy a loaf of bread was widely publicised
+               evoking worldwide sympathy"</i>. What is the name of this crisis
+               that happened between 1921 to 1923 in Weimar Republic?`,
+               "Hyperinflation"),
+
+           new QuestionMCQ(`What is the sole currency of Germany since year
+               2002?`, ["Euro", "Deutsche Mark", "Reichsmark", "Saar Franc",
+               "Saar Mark"], 0),
+
+           new QuestionMCQ(`Who was the chief propangandist for the Nazi Party,
+               and then Reich Minister of Propaganda from 1933 to 1945?`,
+               ["Paul Joseph Goebbels", "Adolf Hitler", ], 0),
 
            new QuestionMCQ(`The German Revolution or November Revolution was a
            civil conflict in the German Empire at the end of the First World War
