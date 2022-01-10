@@ -125,7 +125,7 @@ class LiyUiMenu extends LiyUi {
        if (qbDetails.mTitle.includes("Political Science")) {
            rowElem.style.backgroundColor = "Coral";
        } else if (qbDetails.mTitle.includes("Mathematics")) {
-           rowElem.style.backgroundColor = "DarkSeaGreen";
+           rowElem.style.backgroundColor = gLiyTheme.getMathsColor();
        } else if (qbDetails.mTitle.includes("History")) {
            rowElem.style.backgroundColor = "SkyBlue";
        } else if (qbDetails.mTitle.includes("Geography")) {

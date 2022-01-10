@@ -51,7 +51,12 @@ class QuestionBank {
 
    /* This needs to be implemented by derived classes. */
    initQuestionArray() {
-       throw new Error("Not yet implemented.");
+       for (var i = 0; i < this.mQuestionArray.length; ++i) {
+           let qst = this.mQuestionArray[i];
+           if (qst instanceof QuestionMCQ) {
+               this.mQuestionArray[i].shuffleChoices();
+           }
+       }
    }
 
    shuffleQuestions() {
@@ -174,6 +179,22 @@ class QuestionBankCollection {
                new LiyClockProblemQB()),
 
            new QBDetails("matseries", "MAT: Number Series", new LiySeriesQB()),
+
+           /*******************************************************************/
+           /* Chemistry */
+           /********************/
+
+           new QBDetails("ElementSymbols", "Chemistry: Symbols of Chemical Elements",
+               new ElementSymbols()),
+
+           new QBDetails("SymbolToName", "Chemistry: Given Symbol, Name the Chemical Element",
+               new SymbolToName()),
+
+           new QBDetails("CAtomicNumber", "Chemistry: Atomic Number of Chemical Elements",
+               new CAtomicNumber()),
+
+           new QBDetails("CMassNumber", "Chemistry: Mass Number of Chemical Elements",
+               new CMassNumber()),
 
            // General Knowledge ^
            /*******************************************************************/

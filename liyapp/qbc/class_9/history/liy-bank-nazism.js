@@ -1,8 +1,8 @@
 /*******************************************************************************
 
-Learn It Yourself (LIY) - Software to Promote Self Study
+Learn it Yourself (LiY) - Software to Promote Self Study
 
-Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
+Copyright (C) 2021, 2022, Annamalai Gurusami <annamalai.gurusami@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -22,9 +22,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class LiyClass9NazismQB extends QuestionBank {
    constructor() {
        super();
-       this.mLastUpdated = "09-Jan-2022";
+       this.mLastUpdated = "10-Jan-2022";
 
        this.mQuestionArray = [
+
+           new QuestionFIB(`What is the code name of the atom bomb dropped
+               on the city of Nagasaki in Japan?`, "Fat Man"),
+
+           new QuestionFIB(`What is the code name of the atom bomb dropped
+               on the city of Hiroshima in Japan?`, "Little Boy"),
+
+           new QuestionFIB(`It was during the Great Depression that Nazism
+               became a mass movement. In Germy, in which year did banks
+               collapsed and businesses shut down, workers lost their jobs and
+               the middle classes were threatened with destitution`, 1929),
+
+           new QuestionFIB(`In which year was Adolf Hitler born?`, 1889),
+
+           new QuestionMCQ(`Germany was defeated by the Allied forces in the
+               First World War (1914 to 1918). The peace treaty at Versailles
+               with the Allies was a harsh and humiliating peace.  Which of the
+               following is NOT true about the Treaty of Versailles?`,
+               ["Germany lost its overseas colonies",
+                "Germany had to give up 13% of its territories",
+                "Germany lost 50% of its iron",
+                "Germany lost 26% of its coal"], 2),
 
            new QuestionFIB(`<i>"The image of Germans carrying cartloads of
                currency notes to buy a loaf of bread was widely publicised
@@ -38,7 +60,7 @@ class LiyClass9NazismQB extends QuestionBank {
 
            new QuestionMCQ(`Who was the chief propangandist for the Nazi Party,
                and then Reich Minister of Propaganda from 1933 to 1945?`,
-               ["Paul Joseph Goebbels", "Adolf Hitler", ], 0),
+               ["Paul Joseph Goebbels", "Adolf Hitler", "Heinrich Luitpold Himmler" ], 0),
 
            new QuestionMCQ(`The German Revolution or November Revolution was a
            civil conflict in the German Empire at the end of the First World War

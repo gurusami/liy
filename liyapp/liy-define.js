@@ -246,6 +246,8 @@ class LiyPermutation {
    }
 }
 
+let gPerm4 = new LiyPermutation(4).getAllPermutations();
+
 /******************************************************************************/
 
 class QuestionMTF {
@@ -256,8 +258,12 @@ class QuestionMTF {
        this.mJumbledRight = this.jumbleList(this.mRightList);
        this.mAnswer = 0;
 
-       this.mP = new LiyPermutation(this.mLeftList.length);
-       this.mChoices = this.mP.getAllPermutations();
+       if (this.mLeftList.length == 4) {
+           this.mChoices = gPerm4;
+       } else {
+           this.mP = new LiyPermutation(this.mLeftList.length);
+           this.mChoices = this.mP.getAllPermutations();
+       }
    }
 
    getMCQ() {
