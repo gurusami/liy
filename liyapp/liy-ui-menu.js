@@ -38,35 +38,40 @@ class LiyUiMenu extends LiyUi {
 
    addHeader(tableElem) {
        let rowElem = document.createElement("tr");
+       let sno = document.createElement("th");
        let col1Elem = document.createElement("th");
-       let col2Elem = document.createElement("th");
+       let qcElem = document.createElement("th");
        let col3Elem = document.createElement("th");
        let col4Elem = document.createElement("th");
 
+       sno.style.padding = "4px";
        rowElem.style.padding = "4px";
        col1Elem.style.padding = "4px";
-       col2Elem.style.padding = "4px";
+       qcElem.style.padding = "4px";
        col3Elem.style.padding = "4px";
        col4Elem.style.padding = "4px";
 
        col1Elem.innerHTML = "Action";
-       col2Elem.innerHTML = "Questions";
+       qcElem.innerHTML = "Questions";
        col3Elem.innerHTML = "Question Bank Name";
        col4Elem.innerHTML = "Last Updated";
+       sno.innerHTML = "S No. ";
 
+       rowElem.appendChild(sno);
        rowElem.appendChild(col1Elem);
-       rowElem.appendChild(col2Elem);
        rowElem.appendChild(col3Elem);
+       rowElem.appendChild(qcElem);
        rowElem.appendChild(col4Elem);
 
        tableElem.appendChild(rowElem);
    }
 
-   addRow(tableElem, qbDetails) {
+   addRow(tableElem, qbDetails, serialNumber) {
        let rowElem = document.createElement("tr");
        rowElem.style.padding = "3px";
+       let sno = document.createElement("td");
        let col1Elem = document.createElement("td");
-       let col2Elem = document.createElement("td");
+       let qcElem = document.createElement("td"); /* Question Count Element */
        let col3Elem = document.createElement("td");
        let col4Elem = document.createElement("td");
        let count = 0;
@@ -83,7 +88,8 @@ class LiyUiMenu extends LiyUi {
        col3Elem.innerHTML = qbDetails.mTitle;
        col4Elem.innerHTML = lastUpdated;
 
-       col2Elem.innerHTML = count;
+       qcElem.innerHTML = count;
+       sno.innerHTML = serialNumber;
 
        let inputBtnElem = document.createElement("input");
        inputBtnElem.setAttribute("type", "button");
@@ -113,9 +119,10 @@ class LiyUiMenu extends LiyUi {
 
        col1Elem.appendChild(inputBtnElem);
 
+       rowElem.appendChild(sno);
        rowElem.appendChild(col1Elem);
-       rowElem.appendChild(col2Elem);
        rowElem.appendChild(col3Elem);
+       rowElem.appendChild(qcElem);
        rowElem.appendChild(col4Elem);
 
        tableElem.appendChild(rowElem);
@@ -153,7 +160,7 @@ class LiyUiMenu extends LiyUi {
 
    addRows(itemsArray) {
        for (var i = 0; i < itemsArray.length; ++i) {
-           this.addRow(this.tableElem, itemsArray[i]);
+           this.addRow(this.tableElem, itemsArray[i], i + 1);
        }
    }
 

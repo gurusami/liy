@@ -44,7 +44,7 @@ class PeriodicTable {
            new ChemicalElement("Carbon", "C", 6, 12),
            new ChemicalElement("Nitrogen", "N", 7, 14),
            new ChemicalElement("Oxygen", "O", 8, 16),
-           new ChemicalElement("Flourine", "F", 9, 19),
+           new ChemicalElement("Fluorine", "F", 9, 19),
            new ChemicalElement("Neon", "Ne", 10, 20),
            new ChemicalElement("Sodium", "Na", 11, 23),
            new ChemicalElement("Magnesium", "Mg", 12, 24),

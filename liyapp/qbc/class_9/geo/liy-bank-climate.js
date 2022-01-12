@@ -1,8 +1,8 @@
 /*******************************************************************************
 
-Learn It Yourself (LIY) - Software to Promote Self Study
+Learn it Yourself (LiY) - Software to Promote Self Study
 
-Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
+Copyright (C) 2021, 2022, Annamalai Gurusami <annamalai.gurusami@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -23,21 +23,15 @@ class C9Climate extends QuestionBank {
    constructor() {
        super();
        this.mQuestionArray = [
-	   new QuestionFIB("What is 2 &times; 9?", 18),
-	   new QuestionFIB("What is 2 &times; 10?", 18),
-
-	   new QuestionMCQ("What is cos &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 2), 
-
-           /* tan(x) = sin(x)/cos(x) = Opposite/Adjacent. */
-	   new QuestionMCQ("What is tan &theta;?",
-               ["<sup>Opposite</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Opposite</sup>&frasl;<sub>Adjacent</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Hypotenuse</sub>",
-                "<sup>Adjacent</sup>&frasl;<sub>Opposite</sub>"], 1)];
+           new QuestionMCQ(`________ refers to the state of the atmosphere over
+               an area at any point of time.`, ["Weather", "Climate"], 0),
+           new QuestionFIB(`The ______ force is responsible for deflecting
+               winds towards the right in the northern hemisphere and towards
+               the left in the southern hemisphere.`, "Coriolis"),
+           new QuestionMCQ(`Which one of the following places receives the
+               highest rainfall in the world?`, ["Mawsynram", "Cherrapunji",
+               "Silchar", "Guwahati" ], 0),
+       ];
    }
 
    initQuestionArray() {

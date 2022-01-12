@@ -152,6 +152,14 @@ class QBDetails {
 
 class QuestionBankCollection {
    constructor() {
+
+       /***********************************************************************/
+       /** Class 9: English */
+       /********************/
+       const c9Synonyms = new QBDetails("C9Synonyms",
+           `Class 9: English: Vocabulary Building (Synonyms)`,
+           new C9Synonyms())
+
        this.mQuestionBankArray = [
            /*******************************************************************/
            /* General Knowledge */
@@ -334,6 +342,7 @@ class QuestionBankCollection {
            new QBDetails("Class9Maths", `Class 9: Mathematics: Number Systems`, null),
            new QBDetails("C9Polynomials", `Class 9: Mathematics: Polynomials`,
                new C9Polynomials()),
+/*
            new QBDetails("Class9Maths", `Class 9: Mathematics: Coordinate Geometry`, null),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Linear Equations in Two Variables`, null),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Introduction to Euclid's Geometry`, null),
@@ -347,6 +356,10 @@ class QuestionBankCollection {
            new QBDetails("Class9Maths", `Class 9: Mathematics: Surface Areas and Volumns`, null),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Statistics`, null),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Probability`, null),
+*/
+
+           /** Class 9: English */
+           c9Synonyms
 
            // The End.
            /*******************************************************************/
