@@ -1,8 +1,8 @@
 /*******************************************************************************
 
-Learn It Yourself (LIY) - Software to Promote Self Study
+Learn it Yourself (LiY) - Software to Promote Self Study
 
-Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
+Copyright (C) 2022, Annamalai Gurusami <annamalai.gurusami@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -19,10 +19,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 *******************************************************************************/
 
-class C9Palambur extends QuestionBank {
+class C9Probability extends QuestionBank {
    constructor() {
        super();
-       this.mQuestionArray = [];
+
+       const q1 = `Eleven bags of wheat flour, each marked 5 kg, actually
+           contained the following weights of flour (in kg):
+           <table style="padding: 5px;"> 
+               <tr> <td>4.97</td> <td>5.05</td> <td>5.08</td> <td>5.03</td>
+               <td>5.00</td> <td>5.06</td> <td>5.08</td> <td>4.98</td>
+               <td>5.04</td> <td>5.07</td> <td>5.00</td> </tr>
+           </table>
+           Find the probability that any of these bags chosen at random
+           contains more than 5kg of flour.`;
+
+       this.mLastUpdated = "13-Jan-2022";
+
+       this.mQuestionArray = [
+           new QuestionFIB(q1, 0)
+       ];
    }
 
    initQuestionArray() {
@@ -34,4 +49,3 @@ class C9Palambur extends QuestionBank {
        }
    }
 }
-

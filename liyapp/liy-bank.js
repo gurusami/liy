@@ -158,7 +158,14 @@ class QuestionBankCollection {
        /********************/
        const c9Synonyms = new QBDetails("C9Synonyms",
            `Class 9: English: Vocabulary Building (Synonyms)`,
-           new C9Synonyms())
+           new C9Synonyms());
+
+       const c9Synonyms2 = new QBDetails("C9Synonyms2",
+           `Class 9: English: Vocabulary Building (Synonyms) - Part 2`,
+           new C9Synonyms2());
+
+       const c9probability = new QBDetails("C9Probability",
+           `Class 9: Mathematics: Probability`, new C9Probability());
 
        this.mQuestionBankArray = [
            /*******************************************************************/
@@ -355,12 +362,12 @@ class QuestionBankCollection {
            new QBDetails("Class9Maths", `Class 9: Mathematics: Heron's Formula`, null),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Surface Areas and Volumns`, null),
            new QBDetails("Class9Maths", `Class 9: Mathematics: Statistics`, null),
-           new QBDetails("Class9Maths", `Class 9: Mathematics: Probability`, null),
 */
+           c9probability,
 
            /** Class 9: English */
-           c9Synonyms
-
+           c9Synonyms,
+           c9Synonyms2
            // The End.
            /*******************************************************************/
        ];
