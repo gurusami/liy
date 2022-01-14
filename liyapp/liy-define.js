@@ -439,5 +439,24 @@ class LiY {
        dupArray.push(n);
        return n;
    }
+
+   static makeTable(data) {
+       let result = `<table style="background-color: ivory;">`;
+       for (var i = 0; i < data.length; ++i) {
+           let row = data[i];
+           result += LiY.makeRow(row);
+       }
+       result += "</table>";
+       return result;
+   }
+
+   static makeRow(inArray) {
+       let result = "<tr>";
+       for (var i = 0; i < inArray.length; ++i) {
+           result += `<td style="border: solid 1px blue; padding: 5px;"> ${inArray[i]} </td>`;
+       }
+       result += "</tr>";
+       return result;
+   }
 }
 

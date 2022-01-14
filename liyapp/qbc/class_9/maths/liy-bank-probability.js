@@ -25,18 +25,34 @@ class C9Probability extends QuestionBank {
 
        const q1 = `Eleven bags of wheat flour, each marked 5 kg, actually
            contained the following weights of flour (in kg):
-           <table style="padding: 5px;"> 
-               <tr> <td>4.97</td> <td>5.05</td> <td>5.08</td> <td>5.03</td>
-               <td>5.00</td> <td>5.06</td> <td>5.08</td> <td>4.98</td>
-               <td>5.04</td> <td>5.07</td> <td>5.00</td> </tr>
-           </table>
-           Find the probability that any of these bags chosen at random
-           contains more than 5kg of flour.`;
+           ${LiY.makeTable([[4.97, 5.05, 5.08, 5.03, 5.00, 5.06, 5.08, 4.98,
+                             5.04, 5.07, 5.00]])}
+           Find the probability (in percentage, upto 2 decimal places) that any
+           of these bags chosen at random contains more than 5kg of flour.`;
 
-       this.mLastUpdated = "13-Jan-2022";
+       const q2 = `In a sample study of 642 people, it was found that 514
+           people have a high school certificate (HSC). If a person is selected
+           at random, what is the probability that the person has a HSC (in
+           percentage, upto 2 decimal places)?`;
+
+       const q3 = `In a cricket match, a batswoman hits a boundary 6 times out
+           of 30 balls she plays. Find the probability that she did not hit a
+           boundary (in percentage, upto 2 decimal places).`;
+
+       const q4 = `1500 families with 2 children were selected randomly, and the
+           following data were recorded:
+           ${LiY.makeTable([["Number of girls in a family", 2, 1, 0],
+                            ["Number of families", 475, 814, 211]])}
+           Compute the probability (in percentage, upto 2 decimal places) of a
+           family, chosen at random, having 2 girls.`
+
+       this.mLastUpdated = "14-Jan-2022";
 
        this.mQuestionArray = [
-           new QuestionFIB(q1, 0)
+           new QuestionFIB(q1, 63.63),
+           new QuestionFIB(q2, 80.00),
+           new QuestionFIB(q3, 80.00),
+           new QuestionFIB(q4, 31.67)
        ];
    }
 

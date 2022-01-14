@@ -1,8 +1,8 @@
 /*******************************************************************************
 
-Learn It Yourself (LIY) - Software to Promote Self Study
+Learn it Yourself (LiY) - Software to Promote Self Study
 
-Copyright (C) 2021, Annamalai Gurusami <annamalai.gurusami@gmail.com>
+Copyright (C) 2021, 2022, Annamalai Gurusami <annamalai.gurusami@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -25,6 +25,7 @@ class LiyUiFib extends LiyUiQues {
    constructor() {
        super();
        this.mQuestElem;
+       this.mUserInput;
    }
 
    createUi() {
@@ -39,6 +40,7 @@ class LiyUiFib extends LiyUiQues {
        inputElem.style.margin = "10px";
        inputElem.style.padding = "10px";
        inputElem.addEventListener('keypress', this.handleKeyPress);
+       this.mUserInput = inputElem;
 
        this.mHtmlElem.appendChild(this.mQuestElem);
        this.mHtmlElem.appendChild(inputElem);
@@ -73,13 +75,17 @@ class LiyUiFib extends LiyUiQues {
 
    clearBgColor() {
        this.mQuestElem.style.backgroundColor = "white";
+       this.mUserInput.style.backgroundColor = "white";
    }
 
    respondCorrect(obj) {
-       this.mQuestElem.style.backgroundColor = "darkseagreen";
+       //  this.mQuestElem.style.backgroundColor = "darkseagreen";
+       // let userInput = document.getElementById("user_answer");
+       this.mUserInput.style.backgroundColor = "darkseagreen";
    }
 
    respondWrong(obj) {
-       this.mQuestElem.style.backgroundColor = "red";
+       // this.mQuestElem.style.backgroundColor = "red";
+       this.mUserInput.style.backgroundColor = "red";
    }
 }
