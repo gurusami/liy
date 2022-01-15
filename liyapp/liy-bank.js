@@ -154,6 +154,18 @@ class QuestionBankCollection {
    constructor() {
 
        /***********************************************************************/
+       /* General Knowledge */
+       /********************/
+       const worldCapitals = new QBDetails("WorldCapitals",
+           `General Knowledge: Capitals of World Countries`,
+           new WorldCapitals());
+
+       const indiaCapitals = new QBDetails("capitals",
+           "General Knowledge: Capitals of Indian States",
+           new CapitalsOfIndianStates());
+
+
+       /***********************************************************************/
        /** Class 9: English */
        /********************/
        const c9Synonyms = new QBDetails("C9Synonyms",
@@ -175,6 +187,9 @@ class QuestionBankCollection {
            new QBDetails("sample", "Sample Questions For Development Purposes",
                new LiySampleSet()),
 
+           worldCapitals,
+           indiaCapitals,
+
            new QBDetails("multiply100x100", "Basic Mathematics: Multiply Integers Upto 100 x 100",
                new LiyMultiplyQB(2, 100, 2, 100)),
 
@@ -186,9 +201,6 @@ class QuestionBankCollection {
 
            new QBDetails("multiplyNxNNNN", `Basic Mathematics: Multiply 1-digit with 4-digit
                Integers`, new LiyMultiplyQB(2, 10, 1000, 10000)),
-
-           new QBDetails("capitals", "General Knowledge: Capitals of Indian States",
-               new CapitalsOfIndianStates()),
 
            new QBDetails("matclock", "MAT: Clock Problems",
                new LiyClockProblemQB()),
