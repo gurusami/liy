@@ -40,45 +40,79 @@ class WorldCapitals extends QuestionBank {
        capitals.set("Austria", "Vienna");
        capitals.set("Azerbaijan", "Baku");
 
+       capitals.set("Bahamas (Commonwealth of The Bahamas)", "Nassau");
+       capitals.set("Bahrain (Kingdom of Bahrain)", "Manama")
        capitals.set("Bangladesh", "Dhaka");
+       capitals.set("Barbados", "Bridgetown");
        capitals.set("Belarus", "Minsk");
        capitals.set("Belgium", "Brussels");
+       capitals.set("Belize", "Belmopan")
        capitals.set("Benin", "Porto-Novo");
        capitals.set("Bhutan", "Thimphu");
        capitals.set("Bolivia", "La Paz");
+       capitals.set("Bosnia and Herzegovina", "Sarajevo")
        capitals.set("Botswana", "Gaborone");
-       capitals.set("Brazil", "Bras�lia");
+       capitals.set("Brazil", "Brasília");
+       capitals.set("Brunei (Nation of Brunei, the Abode of Peace)", "Bandar Seri Begawan");
        capitals.set("Bulgaria", "Sofia");
        capitals.set("Burkina Faso", "Ouagadougou");
        capitals.set("Burundi", "Gitega");
+
        capitals.set("Cambodia", "Phnom Penh");
-       capitals.set("Cameroon", "Yaound�");
+       capitals.set("Cameroon", "Yaoundé");
        capitals.set("Canada", "Ottawa");
+       capitals.set("Cape Verde (Republic of Cabo Verde)", "Praia");
        capitals.set("Central African Republic", "Bangui");
        capitals.set("Chad", "N'Djamena");
-       capitals.set("China", "Beijing");
        capitals.set("Chile", "Santiago");
-       capitals.set("Colombia", "Bogot�");
-       capitals.set("Congo", "Kinshasa");
-       capitals.set("Costa Rica", "San Jos�");
-       capitals.set("Croatia", "Zagreb");
-       capitals.set("Cyprus", "Nicosia");
-       capitals.set("Djibouti", "Djibouti");
-       capitals.set("Ecuador", "Quito");
-       capitals.set("Egypt", "Cairo");
-       capitals.set("El Salvador", "San Salvador");
-       capitals.set("Eritrea", "Asmara");
+       capitals.set("China (People's Republic of China)", "Beijing");
+       capitals.set("Colombia (Republic of Colombia)", "Bogotá");
+       capitals.set("Comoros (Union of the Comoros)", "Moroni");
+       capitals.set("Congo (Democratic Republic of the Congo)", "Kinshasa");
+       capitals.set("Congo (Republic of the Congo)", "Brazzaville");
+       capitals.set("Costa Rica (Republic of Costa Rica)", "San José");
+       capitals.set("Croatia (Republic of Croatia)", "Zagreb");
+       capitals.set("Cuba (Republic of Cuba)", "Havana");
+       capitals.set("Cyprus (Republic of Cyprus)", "Nicosia");
+       capitals.set("Czech Republic", "Prague");
+
+       capitals.set("Denmark (Kingdom of Denmark )", "Copenhagen");
+       capitals.set("Djibouti (Republic of Djibouti)", "Djibouti");
+       capitals.set("Dominica (Commonwealth of Dominica)", "Roseau");
+       capitals.set("Dominican Republic", "Santo Domingo");
+
+       capitals.set("East Timor (Democratic Republic of Timor-Leste)", "Dili");
+       capitals.set("Ecuador (Republic of Ecuador)", "Quito");
+       capitals.set("Egypt (Arab Republic of Egypt)", "Cairo");
+       capitals.set("El Salvador (Republic of El Salvador)", "San Salvador");
+       capitals.set("Equatorial Guinea (Republic of Equatorial Guinea)", "Malabo");
+       capitals.set("Eritrea (State of Eritrea)", "Asmara");
        capitals.set("Estonia", "Tallinn");
+       capitals.set("Eswatini (Kingdom of Eswatini)", "Mbabane");
        capitals.set("Ethiopia", "Addis Ababa");
+
+       capitals.set("Fiji (Republic of Fiji)", "Suva");
+       capitals.set("Finland (Republic of Finland)", "Helsinki");
        capitals.set("France", "Paris");
-       capitals.set("Finland", "Helsinki");
-       capitals.set("Gabon", "Libreville");
+
+       capitals.set("Gabon (Gabonese Republic)", "Libreville");
+       capitals.set("Gambia (Republic of The Gambia)", "Banjul");
        capitals.set("Georgia", "Tbilisi");
-       capitals.set("Germany", "Berlin");
-       capitals.set("Greece", "Athens");
-       capitals.set("Guatemala", "Guatemala City");
-       capitals.set("Honduras", "Tegucigalpa");
-       capitals.set("India", "New Delhi");
+       capitals.set("Germany (Federal Republic of Germany)", "Berlin");
+       capitals.set("Ghana (Republic of Ghana)", "Accra");
+       capitals.set("Greece (Hellenic Republic)", "Athens");
+       capitals.set("Grenada", "St. George's");
+       capitals.set("Guatemala (Republic of Guatemala)", "Guatemala City");
+       capitals.set("Guinea (Republic of Guinea)", "Conakry");
+       capitals.set("Guinea-Bissau (Republic of Guinea-Bissau)", "Bissau");
+       capitals.set("Guyana (Co‑operative Republic of Guyana)", "Georgetown");
+
+       capitals.set("Haiti (Republic of Haiti)", "Port-au-Prince");
+       capitals.set("Honduras (Republic of Honduras)", "Tegucigalpa");
+       capitals.set("Hungary", "Budapest");
+
+       capitals.set("Iceland", "Reykjavík")
+       capitals.set("India (Republic of India)", "New Delhi");
        capitals.set("Indonesia", "Jakarta");
        capitals.set("Iran", "Tehran");
        capitals.set("Iraq", "Baghdad");
@@ -86,75 +120,128 @@ class WorldCapitals extends QuestionBank {
        capitals.set("Israel", "Jerusalem");
        capitals.set("Italy", "Rome");
        capitals.set("Ivory Coast", "Abidjan");
+
+       capitals.set("Jamaica", "Kingston");
        capitals.set("Japan", "Tokyo");
-       capitals.set("Jordan", "Amman");
+       capitals.set("Jordan (Hashemite Kingdom of Jordan)", "Amman");
+
        capitals.set("Kazakhstan", "Nur-Sultan");
        capitals.set("Kenya", "Nairobi");
+       capitals.set("Kiribati (Republic of Kiribati)", "South Tarawa");
        capitals.set("Kosovo", "Pristina");
        capitals.set("Kuwait", "Kuwait City");
-       capitals.set("Laos", "Vientiane");
+       capitals.set("Kyrgyzstan (Kyrgyz Republic)", "Bishkek");
+
+       capitals.set("Laos (Lao People's Democratic Republic)", "Vientiane");
        capitals.set("Latvia", "Riga");
        capitals.set("Lebanon", "Beirut");
+       capitals.set("Lesotho (Kingdom of Lesotho)", "Maseru");
+       capitals.set("Liberia (Republic of Liberia)", "Monrovia")
        capitals.set("Libya", "Tripoli");
+       capitals.set("Liechtenstein (Principality of Liechtenstein)", "Vaduz");
        capitals.set("Lithuania", "Vilnius");
-       capitals.set("Madagascar", "Antananarivo");
+       capitals.set("Luxembourg (Grand Duchy of Luxembourg)", "Luxembourg City");
+
+       capitals.set("Madagascar (Republic of Madagascar)", "Antananarivo");
+       capitals.set("Malawi (Republic of Malawi)", "Lilongwe");
        capitals.set("Malaysia", "Kuala Lumpur");
-       capitals.set("Maldives", "Mal�");
+       capitals.set("Maldives", "Male");
        capitals.set("Mali", "Bamako");
+       capitals.set("Malta (Republic of Malta)", "Valletta");
+       capitals.set("Marshall Islands", "Majuro");
        capitals.set("Mauritania", "Nouakchott");
+       capitals.set("Mauritius", "Port Louis");
        capitals.set("Mexico", "Mexico City");
+       capitals.set("Micronesia (Federated States of Micronesia)", "Palikir");
+       capitals.set("Moldova (Republic of Moldova)", "Chișinău");
+       capitals.set("Monaco (Principality of Monaco)", "Monaco");
        capitals.set("Mongolia", "Ulaanbaatar");
        capitals.set("Montenegro", "Podgorica");
-       capitals.set("Morroco", "Rabat");
-       capitals.set("Mozambique", "Maputo");
-       capitals.set("Myanmar", "Naypyidaw");
+       capitals.set("Morroco (Kingdom of Morocco)", "Rabat");
+       capitals.set("Mozambique (Republic of Mozambique)", "Maputo");
+       capitals.set("Myanmar (Republic of the Union of Myanmar)", "Naypyidaw");
+
        capitals.set("Namibia", "Windhoek");
+       capitals.set("Nauru (Republic of Nauru)", "Yaren");
        capitals.set("Nepal", "Kathmandu");
+       capitals.set("Netherlands (Kingdom of the Netherlands)", "Amsterdam");
        capitals.set("New Zealand", "Wellington");
        capitals.set("Nicagarua", "Managua");
        capitals.set("Niger", "Niamey");
        capitals.set("Nigeria", "Abuja");
-       capitals.set("North Korea", "Pyongyang");
+       capitals.set("North Korea (Democratic People's Republic of Korea)", "Pyongyang");
        capitals.set("North Macedonia", "Skopje");
        capitals.set("Norway", "Oslo");
+
        capitals.set("Oman", "Muscat");
-       capitals.set("Pakistan", "Islamabad");
+
+       capitals.set("Pakistan (Islamic Republic of Pakistan)", "Islamabad");
+       capitals.set("Palau (Republic of Palau)", "Ngerulmud");
        capitals.set("Panama", "Panama City");
        capitals.set("Papua New Guinea", "Port Moresby");
-       capitals.set("Paraguay", "Asunci�n");
+       capitals.set("Paraguay", "Asunci�n");
        capitals.set("Peru", "Lima");
        capitals.set("Philippines", "Manila");
        capitals.set("Poland", "Warsaw");
        capitals.set("Portugal", "Lisbon");
+
+       capitals.set("Qatar", "Doha");
+
        capitals.set("Romania", "Bucharest");
        capitals.set("Russia", "Moscow");
        capitals.set("Rwanda", "Kigali");
+
+       capitals.set("Saint Kitts and Nevis (Federation of Saint Christopher and Nevi)", "Basseterre");
+       capitals.set("Saint Lucia", "Castries");
+       capitals.set("Saint Vincent and the Grenadines", "Kingstown");
+       capitals.set("Samoa (Independent State of Samoa)", "Apia");
+       capitals.set("San Marino (Republic of San Marino)", "San Marino");
+       capitals.set("São Tomé and Príncipe", "São Tomé");
        capitals.set("Saudi Arabia", "Riyadh");
+       capitals.set("Senegal", "Dakar");
        capitals.set("Serbia", "Belgrade");
+       capitals.set("Seychelles", "Victoria");
+       capitals.set("Sierra Leone (Republic of Sierra Leone)", "Freetown");
+       capitals.set("Slovakia", "Bratislava");
+       capitals.set("Slovenia", "Ljubljana");
+       capitals.set("Solomon Islands", "Honiara");
        capitals.set("Somalia", "Mogadishu");
        capitals.set("South Africa", "Pretoria");
+       capitals.set("South Sudan", "Juba");
        capitals.set("South Korea", "Seoul");
-       capitals.set("South Ossetia", "Tskhinvali");
        capitals.set("Spain", "Madrid");
        capitals.set("Sri Lanka", "Colombo");
-       capitals.set("Sudan", "Khartoum");
+       capitals.set("Sudan (Republic of the Sudan)", "Khartoum");
+       capitals.set("Suriname", "Paramaribo");
        capitals.set("Sweden", "Stockholm");
+       capitals.set("Switzerland", "Bern");
        capitals.set("Syria", "Damascus");
+
        capitals.set("Tajikistan", "Dushanbe");
        capitals.set("Tanzania", "Dodoma");
        capitals.set("Thailand", "Bangkok");
+       capitals.set("Togo", "Lomé");
+       capitals.set("Tonga (Kingdom of Tonga)", "Nukuʻalofa")
+       capitals.set("Trinidad and Tobago", "Port of Spain");
        capitals.set("Tunisia", "Tunis");
        capitals.set("Turkey", "Ankara");
        capitals.set("Turkmenistan", "Ashgabat");
+       capitals.set("Tuvalu", "Funafuti");
+
        capitals.set("Uganda", "Kampala");
        capitals.set("Ukraine", "Kyiv");
        capitals.set("United Arab Emirates", "Abu Dhabi");
        capitals.set("United Kingdom", "London");
        capitals.set("United States of America", "Washington, D.C.");
+       capitals.set("Uruguay (Oriental Republic of Uruguay)", "Montevideo");
        capitals.set("Uzbekistan", "Tashkent"),
+
+       capitals.set("Vanuatu (Republic of Vanuatu)", "Port Vila");
        capitals.set("Venezuela", "Caracas");
        capitals.set("Vietnam", "Hanoi");
-       capitals.set("Yemen", "Sana'a");
+
+       capitals.set("Yemen (Republic of Yemen)", "Sana'a");
+
        capitals.set("Zambia", "Lusaka");
        capitals.set("Zimbabwe", "Harare");
 
@@ -172,7 +259,7 @@ class WorldCapitals extends QuestionBank {
        this.mChoices.push("Mumbai");
        this.mChoices.push("New York City");
        this.mChoices.push("Saint Petersburg");
-       this.mChoices.push("S�o Paulo");
+       this.mChoices.push("São Paulo");
        this.mChoices.push("Shanghai");
        this.mChoices.push("Toronto");
        this.mChoices.push("Yangon");
@@ -190,7 +277,7 @@ class WorldCapitals extends QuestionBank {
        let dup = new Array();
        let result = new Array();
 
-       let N = 30; 
+       let N = 30;
        for (var i = 0; i < N; ++i) {
            let j = LiY.ryRandom(0, fullList.length, dup);
            result.push(fullList[j]);
