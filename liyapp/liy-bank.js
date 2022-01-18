@@ -179,6 +179,9 @@ class QuestionBankCollection {
        const c9probability = new QBDetails("C9Probability",
            `Class 9: Mathematics: Probability`, new C9Probability());
 
+       /* Class 9: Geography */
+       const c9Population = new QBDetails("C9Population", "Class 9: Social Science: Geography: Population", new C9Population());
+
        this.mQuestionBankArray = [
            /*******************************************************************/
            /* General Knowledge */
@@ -309,6 +312,8 @@ class QuestionBankCollection {
            new QBDetails("Class9GeoWildLife", `Class 9: Social Science:
                Geography: Wildlife`, new LiyClass9GeoWildLifeQB()),
 
+           c9Population,
+
            new QBDetails("Class9Science", `Class 9: Science: Chemistry: Matter
                in our Surroundings`, null),
 
@@ -324,7 +329,7 @@ class QuestionBankCollection {
            new QBDetails("C9AtomicNumber", `Class 9: Science: Chemistry:
                Atomic Number From 1 to 30`, new C9AtomicNumber()),
 
-           new QBDetails("Class9Science", `Class 9: Science: Biology: The 
+           new QBDetails("Class9Science", `Class 9: Science: Biology: The
                Fundamental Unit of Life`, null),
 
            new QBDetails("Class9Science", `Class 9: Science: Biology: Tissues`,
@@ -439,4 +444,3 @@ class QuestionBankCollection {
        return total;
    }
 }
-
