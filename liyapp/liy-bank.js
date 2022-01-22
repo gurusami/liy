@@ -234,6 +234,8 @@ class QuestionBankCollection {
            new QBDetails("Class6MathsKnowingYourNumbers", `Class 6: Mathematics:
                Knowing Your Numbers`, new LiyClass6MathsKnowingYourNumbersQB()),
 
+           new QBDetails("C6Fractions", `Class 6: Mathematics: Conversion of Fractions to Decimal Numbers`, new C6Fractions()),
+           
            new QBDetails("Class6AirAroundUs", `Class 6: Chemistry: Air Around
                Us`, new LiyClass6AirAroundUsQB()),
 
