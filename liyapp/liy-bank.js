@@ -160,6 +160,10 @@ class QuestionBankCollection {
            `General Knowledge: Capitals of World Countries`,
            new WorldCapitals());
 
+       const northAmericaCapitals = new QBDetails("NorthAmericaCapitals",
+           `General Knowledge: Capitals of North American Countries`,
+           new NorthAmericaCapitals());
+
        const indiaCapitals = new QBDetails("capitals",
            "General Knowledge: Capitals of Indian States",
            new CapitalsOfIndianStates());
@@ -191,6 +195,7 @@ class QuestionBankCollection {
                new LiySampleSet()),
 
            worldCapitals,
+           northAmericaCapitals,
            indiaCapitals,
 
            new QBDetails("multiply100x100", "Basic Mathematics: Multiply Integers Upto 100 x 100",
@@ -235,7 +240,7 @@ class QuestionBankCollection {
                Knowing Your Numbers`, new LiyClass6MathsKnowingYourNumbersQB()),
 
            new QBDetails("C6Fractions", `Class 6: Mathematics: Conversion of Fractions to Decimal Numbers`, new C6Fractions()),
-           
+
            new QBDetails("Class6AirAroundUs", `Class 6: Chemistry: Air Around
                Us`, new LiyClass6AirAroundUsQB()),
 
